@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    container_name: terminapp_database
+    restart: always
+    volumes:
+      - ../data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: TerminAppDB
+      POSTGRES_USER: superman
+      POSTGRES_PASSWORD: superman
