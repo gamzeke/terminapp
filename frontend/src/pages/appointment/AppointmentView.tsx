@@ -1,5 +1,5 @@
+import { Button, Container, Group, Stepper, Title } from '@mantine/core';
 import { useState } from 'react';
-import { Stepper, Button, Group, Paper, Container, Title } from '@mantine/core';
 import CustomerCard from '../customer/CustomerCard';
 
 const AppointmentView = () => {

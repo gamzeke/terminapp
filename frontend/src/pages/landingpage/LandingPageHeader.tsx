@@ -8,7 +8,8 @@ import {
     Button,
     Burger,
 } from '@mantine/core';
-import { useBooleanToggle } from '@mantine/hooks';
+import { useToggle } from '@mantine/hooks';
+import { useState } from 'react';
 import { ChevronDown } from 'tabler-icons-react';
 
 const HEADER_HEIGHT = 60;
@@ -55,7 +56,7 @@ const useStyles = createStyles((theme) => ({
 
 export function LandingPageHeader() {
     const { classes } = useStyles();
-    const [opened, toggleOpened] = useBooleanToggle(false);
+    const [opened, toggleOpened] = useState(false);
     const links = [
         {
             "link": "#1",
@@ -89,7 +90,7 @@ export function LandingPageHeader() {
                 <Group>
                     <Burger
                         opened={opened}
-                        onClick={() => toggleOpened()}
+                        onClick={(oldState) => toggleOpened(!oldState)}
                         className={classes.burger}
                         size="sm"
                     />

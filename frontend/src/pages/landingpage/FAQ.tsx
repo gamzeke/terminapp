@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Title, Accordion, createStyles } from '@mantine/core';
+import { Container, Title, Accordion, createStyles, Text } from '@mantine/core';
 
 const useStyles = createStyles((theme, _params, getRef) => {
     const control = getRef('control');
@@ -40,33 +40,15 @@ const useStyles = createStyles((theme, _params, getRef) => {
     };
 });
 
-const placeholder =
-    'It can’t help but hear a pin drop from over half a mile away, so it lives deep in the mountains where there aren’t many people or Pokémon.It was born from sludge on the ocean floor. In a sterile environment, the germs within its body can’t multiply, and it dies.It has no eyeballs, so it can’t see. It checks its surroundings via the ultrasonic waves it emits from its mouth.';
-
 export function FAQ() {
     const { classes } = useStyles();
     return (
         <Container size="sm" className={classes.wrapper}>
-            <Accordion
-                iconPosition="right"
-                classNames={{
-                    item: classes.item,
-                    itemOpened: classes.itemOpened,
-                    control: classes.control,
-                }}
-            >
-                <Accordion.Item label="How can I reset my password?">{placeholder}</Accordion.Item>
-                <Accordion.Item label="Can I create more that one account?">{placeholder}</Accordion.Item>
-                <Accordion.Item label="Do you store credit card information securely?">
-                    {placeholder}
-                </Accordion.Item>
-                <Accordion.Item label="What payment systems to you work with?">
-                    {placeholder}
-                </Accordion.Item>
-                <Accordion.Item label="How can I subscribe to monthly newsletter?">
-                    {placeholder}
-                </Accordion.Item>
-            </Accordion>
+            <Text>"How can I reset my password?"</Text>
+            <Text>"Can I create more that one account?"</Text>
+            <Text>"Do you store credit card information securely?"</Text>
+            <Text>"What payment systems to you work with?"</Text>
+            <Text>"How can I subscribe to monthly newsletter?"</Text>
         </Container>
     );
 }
