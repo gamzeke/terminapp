@@ -34,10 +34,13 @@ public class Client {
     private String telephone;
     private LocalDate firstContactDate;
 
+    private String streetName;
+    private String streetNumber;
+    private String postCode;
+    private String city;
+    private String state;
+    private String country;
+
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Appointment> appointment;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
 }

@@ -18,6 +18,7 @@ public class ClientController {
     @GetMapping
     public List<Client> getAllClients() {
         log.info("Gets all clients");
+        System.out.println(clientService.getAllClients());
         return clientService.getAllClients();
     }
 }

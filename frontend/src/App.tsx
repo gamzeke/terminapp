@@ -1,8 +1,13 @@
 import RootView from './pages/root/RootView';
+import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <RootView></RootView>
+    <QueryClientProvider client={queryClient}>
+      <RootView></RootView>
+    </QueryClientProvider>
   );
 }
 
