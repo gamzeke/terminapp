@@ -49,7 +49,7 @@ const RootView = () => {
             // }
             footer={
                 <Footer height={50} p="sm">
-                    Make with ❤️ by Gamze Ketenci (Development Mode)
+                    (Development Mode)
                 </Footer>
             }
             header={
