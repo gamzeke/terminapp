@@ -1,7 +1,9 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run Backend in Dev" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="C:\Program Files\Java\jdk1.8.0_171\jre" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="de.terminapp.terminapp.TerminAppApplication" />
-    <module name="terminapp" />
+    <module name="backend" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
