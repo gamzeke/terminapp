@@ -17,7 +17,7 @@ public class BusinessProfileController {
 
     @GetMapping
     public List<BusinessProfile> getBusinessProfile() {
-        log.info("Get the profile");
+        log.info("Gets the business profile");
         return businessProfileService.getBusinessProfile();
     }
 }
