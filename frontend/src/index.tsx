@@ -16,7 +16,6 @@ import CalendarView from './pages/calendar/CalendarView';
 import CustomerView from './pages/customer/CustomerView';
 import AppointmentView from './pages/appointment/AppointmentView';
 import Landingpage from './pages/landingpage/Landingpage';
-import RequestView from './pages/request/RequestView';
 import FAQView from './pages/faq/FAQView';
 import GalleryView from './pages/gallery/GalleryView';
 
@@ -31,7 +30,6 @@ root.render(
           <Route index element={<DashboardView />} />
           <Route path="calendar" element={<CalendarView />} />
           <Route path="customer" element={<CustomerView />} />
-          <Route path="requests" element={<RequestView />} />
           <Route path="settings" element={<SettingsView />} />
           <Route path="gallery" element={<GalleryView />} />
           <Route path="faq" element={<FAQView />} />

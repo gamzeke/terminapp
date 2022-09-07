@@ -15,7 +15,6 @@ interface ICustomer {
   readonly state: string;
   readonly country: string;
   readonly appointments?: IAppointments[];
-  
   // TODO-MMUEJDE: Where is the time stamp?
 }
 
