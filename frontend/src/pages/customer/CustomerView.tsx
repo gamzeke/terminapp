@@ -8,6 +8,7 @@ import { Search } from 'tabler-icons-react';
 import ICustomer from '.';
 import axios from "axios";
 import React from 'react';
+import ErrorMessage from '../../shared/ErrorMessage';
 
 const CustomerTableRow = (customer: ICustomer) => {
     return (
@@ -53,22 +54,23 @@ const CustomerTable = ({ children }: CustomerTableProps) => {
     )
 }
 
-export function CustomerView() {
-
-    const { isLoading, isFetching, error, data, } = useQuery(["clients"], () =>
+const CustomerView = () => {
+    const { isLoading, isFetching, error, data } = useQuery(["clients"], () =>
         axios
             .get("http://localhost:8080/api/v1/clients")
             .then((res) => res.data)
-    );
+    )
 
     if (error) {
-        return <>Es gibt einen Fehler!</>
+        return <ErrorMessage message='Die Kundendaten konnten nicht geladen werden.' />
     }
 
+    //TODO-MMUEJDE: Ich muss die Suche einbauen!
     return (
         <>
             {
-                isFetching || isLoading ? "Loading..." :
+                isFetching || isLoading ?
+                    "IsLoading" :
                     <>
                         <Input
                             icon={<Search />}
@@ -77,9 +79,11 @@ export function CustomerView() {
                         />
                         <Space h="lg" />
                         <CustomerTable>
-                            {data.map((customer: ICustomer) => {
-                                return <CustomerTableRow key={customer.id} {...customer} />
-                            })}
+                            {
+                                data.map((customer: ICustomer) => {
+                                    return <CustomerTableRow key={customer.id} {...customer} />
+                                })
+                            }
                         </CustomerTable>
                     </>
             }
