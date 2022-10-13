@@ -33,3 +33,17 @@ Start with Run Button
 ```bash
 yarn start
 ```
+
+## Docker Image Build
+
+### Frontend
+
+```bash
+docker build . -t terminAppFrontend
+```
+
+### Backend
+
+```bash
+docker build . -t terminAppBackend
+```
