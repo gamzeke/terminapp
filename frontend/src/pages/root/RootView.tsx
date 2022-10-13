@@ -40,16 +40,9 @@ const RootView = () => {
                     </Navbar.Section>
                 </Navbar>
             }
-            // aside={
-            //   <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-            //     <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
-            //       <Text>Application sidebar</Text>
-            //     </Aside>
-            //   </MediaQuery>
-            // }
             footer={
                 <Footer height={50} p="sm">
-                    (Development Mode)
+                    Development
                 </Footer>
             }
             header={
@@ -64,7 +57,7 @@ const RootView = () => {
                                 mr="xl"
                             />
                         </MediaQuery>
-                        {/* TODO-MMUEJDE: Logo des Unternehmens */}
+                        {/* TODO-MMUEJDE: Logo des Unternehmens einbi */}
                         <Text weight={700}>TerminPlaner</Text>
                     </div>
                 </Header>

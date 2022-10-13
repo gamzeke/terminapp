@@ -1,23 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
 import {
-  BrowserRouter,
-  Routes,
-  Route,
+  BrowserRouter, Route, Routes
 } from "react-router-dom";
-
-import './index.css';
 import App from './App';
+import './index.css';
+import AppointmentView from './pages/appointment/AppointmentView';
 import AuthView from './pages/authentication/AuthView';
-import SettingsView from './pages/settings/SettingsView';
-import DashboardView from './pages/dashboard/DashboardView';
 import CalendarView from './pages/calendar/CalendarView';
 import CustomerView from './pages/customer/CustomerView';
-import AppointmentView from './pages/appointment/AppointmentView';
-import Landingpage from './pages/landingpage/Landingpage';
+import DashboardView from './pages/dashboard/DashboardView';
 import FAQView from './pages/faq/FAQView';
 import GalleryView from './pages/gallery/GalleryView';
+import Landingpage from './pages/landingpage/Landingpage';
+import SettingsView from './pages/settings/SettingsView';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
