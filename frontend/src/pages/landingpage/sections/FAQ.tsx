@@ -43,12 +43,12 @@ const useStyles = createStyles((theme, _params, getRef) => {
 export function FAQ() {
     const { classes } = useStyles();
     return (
-        <Container size="sm" className={classes.wrapper}>
+        <>
             <Text>"How can I reset my password?"</Text>
             <Text>"Can I create more that one account?"</Text>
             <Text>"Do you store credit card information securely?"</Text>
             <Text>"What payment systems to you work with?"</Text>
             <Text>"How can I subscribe to monthly newsletter?"</Text>
-        </Container>
+        </>
     );
 }

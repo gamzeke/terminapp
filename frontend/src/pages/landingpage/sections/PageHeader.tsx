@@ -1,16 +1,7 @@
 import {
-    createStyles,
-    Menu,
-    Center,
-    Header,
-    Container,
-    Group,
-    Button,
-    Burger,
+    Burger, Button, Container, createStyles, Group, Header, Text
 } from '@mantine/core';
-import { useToggle } from '@mantine/hooks';
 import { useState } from 'react';
-import { ChevronDown } from 'tabler-icons-react';
 
 const HEADER_HEIGHT = 60;
 
@@ -21,19 +12,16 @@ const useStyles = createStyles((theme) => ({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-
     links: {
         [theme.fn.smallerThan('sm')]: {
             display: 'none',
         },
     },
-
     burger: {
         [theme.fn.largerThan('sm')]: {
             display: 'none',
         },
     },
-
     link: {
         display: 'block',
         lineHeight: 1,
@@ -48,15 +36,15 @@ const useStyles = createStyles((theme) => ({
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
         },
     },
-
     linkLabel: {
         marginRight: 5,
     },
 }));
 
-export function LandingPageHeader() {
+const PageHeader = () => {
     const { classes } = useStyles();
     const [opened, toggleOpened] = useState(false);
+
     const links = [
         {
             "link": "#1",
@@ -64,7 +52,7 @@ export function LandingPageHeader() {
         },
         {
             "link": "/services",
-            "label": "Leistungen"
+            "label": "Unsere Leistungen"
         },
         {
             "link": "/about",
@@ -94,15 +82,17 @@ export function LandingPageHeader() {
                         className={classes.burger}
                         size="sm"
                     />
-                    {/* <MantineLogo /> */}
+                    <Text variant="text">Name des Unternehmens</Text>
                 </Group>
                 <Group spacing={5} className={classes.links}>
                     {items}
                 </Group>
                 <Button radius="xl" sx={{ height: 30 }}>
-                    Jetzt Termin vereinbaren
+                    Jetzt einen Termin vereinbaren
                 </Button>
             </Container>
         </Header>
     );
 }
+
+export default PageHeader;

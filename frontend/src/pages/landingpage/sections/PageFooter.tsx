@@ -1,5 +1,5 @@
-import { createStyles, Anchor, Group, ActionIcon } from '@mantine/core';
-import { BrandTwitter, BrandYoutube, BrandInstagram, BrandTiktok } from 'tabler-icons-react';
+import { ActionIcon, Anchor, createStyles, Group } from '@mantine/core';
+import { BrandInstagram, BrandTiktok, BrandTwitter, BrandYoutube } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
     footer: {
@@ -27,17 +27,17 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export function LandingPageFooter() {
+const PageFooter = () => {
     const { classes } = useStyles();
     const links = [
         {
             "link": "#",
-            "label": "Kontakt"
+            "label": "Datenschutz"
         },
         {
             "link": "#",
-            "label": "Datenschutz"
-        }
+            "label": "Impressum"
+        },
     ]
     const items = links.map((link) => (
         <Anchor<'a'>
@@ -55,25 +55,11 @@ export function LandingPageFooter() {
     return (
         <div className={classes.footer}>
             <div className={classes.inner}>
-                {/* <MantineLogo /> */}
-
+                Name des Unternehmens
                 <Group className={classes.links}>{items}</Group>
-
-                <Group spacing={0} position="right" noWrap>
-                    <ActionIcon size="lg">
-                        <BrandInstagram size={18} />
-                    </ActionIcon>
-                    <ActionIcon size="lg">
-                        <BrandTwitter size={18} />
-                    </ActionIcon>
-                    <ActionIcon size="lg">
-                        <BrandYoutube size={18} />
-                    </ActionIcon>
-                    <ActionIcon size="lg">
-                        <BrandTiktok size={18} />
-                    </ActionIcon>
-                </Group>
             </div>
         </div>
     );
 }
+
+export default PageFooter;

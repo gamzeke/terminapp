@@ -12,7 +12,7 @@ import CustomerView from './pages/customer/CustomerView';
 import DashboardView from './pages/dashboard/DashboardView';
 import FAQView from './pages/faq/FAQView';
 import GalleryView from './pages/gallery/GalleryView';
-import Landingpage from './pages/landingpage/Landingpage';
+import LandingPage from './pages/landingpage/LandingPage';
 import SettingsView from './pages/settings/SettingsView';
 
 const root = ReactDOM.createRoot(
@@ -32,7 +32,7 @@ root.render(
         </Route>
         <Route path="auth" element={<AuthView />} />
         <Route path="scheduler" element={<AppointmentView />} />
-        <Route path="/" element={<Landingpage />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
