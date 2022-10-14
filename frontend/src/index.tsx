@@ -5,14 +5,14 @@ import {
 } from "react-router-dom";
 import App from './App';
 import './index.css';
-import AppointmentView from './pages/appointment/AppointmentView';
-import AuthView from './pages/authentication/AuthView';
-import CalendarView from './pages/calendar/CalendarView';
-import CustomerView from './pages/customer/CustomerView';
-import DashboardView from './pages/dashboard/DashboardView';
-import FAQView from './pages/faq/FAQView';
-import LandingPage from './pages/landingpage/LandingPage';
-import SettingsView from './pages/settings/SettingsView';
+import AppointmentView from './admin/pages/appointment/AppointmentView';
+import AuthView from './admin/pages/authentication/AuthView';
+import CalendarView from './admin/pages/calendar/CalendarView';
+import CustomerView from './admin/pages/customer/CustomerView';
+import DashboardView from './admin/pages/dashboard/DashboardView';
+import FAQView from './admin/pages/faq/FAQView';
+import LandingPage from './landingpage/LandingPage';
+import SettingsView from './admin/pages/settings/SettingsView';
 import PageNotFound from './shared/PageNotFound';
 
 const root = ReactDOM.createRoot(
@@ -31,7 +31,10 @@ root.render(
         </Route>
         <Route path="auth" element={<AuthView />} />
         <Route path="scheduler" element={<AppointmentView />} />
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />}>
+          <Route path="imprint" element={<Imprint />} />
+          <Route path="imprint" element={<Privacy />} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

@@ -8,7 +8,7 @@ import { Search } from 'tabler-icons-react';
 import ICustomer from '.';
 import axios from "axios";
 import React from 'react';
-import ErrorMessage from '../../shared/ErrorMessage';
+import ErrorMessage from '../../../shared/ErrorMessage';
 
 const CustomerTableRow = (customer: ICustomer) => {
     return (

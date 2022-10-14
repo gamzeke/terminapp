@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Dashboard, Settings, Calendar, Database, Home, ExternalLink } from 'tabler-icons-react';
 import { ThemeIcon, UnstyledButton, Group, Text } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +14,6 @@ const menuItems = [
   { icon: <Dashboard size={16} />, color: 'blue', label: 'Dashboard', url: '/admin' },
   { icon: <Calendar size={16} />, color: 'red', label: 'Kalendar', url: 'calendar' },
   { icon: <Database size={16} />, color: 'green', label: 'Kundendatenbank', url: 'customer' },
-  { icon: <Settings size={16} />, color: 'pink', label: 'Bildergallerie', url: 'gallery' },
   { icon: <Settings size={16} />, color: 'yellow', label: 'FAQs', url: 'faq' },
   { icon: <Settings size={16} />, color: 'teal', label: 'Einstellungen', url: 'settings' },
   { icon: <ExternalLink size={16} />, color: 'lime', label: 'Webseite', url: '/' },

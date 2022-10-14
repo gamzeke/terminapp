@@ -2,7 +2,7 @@ import { Badge, Card, Group, SimpleGrid, Skeleton, Text, Title } from '@mantine/
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios';
 import { useState } from 'react';
-import ErrorMessage from '../../shared/ErrorMessage';
+import ErrorMessage from '../../../shared/ErrorMessage';
 
 
 interface IFAQ {
