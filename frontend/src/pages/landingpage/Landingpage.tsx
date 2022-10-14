@@ -30,13 +30,6 @@ const LandingPage = () => {
                 </SimpleGrid>
             </Container>
 
-            <Container id="gallery-section" pt="xl">
-                <Title order={2} mb="lg">Unsere Gallerie</Title>
-                <Skeleton height={8} mt={6} radius="xl" />
-                <Skeleton height={8} mt={6} radius="xl" />
-                <Skeleton height={8} mt={6} radius="xl" />
-            </Container>
-
             <Container id="socialmedia-section" pt="xl">
                 <Title order={2} mb="lg">Wir sind auf den folgenden Sozialen Medien</Title>
                 <Group spacing={0} position="center" noWrap>

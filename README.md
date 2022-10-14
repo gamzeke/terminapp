@@ -39,11 +39,13 @@ yarn start
 ### Frontend
 
 ```bash
+cd frontend
 docker build . -t terminapp-frontend:latest
 ```
 
 ### Backend
 
 ```bash
+cd backend
 docker build . -t terminapp-backend:latest
 ```

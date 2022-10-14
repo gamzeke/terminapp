@@ -11,7 +11,6 @@ import CalendarView from './pages/calendar/CalendarView';
 import CustomerView from './pages/customer/CustomerView';
 import DashboardView from './pages/dashboard/DashboardView';
 import FAQView from './pages/faq/FAQView';
-import GalleryView from './pages/gallery/GalleryView';
 import LandingPage from './pages/landingpage/LandingPage';
 import SettingsView from './pages/settings/SettingsView';
 
@@ -22,12 +21,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="backoffice" element={<App />}>
+        <Route path="admin" element={<App />}>
           <Route index element={<DashboardView />} />
           <Route path="calendar" element={<CalendarView />} />
           <Route path="customer" element={<CustomerView />} />
           <Route path="settings" element={<SettingsView />} />
-          <Route path="gallery" element={<GalleryView />} />
           <Route path="faq" element={<FAQView />} />
         </Route>
         <Route path="auth" element={<AuthView />} />
