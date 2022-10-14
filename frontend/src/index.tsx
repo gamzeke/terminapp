@@ -13,6 +13,7 @@ import DashboardView from './pages/dashboard/DashboardView';
 import FAQView from './pages/faq/FAQView';
 import LandingPage from './pages/landingpage/LandingPage';
 import SettingsView from './pages/settings/SettingsView';
+import PageNotFound from './shared/PageNotFound';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -31,6 +32,7 @@ root.render(
         <Route path="auth" element={<AuthView />} />
         <Route path="scheduler" element={<AppointmentView />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
