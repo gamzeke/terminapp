@@ -3,21 +3,24 @@ import ReactDOM from 'react-dom/client';
 import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
-import App from './App';
-import './index.css';
 import AppointmentView from './admin/pages/appointment/AppointmentView';
 import AuthView from './admin/pages/authentication/AuthView';
 import CalendarView from './admin/pages/calendar/CalendarView';
 import CustomerView from './admin/pages/customer/CustomerView';
 import DashboardView from './admin/pages/dashboard/DashboardView';
 import FAQView from './admin/pages/faq/FAQView';
-import LandingPage from './landingpage/LandingPage';
 import SettingsView from './admin/pages/settings/SettingsView';
+import App from './App';
+import './index.css';
+import LandingPage from './landingpage/LandingPage';
+import Imprint from './landingpage/pages/Imprint';
+import Privacy from './landingpage/pages/Privacy';
 import PageNotFound from './shared/PageNotFound';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
