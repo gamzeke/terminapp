@@ -1,18 +1,9 @@
-import React, { useState } from 'react'
 import {
-    createStyles,
-    Paper,
-    Title,
-    Text,
-    TextInput,
-    Button,
-    Container,
-    Group,
-    Anchor,
-    Center,
-    Box,
+    Anchor, Box, Button, Center, createStyles, Group, Paper, Text,
+    TextInput, Title
 } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons';
+import { useState } from 'react';
 import { AuthStatusType } from './AuthView';
 
 interface PasswordForgotProps {
