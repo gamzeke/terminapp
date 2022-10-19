@@ -1,35 +1,65 @@
-import { Title, Paper, Group, Space } from '@mantine/core'
-import { TimeInput } from '@mantine/dates'
+import { Button, Group, Paper, SimpleGrid, Stack, Title } from '@mantine/core';
+import { TimeRangeInput } from '@mantine/dates';
+import { useState } from 'react';
 
 
-type BusinessDayProps = {
-    day: string
+interface BusinessDayProps {
+    day: string;
+    businessHourChangesHandler: (hour: IBusinessHours) => void
 }
 
-const BusinessDay = (props: BusinessDayProps) => {
+const BusinessHourDay = ({ day, businessHourChangesHandler }: BusinessDayProps) => {
+    const [value, _setValue] = useState<[Date | null, Date | null]>([null, null]);
+
+    const updateValue = (value: [Date, Date]) => {
+        const hourChange: IBusinessHours = {
+            day: day,
+            from: value[0],
+            till: value[1],
+        }
+        businessHourChangesHandler(hourChange)
+    }
+
     return <>
-        <Title order={5}>{props.day}</Title>
+        <Title order={5}>{day}</Title>
         <Group>
-            <TimeInput label="Von" />
-            <TimeInput label="Bis" />
-            <TimeInput label="Von" />
-            <TimeInput label="Bis" />
+            <TimeRangeInput label="Öffnungszeit" value={value} onChange={updateValue} />
         </Group>
-        <Space h="lg" />
     </>
 }
 
+interface IBusinessHours {
+    day: string
+    from: Date
+    till: Date
+}
+
 const BusinessHours = () => {
+    const saveChangesHandler = () => {
+        //TODO-MMUEJDE: Implement me 
+    }
+
+    const businessHourChangesHandler = (hour: IBusinessHours) => {
+        //TODO-MMUEJDE: Implement me 
+    }
+
     return (
         <Paper shadow="sm" p="lg">
-            <Title order={3}>Meine Öffnungszeiten</Title>
-            <BusinessDay day={"Montag"} />
-            <BusinessDay day={"Dienstag"} />
-            <BusinessDay day={"Mittwoch"} />
-            <BusinessDay day={"Donnerstag"} />
-            <BusinessDay day={"Freitag"} />
-            <BusinessDay day={"Samstag"} />
-            <BusinessDay day={"Sonntag"} />
+            <Stack>
+                <Group position='apart'>
+                    <Title order={3}>Öffnungszeiten</Title>
+                    <Button onClick={saveChangesHandler} size='xs'>Speichern</Button>
+                </Group>
+                <SimpleGrid cols={2}>
+                    <BusinessHourDay day={"Montag"} businessHourChangesHandler={businessHourChangesHandler} />
+                    <BusinessHourDay day={"Dienstag"} businessHourChangesHandler={businessHourChangesHandler} />
+                    <BusinessHourDay day={"Mittwoch"} businessHourChangesHandler={businessHourChangesHandler} />
+                    <BusinessHourDay day={"Donnerstag"} businessHourChangesHandler={businessHourChangesHandler} />
+                    <BusinessHourDay day={"Freitag"} businessHourChangesHandler={businessHourChangesHandler} />
+                    <BusinessHourDay day={"Samstag"} businessHourChangesHandler={businessHourChangesHandler} />
+                    <BusinessHourDay day={"Sonntag"} businessHourChangesHandler={businessHourChangesHandler} />
+                </SimpleGrid>
+            </Stack>
         </Paper>
     )
 }
