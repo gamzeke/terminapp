@@ -15,7 +15,7 @@ import './index.css';
 import LandingPage from './landingpage/LandingPage';
 import Imprint from './landingpage/pages/Imprint';
 import Privacy from './landingpage/pages/Privacy';
-import PageNotFound from './shared/PageNotFound';
+import PageNotFound from './shared/pages/PageNotFound';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
