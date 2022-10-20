@@ -1,4 +1,4 @@
-import { Button, createStyles, Group, SimpleGrid, Text, Textarea, TextInput, Title } from '@mantine/core';
+import { Button, Center, createStyles, Group, SimpleGrid, Stack, Text, Textarea, TextInput, Title } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -68,49 +68,22 @@ const ContactUs = () => {
 
     return (
         <div className={classes.wrapper}>
-            <SimpleGrid cols={2} spacing={50} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
-                <div>
-                    <Title className={classes.title}>Kontakt</Title>
-                    <Text className={classes.description} mt="sm" mb="sm" align="justify">
-                        Falls Sie noch Fragen haben, dann schreiben Sie uns einfach. Wir werden uns so schnell wie möglich bei dir melden.
-                    </Text>
+            <SimpleGrid cols={3} >
+                <Center>
+                    <Stack>
+                        <Title order={3} className={classes.title}>Falls Sie noch Fragen haben, dann schreiben Sie uns einfach. Wir werden uns so schnell wie möglich bei Ihnen melden.</Title>
+                        <Title className={classes.title}>info@mustermann.de</Title>
+                    </Stack>
+                </Center>
+                <Center>
                     <Title className={classes.title}>oder</Title>
-                    <Text className={classes.description} mt="sm" mb="sm" align="justify">
-                        Rufen Sie uns einfach an.
-                    </Text>
-                    <Title className={classes.title}>+49123456789</Title>
-                </div>
-                <div className={classes.form}>
-                    <TextInput
-                        label="E-Mail"
-                        placeholder="max.mustermann@muster.de"
-                        required
-                        classNames={{ input: classes.input, label: classes.inputLabel }}
-                    />
-                    <TextInput
-                        label="Vorname"
-                        placeholder="Max"
-                        mt="md"
-                        classNames={{ input: classes.input, label: classes.inputLabel }}
-                    />
-                    <TextInput
-                        label="Nachname"
-                        placeholder="Mustermann"
-                        mt="md"
-                        classNames={{ input: classes.input, label: classes.inputLabel }}
-                    />
-                    <Textarea
-                        required
-                        label="Ihre Nachricht"
-                        placeholder="Hallo, ich habe mal eine Frage..."
-                        minRows={4}
-                        mt="md"
-                        classNames={{ input: classes.input, label: classes.inputLabel }}
-                    />
-                    <Group position="right" mt="md">
-                        <Button className={classes.control}>Nachricht senden</Button>
-                    </Group>
-                </div>
+                </Center>
+                <Center>
+                    <Stack>
+                        <Title order={3} className={classes.title}> Rufen Sie uns einfach an.</Title>
+                        <Title className={classes.title}>+49123456789</Title>
+                    </Stack>
+                </Center>
             </SimpleGrid>
         </div>
     );

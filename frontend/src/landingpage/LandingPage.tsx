@@ -62,7 +62,7 @@ const LandingPage = () => {
             </Container>
 
             <Container id="contact-section" pt="xl">
-                <Title order={2} mb="lg">Kontaktieren Sie uns einfach per Mail</Title>
+                <Title order={2} mb="lg">Kontaktieren Sie uns einfach</Title>
                 <ContactUs />
             </Container>
 
