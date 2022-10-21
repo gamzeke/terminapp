@@ -5,10 +5,10 @@ import {
     createStyles,
     Group,
     Header,
-    Text,
     Title,
 } from '@mantine/core';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCompanyContext } from '../../shared/context/CompanyContext';
 
 const HEADER_HEIGHT = 60;
@@ -59,6 +59,15 @@ const PageHeader = () => {
     const { classes } = useStyles();
     const [opened, toggleOpened] = useState(false);
     const { company, ...rest } = useCompanyContext();
+    const navigate = useNavigate();
+
+    const loginButtonHandler = () => {
+        navigate('auth');
+    };
+
+    const appointmentButtonHandler = () => {
+        navigate('scheduler');
+    };
 
     const links = [
         {
@@ -102,9 +111,18 @@ const PageHeader = () => {
                 <Group spacing={5} className={classes.links}>
                     {items}
                 </Group>
-                <Button radius="xl" sx={{ height: 30 }}>
-                    Jetzt einen Termin vereinbaren
-                </Button>
+                <Group>
+                    <Button
+                        color="green"
+                        sx={{ height: 30 }}
+                        onClick={appointmentButtonHandler}
+                    >
+                        Jetzt einen Termin vereinbaren
+                    </Button>
+                    <Button sx={{ height: 30 }} onClick={loginButtonHandler}>
+                        Login
+                    </Button>
+                </Group>
             </Container>
         </Header>
     );
