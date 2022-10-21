@@ -14,17 +14,17 @@ public class CompanyConfig {
                     Company
                             .builder()
                             .companyName("Mustermann AG")
-                            .welcomeText("Das ist ein Mustertext für die Willkommensseite.")
+                            .welcomeText("Ihre Startseite zählt zu den wichtigsten Seiten Ihres Webauftritts. Und wenn Sie einmal genauer in Ihre Webstatistik schauen. Ihre Startseite ist wahrscheinlich auch die meistbesuchte.")
                             .street("Musterstraße 1")
                             .additionalInformation("Hinterhaus")
                             .postCode("12345")
                             .city("Musterstadt")
                             .state("Musterland")
                             .homepageLink("https://www.muster-seite.de")
-                            .facebookLink("https://www.muster-seite.de")
-                            .instagramLink("https://www.muster-seite.de")
-                            .youtubeLink("https://www.muster-seite.de")
-                            .tikTokLink("https://www.muster-seite.de")
+                            .facebookLink("https://www.facebook.de")
+                            .instagramLink("https://www.instagram.de")
+                            .youtubeLink("https://www.youtube.de")
+                            .tikTokLink("https://www.tiktok.de")
                             .build()
             );
         };
