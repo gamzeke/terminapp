@@ -13,17 +13,21 @@ const Products = () => {
     const [services, setServices] = useState<IService[]>([]);
 
     const deleteServiceHandler = (id: string) => {
-        //TODO-MMUEJDE: Implement me 
-    }
+        //TODO-MMUEJDE: Implement me
+    };
 
-    const createServiceButtonHandler = (name: string, description: string, price: string) => {
+    const createServiceButtonHandler = (
+        name: string,
+        description: string,
+        price: string
+    ) => {
         const newService: IService = {
             name: name,
             description: description,
             price: price,
-        }
-        setServices((prev) => [...prev, newService])
-    }
+        };
+        setServices(prev => [...prev, newService]);
+    };
 
     const tableHeader = (
         <tr>
@@ -34,7 +38,7 @@ const Products = () => {
         </tr>
     );
 
-    const tableRows = services.map((element) => (
+    const tableRows = services.map(element => (
         <tr key={element.name}>
             <td>{element.name}</td>
             <td>{element.description}</td>
@@ -52,20 +56,26 @@ const Products = () => {
     return (
         <Paper shadow="sm" p="lg">
             <Stack>
-                <Group position='apart'>
+                <Group position="apart">
                     <Title order={3}>Leistungen</Title>
-                    <Group position='right'>
-                        <AddServiceDialog createServiceButtonHandler={createServiceButtonHandler} />
+                    <Group position="right">
+                        <AddServiceDialog
+                            createServiceButtonHandler={
+                                createServiceButtonHandler
+                            }
+                        />
                     </Group>
                 </Group>
                 <Table captionSide="bottom">
-                    {!services.length && <caption>Es befinden sich keine Einträge</caption>}
+                    {!services.length && (
+                        <caption>Es befinden sich keine Einträge</caption>
+                    )}
                     <thead>{tableHeader}</thead>
                     <tbody>{tableRows}</tbody>
                 </Table>
             </Stack>
         </Paper>
-    )
-}
+    );
+};
 
-export default Products
+export default Products;

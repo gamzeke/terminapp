@@ -1,12 +1,19 @@
 import {
-    Burger, Button, Container, createStyles, Group, Header, Text, Title
+    Burger,
+    Button,
+    Container,
+    createStyles,
+    Group,
+    Header,
+    Text,
+    Title,
 } from '@mantine/core';
 import { useState } from 'react';
 import { useCompanyContext } from '../../shared/context/CompanyContext';
 
 const HEADER_HEIGHT = 60;
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(theme => ({
     inner: {
         height: HEADER_HEIGHT,
         display: 'flex',
@@ -29,12 +36,18 @@ const useStyles = createStyles((theme) => ({
         padding: '8px 12px',
         borderRadius: theme.radius.sm,
         textDecoration: 'none',
-        color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+        color:
+            theme.colorScheme === 'dark'
+                ? theme.colors.dark[0]
+                : theme.colors.gray[7],
         fontSize: theme.fontSizes.sm,
         fontWeight: 500,
 
         '&:hover': {
-            backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+            backgroundColor:
+                theme.colorScheme === 'dark'
+                    ? theme.colors.dark[6]
+                    : theme.colors.gray[0],
         },
     },
     linkLabel: {
@@ -49,25 +62,25 @@ const PageHeader = () => {
 
     const links = [
         {
-            "link": "#1",
-            "label": "Home",
+            link: '#1',
+            label: 'Home',
         },
         {
-            "link": "/services",
-            "label": "Unsere Leistungen"
+            link: '/services',
+            label: 'Unsere Leistungen',
         },
         {
-            "link": "/about",
-            "label": "Über uns"
-        }
-    ]
-    const items = links.map((link) => {
+            link: '/about',
+            label: 'Über uns',
+        },
+    ];
+    const items = links.map(link => {
         return (
             <a
                 key={link.label}
                 href={link.link}
                 className={classes.link}
-                onClick={(event) => event.preventDefault()}
+                onClick={event => event.preventDefault()}
             >
                 {link.label}
             </a>
@@ -80,7 +93,7 @@ const PageHeader = () => {
                 <Group>
                     <Burger
                         opened={opened}
-                        onClick={(oldState) => toggleOpened(!oldState)}
+                        onClick={oldState => toggleOpened(!oldState)}
                         className={classes.burger}
                         size="sm"
                     />
@@ -95,6 +108,6 @@ const PageHeader = () => {
             </Container>
         </Header>
     );
-}
+};
 
 export default PageHeader;

@@ -1,7 +1,5 @@
 const TestimonialsView = () => {
-    return (
-        <div>TestimonialsView</div>
-    )
-}
+    return <div>TestimonialsView</div>;
+};
 
-export default TestimonialsView
+export default TestimonialsView;

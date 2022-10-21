@@ -1,12 +1,20 @@
 import { ActionIcon, Anchor, createStyles, Group, Title } from '@mantine/core';
-import { BrandInstagram, BrandTiktok, BrandTwitter, BrandYoutube } from 'tabler-icons-react';
+import {
+    BrandInstagram,
+    BrandTiktok,
+    BrandTwitter,
+    BrandYoutube,
+} from 'tabler-icons-react';
 import { useCompanyContext } from '../../shared/context/CompanyContext';
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(theme => ({
     footer: {
         marginTop: 120,
-        borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-            }`,
+        borderTop: `1px solid ${
+            theme.colorScheme === 'dark'
+                ? theme.colors.dark[5]
+                : theme.colors.gray[2]
+        }`,
     },
 
     inner: {
@@ -33,21 +41,21 @@ const PageFooter = () => {
     const { company, ...rest } = useCompanyContext();
     const links = [
         {
-            "link": "#",
-            "label": "Datenschutz"
+            link: '#',
+            label: 'Datenschutz',
         },
         {
-            "link": "#",
-            "label": "Impressum"
+            link: '#',
+            label: 'Impressum',
         },
-    ]
-    const items = links.map((link) => (
+    ];
+    const items = links.map(link => (
         <Anchor<'a'>
             color="dimmed"
             key={link.label}
             href={link.link}
             sx={{ lineHeight: 1 }}
-            onClick={(event) => event.preventDefault()}
+            onClick={event => event.preventDefault()}
             size="sm"
         >
             {link.label}
@@ -62,6 +70,6 @@ const PageFooter = () => {
             </div>
         </div>
     );
-}
+};
 
 export default PageFooter;

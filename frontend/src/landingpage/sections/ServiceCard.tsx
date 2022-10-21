@@ -1,10 +1,20 @@
+import {
+    Badge,
+    Button,
+    Card,
+    Center,
+    createStyles,
+    Group,
+    Image,
+    Text,
+} from '@mantine/core';
 import React from 'react';
-import { Card, Image, Text, Group, Badge, createStyles, Center, Button } from '@mantine/core';
 import { GasStation, Gauge, ManualGearbox, Users } from 'tabler-icons-react';
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(theme => ({
     card: {
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+        backgroundColor:
+            theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
     },
 
     imageSection: {
@@ -12,8 +22,11 @@ const useStyles = createStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        borderBottom: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-            }`,
+        borderBottom: `1px solid ${
+            theme.colorScheme === 'dark'
+                ? theme.colors.dark[4]
+                : theme.colors.gray[3]
+        }`,
     },
 
     label: {
@@ -27,13 +40,19 @@ const useStyles = createStyles((theme) => ({
 
     section: {
         padding: theme.spacing.md,
-        borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-            }`,
+        borderTop: `1px solid ${
+            theme.colorScheme === 'dark'
+                ? theme.colors.dark[4]
+                : theme.colors.gray[3]
+        }`,
     },
 
     icon: {
         marginRight: 5,
-        color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[5],
+        color:
+            theme.colorScheme === 'dark'
+                ? theme.colors.dark[2]
+                : theme.colors.gray[5],
     },
 }));
 
@@ -46,7 +65,7 @@ const mockdata = [
 
 export function ServiceCard() {
     const { classes } = useStyles();
-    const features = mockdata.map((feature) => (
+    const features = mockdata.map(feature => (
         <Center key={feature.label}>
             <feature.icon size={18} className={classes.icon} />
             <Text size="xs">{feature.label}</Text>
@@ -56,7 +75,10 @@ export function ServiceCard() {
     return (
         <Card withBorder radius="md" className={classes.card}>
             <Card.Section className={classes.imageSection}>
-                <Image src="https://cdn.artdeco.de/_Resources/Persistent/1/b/9/5/1b954bea7d800f5544aeac3e4553099bcb0e9847/Header-Large-Schminktipp-Uebersichtsseite_v4-370x500.jpg" alt="Tesla Model S" />
+                <Image
+                    src="https://cdn.artdeco.de/_Resources/Persistent/1/b/9/5/1b954bea7d800f5544aeac3e4553099bcb0e9847/Header-Large-Schminktipp-Uebersichtsseite_v4-370x500.jpg"
+                    alt="Tesla Model S"
+                />
             </Card.Section>
 
             <Group position="apart" mt="md">
@@ -85,8 +107,13 @@ export function ServiceCard() {
                         <Text size="xl" weight={700} sx={{ lineHeight: 1 }}>
                             10,00€
                         </Text>
-                        <Text size="sm" color="dimmed" weight={500} sx={{ lineHeight: 1 }} mt={3}>
-                        </Text>
+                        <Text
+                            size="sm"
+                            color="dimmed"
+                            weight={500}
+                            sx={{ lineHeight: 1 }}
+                            mt={3}
+                        ></Text>
                     </div>
 
                     <Button radius="xl" style={{ flex: 1 }}>

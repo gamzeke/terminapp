@@ -1,5 +1,13 @@
-import { RingProgress, Text, SimpleGrid, Paper, Center, Group, Title } from '@mantine/core';
-import { ArrowUpRight, ArrowDownRight } from 'tabler-icons-react';
+import {
+    Center,
+    Group,
+    Paper,
+    RingProgress,
+    SimpleGrid,
+    Text,
+    Title,
+} from '@mantine/core';
+import { ArrowDownRight, ArrowUpRight } from 'tabler-icons-react';
 
 interface StatsRingProps {
     label: string;
@@ -17,28 +25,28 @@ const icons = {
 export function StatusCard() {
     const data: StatsRingProps[] = [
         {
-            "label": "Termine",
-            "stats": "42",
-            "progress": 65,
-            "color": "teal",
-            "icon": "up"
+            label: 'Termine',
+            stats: '42',
+            progress: 65,
+            color: 'teal',
+            icon: 'up',
         },
         {
-            "label": "Neue Kunden",
-            "stats": "14",
-            "progress": 72,
-            "color": "blue",
-            "icon": "up"
+            label: 'Neue Kunden',
+            stats: '14',
+            progress: 72,
+            color: 'blue',
+            icon: 'up',
         },
         {
-            "label": "Anfragen",
-            "stats": "32",
-            "progress": 52,
-            "color": "red",
-            "icon": "down"
-        }
-    ]
-    const stats = data.map((stat) => {
+            label: 'Anfragen',
+            stats: '32',
+            progress: 52,
+            color: 'red',
+            icon: 'down',
+        },
+    ];
+    const stats = data.map(stat => {
         const Icon = icons[stat.icon];
         return (
             <Paper withBorder radius="md" p="xs" key={stat.label}>
@@ -57,7 +65,12 @@ export function StatusCard() {
                     />
 
                     <div>
-                        <Text color="dimmed" size="xs" transform="uppercase" weight={700}>
+                        <Text
+                            color="dimmed"
+                            size="xs"
+                            transform="uppercase"
+                            weight={700}
+                        >
                             {stat.label}
                         </Text>
                         <Text weight={700} size="xl">

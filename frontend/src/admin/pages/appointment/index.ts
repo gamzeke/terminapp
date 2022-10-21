@@ -1,5 +1,3 @@
-interface IAppointments{
-
-}
+interface IAppointments {}
 
 export default IAppointments;

@@ -1,16 +1,9 @@
-import {
-    Group,
-    Input,
-    Paper,
-    Space,
-    Table,
-    Title,
-} from '@mantine/core';
+import { Group, Input, Paper, Space, Table, Title } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import React from 'react';
 import { Search } from 'tabler-icons-react';
 import ICustomer from '.';
-import axios from "axios";
-import React from 'react';
 import ErrorMessage from '../../../shared/ErrorMessage';
 
 const CustomerTableRow = (customer: ICustomer) => {
@@ -27,10 +20,12 @@ const CustomerTableRow = (customer: ICustomer) => {
             <td>{customer.state}</td>
             <td>{customer.country}</td>
         </tr>
-    )
-}
+    );
+};
 
-{/* <td>{customer.firstContactDate}</td> TODO-MMUEJDE: Wie kann ich das darstellen? */ }
+{
+    /* <td>{customer.firstContactDate}</td> TODO-MMUEJDE: Wie kann ich das darstellen? */
+}
 
 interface CustomerTableProps {
     children?: React.ReactNode;
@@ -55,18 +50,18 @@ const CustomerTable = ({ children }: CustomerTableProps) => {
             </thead>
             <tbody>{children}</tbody>
         </Table>
-    )
-}
+    );
+};
 
 const CustomerView = () => {
-    const { isLoading, isFetching, error, data } = useQuery(["clients"], () =>
-        axios
-            .get("http://localhost:8080/api/v1/clients")
-            .then((res) => res.data)
-    )
+    const { isLoading, isFetching, error, data } = useQuery(['clients'], () =>
+        axios.get('http://localhost:8080/api/v1/clients').then(res => res.data)
+    );
 
     if (error) {
-        return <ErrorMessage message='Die Kundendaten konnten nicht geladen werden.' />
+        return (
+            <ErrorMessage message="Die Kundendaten konnten nicht geladen werden." />
+        );
     }
 
     //TODO-MMUEJDE: Ich muss die Suche einbauen!
@@ -74,33 +69,34 @@ const CustomerView = () => {
         <>
             <Paper p="xs">
                 <Group position="apart">
-                    <Title order={2}>
-                        Kundendatenbank
-                    </Title>
+                    <Title order={2}>Kundendatenbank</Title>
                 </Group>
             </Paper>
             <Space h="md" />
-            {
-                isFetching || isLoading ?
-                    "IsLoading" :
-                    <Paper p="xl">
-                        <Input
-                            icon={<Search />}
-                            variant="filled"
-                            placeholder="Suchen"
-                        />
-                        <Space h="lg" />
-                        <CustomerTable>
-                            {
-                                data.map((customer: ICustomer) => {
-                                    return <CustomerTableRow key={customer.id} {...customer} />
-                                })
-                            }
-                        </CustomerTable>
-                    </Paper>
-            }
+            {isFetching || isLoading ? (
+                'IsLoading'
+            ) : (
+                <Paper p="xl">
+                    <Input
+                        icon={<Search />}
+                        variant="filled"
+                        placeholder="Suchen"
+                    />
+                    <Space h="lg" />
+                    <CustomerTable>
+                        {data.map((customer: ICustomer) => {
+                            return (
+                                <CustomerTableRow
+                                    key={customer.id}
+                                    {...customer}
+                                />
+                            );
+                        })}
+                    </CustomerTable>
+                </Paper>
+            )}
         </>
     );
-}
+};
 
 export default CustomerView;

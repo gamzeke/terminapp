@@ -1,16 +1,16 @@
 import {
     AppShell,
-    Navbar,
-    Header,
-    Footer,
-    Text,
-    MediaQuery,
     Burger,
+    Footer,
+    Header,
+    MediaQuery,
+    Navbar,
+    Text,
     useMantineTheme,
 } from '@mantine/core';
 import { useState } from 'react';
-import { NavLinks } from './NavLinks';
 import { Outlet } from 'react-router-dom';
+import { NavLinks } from './NavLinks';
 
 interface CounterCardModel {
     title: string;
@@ -19,7 +19,6 @@ interface CounterCardModel {
 }
 
 const RootView = () => {
-
     const theme = useMantineTheme();
     const [opened, setOpened] = useState(false);
 
@@ -27,14 +26,22 @@ const RootView = () => {
         <AppShell
             styles={{
                 main: {
-                    background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+                    background:
+                        theme.colorScheme === 'dark'
+                            ? theme.colors.dark[8]
+                            : theme.colors.gray[0],
                 },
             }}
             navbarOffsetBreakpoint="sm"
             asideOffsetBreakpoint="sm"
             fixed
             navbar={
-                <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 220 }}>
+                <Navbar
+                    p="md"
+                    hiddenBreakpoint="sm"
+                    hidden={!opened}
+                    width={{ sm: 200, lg: 220 }}
+                >
                     <Navbar.Section>
                         <NavLinks />
                     </Navbar.Section>
@@ -47,11 +54,20 @@ const RootView = () => {
             }
             header={
                 <Header height={70} p="md">
-                    <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-                        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+                    <div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            height: '100%',
+                        }}
+                    >
+                        <MediaQuery
+                            largerThan="sm"
+                            styles={{ display: 'none' }}
+                        >
                             <Burger
                                 opened={opened}
-                                onClick={() => setOpened((o) => !o)}
+                                onClick={() => setOpened(o => !o)}
                                 size="sm"
                                 color={theme.colors.gray[6]}
                                 mr="xl"

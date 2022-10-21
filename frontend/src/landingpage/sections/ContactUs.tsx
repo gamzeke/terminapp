@@ -1,12 +1,24 @@
-import { Button, Center, createStyles, Group, SimpleGrid, Stack, Text, Textarea, TextInput, Title } from '@mantine/core';
+import {
+    Button,
+    Center,
+    createStyles,
+    Group,
+    SimpleGrid,
+    Stack,
+    Text,
+    Textarea,
+    TextInput,
+    Title,
+} from '@mantine/core';
 import { useCompanyContext } from '../../shared/context/CompanyContext';
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(theme => ({
     wrapper: {
         minHeight: 400,
         boxSizing: 'border-box',
-        backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${theme.colors[theme.primaryColor][7]
-            } 100%)`,
+        backgroundImage: `linear-gradient(-60deg, ${
+            theme.colors[theme.primaryColor][4]
+        } 0%, ${theme.colors[theme.primaryColor][7]} 100%)`,
         borderRadius: theme.radius.md,
         padding: theme.spacing.xl * 2.5,
 
@@ -70,10 +82,14 @@ const ContactUs = () => {
 
     return (
         <div className={classes.wrapper}>
-            <SimpleGrid cols={3} >
+            <SimpleGrid cols={3}>
                 <Center>
                     <Stack>
-                        <Title order={3} className={classes.title}>Falls Sie noch Fragen haben, dann schreiben Sie uns einfach. Wir werden uns so schnell wie möglich bei Ihnen melden.</Title>
+                        <Title order={3} className={classes.title}>
+                            Falls Sie noch Fragen haben, dann schreiben Sie uns
+                            einfach. Wir werden uns so schnell wie möglich bei
+                            Ihnen melden.
+                        </Title>
                         <Title className={classes.title}>{company.email}</Title>
                     </Stack>
                 </Center>
@@ -82,13 +98,15 @@ const ContactUs = () => {
                 </Center>
                 <Center>
                     <Stack>
-                        <Title order={3} className={classes.title}>Rufen Sie uns einfach an.</Title>
+                        <Title order={3} className={classes.title}>
+                            Rufen Sie uns einfach an.
+                        </Title>
                         <Title className={classes.title}>{company.phone}</Title>
                     </Stack>
                 </Center>
             </SimpleGrid>
         </div>
     );
-}
+};
 
 export default ContactUs;

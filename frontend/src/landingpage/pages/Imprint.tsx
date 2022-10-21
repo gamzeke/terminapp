@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Imprint = () => {
-    return (
-        <div>Imprint</div>
-    )
-}
+    return <div>Imprint</div>;
+};
 
-export default Imprint
+export default Imprint;

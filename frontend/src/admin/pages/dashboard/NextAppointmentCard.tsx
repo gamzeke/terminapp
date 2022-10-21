@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import {
+    createStyles,
+    Group,
+    Paper,
+    Text,
+    UnstyledButton,
+} from '@mantine/core';
 import dayjs from 'dayjs';
-import { createStyles, UnstyledButton, Text, Paper, Group } from '@mantine/core';
+import { useState } from 'react';
 import { CalendarEvent, ChevronDown, ChevronUp } from 'tabler-icons-react';
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(theme => ({
     root: {
-        backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${theme.colors[theme.primaryColor][7]
-            } 100%)`,
+        backgroundImage: `linear-gradient(-60deg, ${
+            theme.colors[theme.primaryColor][4]
+        } 0%, ${theme.colors[theme.primaryColor][7]} 100%)`,
         padding: theme.spacing.xl,
         borderRadius: theme.radius.md,
         display: 'flex',
@@ -130,13 +137,22 @@ export function NextAppointmentCard() {
     const { classes } = useStyles();
     const [date, setDate] = useState(new Date(2021, 9, 24));
 
-    const stats = data.map((stat) => (
-        <Paper className={classes.stat} radius="md" shadow="md" p="xs" key={stat.label}>
+    const stats = data.map(stat => (
+        <Paper
+            className={classes.stat}
+            radius="md"
+            shadow="md"
+            p="xs"
+            key={stat.label}
+        >
             <stat.icon size={32} className={classes.icon} />
             <div>
                 <Text className={classes.label}>{stat.label}</Text>
                 <Text size="xs" className={classes.count}>
-                    <span className={classes.value}>{Math.floor(Math.random() * 6 + 4)}:00 Uhr</span>
+                    <span className={classes.value}>
+                        {Math.floor(Math.random() * 6 + 4)}
+                        :00 Uhr
+                    </span>
                 </Text>
             </div>
         </Paper>
@@ -147,19 +163,31 @@ export function NextAppointmentCard() {
             <div className={classes.controls}>
                 <UnstyledButton
                     className={classes.control}
-                    onClick={() => setDate((current) => dayjs(current).add(1, 'day').toDate())}
+                    onClick={() =>
+                        setDate(current =>
+                            dayjs(current).add(1, 'day').toDate()
+                        )
+                    }
                 >
                     <ChevronUp className={classes.controlIcon} />
                 </UnstyledButton>
 
                 <div className={classes.date}>
-                    <Text className={classes.day}>{dayjs(date).format('DD')}</Text>
-                    <Text className={classes.month}>{dayjs(date).format('MMMM')}</Text>
+                    <Text className={classes.day}>
+                        {dayjs(date).format('DD')}
+                    </Text>
+                    <Text className={classes.month}>
+                        {dayjs(date).format('MMMM')}
+                    </Text>
                 </div>
 
                 <UnstyledButton
                     className={classes.control}
-                    onClick={() => setDate((current) => dayjs(current).subtract(1, 'day').toDate())}
+                    onClick={() =>
+                        setDate(current =>
+                            dayjs(current).subtract(1, 'day').toDate()
+                        )
+                    }
                 >
                     <ChevronDown className={classes.controlIcon} />
                 </UnstyledButton>

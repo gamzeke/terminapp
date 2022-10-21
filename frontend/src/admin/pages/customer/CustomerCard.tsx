@@ -1,16 +1,26 @@
-import { Card, Image, Text, Badge, Button, Group, useMantineTheme, Paper } from '@mantine/core';
+import {
+    Badge,
+    Button,
+    Card,
+    Group,
+    Image,
+    Paper,
+    Text,
+    useMantineTheme,
+} from '@mantine/core';
 
 type CustomerCardProps = {
-    name: string,
-    firstContact: string
-}
+    name: string;
+    firstContact: string;
+};
 
 const CustomerCard = (props: CustomerCardProps) => {
     const theme = useMantineTheme();
 
-    const secondaryColor = theme.colorScheme === 'dark'
-        ? theme.colors.dark[1]
-        : theme.colors.gray[7];
+    const secondaryColor =
+        theme.colorScheme === 'dark'
+            ? theme.colors.dark[1]
+            : theme.colors.gray[7];
 
     return (
         <div style={{ width: 340, margin: 'auto' }}>
@@ -20,8 +30,8 @@ const CustomerCard = (props: CustomerCardProps) => {
                 <Text weight={500}>Telefon: {props.name}</Text>
                 <Text weight={500}>Erstkontakt: {props.firstContact} </Text>
             </Paper>
-        </div >
+        </div>
     );
-}
+};
 
-export default CustomerCard
+export default CustomerCard;

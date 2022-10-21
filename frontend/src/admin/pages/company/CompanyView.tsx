@@ -1,21 +1,19 @@
-import { Button, Group, Paper, SimpleGrid, Space, Title } from "@mantine/core"
-import { useCompanyContext } from "../../../shared/context/CompanyContext"
-import Address from "./Address"
-import BusinessHours from "./BusinessHours"
-import Company from "./Company"
-import Products from "./Products"
-import SocialMedia from "./SocialMedia"
+import { Button, Group, Paper, SimpleGrid, Space, Title } from '@mantine/core';
+import { useCompanyContext } from '../../../shared/context/CompanyContext';
+import Address from './Address';
+import BusinessHours from './BusinessHours';
+import Company from './Company';
+import Products from './Products';
+import SocialMedia from './SocialMedia';
 
-const CompanyView = () => {
-    const { saveCompany, ...rest } = useCompanyContext()
+function CompanyView() {
+    const { saveCompany, ...rest } = useCompanyContext();
 
     return (
         <>
             <Paper p="xs">
                 <Group position="apart">
-                    <Title order={2}>
-                        Geschäftsdaten
-                    </Title>
+                    <Title order={2}>Geschäftsdaten</Title>
                     <Button onClick={saveCompany}>Speichern</Button>
                 </Group>
             </Paper>
@@ -28,7 +26,7 @@ const CompanyView = () => {
                 <BusinessHours />
             </SimpleGrid>
         </>
-    )
+    );
 }
 
-export default CompanyView
+export default CompanyView;

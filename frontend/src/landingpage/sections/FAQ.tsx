@@ -1,5 +1,5 @@
+import { Accordion, Container, createStyles, Text, Title } from '@mantine/core';
 import React from 'react';
-import { Container, Title, Accordion, createStyles, Text } from '@mantine/core';
 
 const useStyles = createStyles((theme, _params, getRef) => {
     const control = getRef('control');
@@ -28,13 +28,18 @@ const useStyles = createStyles((theme, _params, getRef) => {
             borderRadius: theme.radius.md,
             marginBottom: theme.spacing.lg,
 
-            border: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[3]
-                }`,
+            border: `1px solid ${
+                theme.colorScheme === 'dark'
+                    ? theme.colors.dark[3]
+                    : theme.colors.gray[3]
+            }`,
         },
 
         itemOpened: {
             [`& .${control}`]: {
-                color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6],
+                color: theme.colors[theme.primaryColor][
+                    theme.colorScheme === 'dark' ? 4 : 6
+                ],
             },
         },
     };
