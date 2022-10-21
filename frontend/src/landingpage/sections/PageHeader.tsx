@@ -69,33 +69,6 @@ const PageHeader = () => {
         navigate('scheduler');
     };
 
-    const links = [
-        {
-            link: '#1',
-            label: 'Home',
-        },
-        {
-            link: '/services',
-            label: 'Unsere Leistungen',
-        },
-        {
-            link: '/about',
-            label: 'Über uns',
-        },
-    ];
-    const items = links.map(link => {
-        return (
-            <a
-                key={link.label}
-                href={link.link}
-                className={classes.link}
-                onClick={event => event.preventDefault()}
-            >
-                {link.label}
-            </a>
-        );
-    });
-
     return (
         <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }} mb={120}>
             <Container className={classes.inner} fluid>
@@ -107,9 +80,6 @@ const PageHeader = () => {
                         size="sm"
                     />
                     <Title order={3}>{company.companyName}</Title>
-                </Group>
-                <Group spacing={5} className={classes.links}>
-                    {items}
                 </Group>
                 <Group>
                     <Button

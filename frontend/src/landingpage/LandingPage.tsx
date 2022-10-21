@@ -3,16 +3,13 @@ import {
     Container,
     Group,
     SimpleGrid,
-    Skeleton,
     Text,
     Title,
 } from '@mantine/core';
-import { Link } from 'react-router-dom';
 import {
     BrandFacebook,
     BrandInstagram,
     BrandTiktok,
-    BrandTwitter,
     BrandYoutube,
 } from 'tabler-icons-react';
 import { useCompanyContext } from '../shared/context/CompanyContext';

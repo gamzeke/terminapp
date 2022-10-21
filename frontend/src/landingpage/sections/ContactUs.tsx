@@ -1,21 +1,8 @@
-import {
-    Button,
-    Center,
-    createStyles,
-    Group,
-    SimpleGrid,
-    Stack,
-    Text,
-    Textarea,
-    TextInput,
-    Title,
-} from '@mantine/core';
+import { Center, createStyles, SimpleGrid, Stack, Title } from '@mantine/core';
 import { useCompanyContext } from '../../shared/context/CompanyContext';
 
 const useStyles = createStyles(theme => ({
     wrapper: {
-        minHeight: 400,
-        boxSizing: 'border-box',
         backgroundImage: `linear-gradient(-60deg, ${
             theme.colors[theme.primaryColor][4]
         } 0%, ${theme.colors[theme.primaryColor][7]} 100%)`,
@@ -86,9 +73,7 @@ const ContactUs = () => {
                 <Center>
                     <Stack>
                         <Title order={3} className={classes.title}>
-                            Falls Sie noch Fragen haben, dann schreiben Sie uns
-                            einfach. Wir werden uns so schnell wie möglich bei
-                            Ihnen melden.
+                            Schreiben Sie uns
                         </Title>
                         <Title className={classes.title}>{company.email}</Title>
                     </Stack>
@@ -99,7 +84,7 @@ const ContactUs = () => {
                 <Center>
                     <Stack>
                         <Title order={3} className={classes.title}>
-                            Rufen Sie uns einfach an.
+                            rufen Sie uns einfach an.
                         </Title>
                         <Title className={classes.title}>{company.phone}</Title>
                     </Stack>
