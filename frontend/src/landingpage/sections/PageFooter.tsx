@@ -1,4 +1,4 @@
-import { Anchor, createStyles, Group, Title } from '@mantine/core';
+import { createStyles, Title } from '@mantine/core';
 import { useCompanyContext } from '../../shared/context/CompanyContext';
 
 const useStyles = createStyles(theme => ({
@@ -21,46 +21,16 @@ const useStyles = createStyles(theme => ({
             flexDirection: 'column',
         },
     },
-
-    links: {
-        [theme.fn.smallerThan('sm')]: {
-            marginTop: theme.spacing.lg,
-            marginBottom: theme.spacing.sm,
-        },
-    },
 }));
 
 const PageFooter = () => {
     const { classes } = useStyles();
     const { company, ...rest } = useCompanyContext();
 
-    const links = [
-        {
-            link: '#',
-            label: 'Datenschutz',
-        },
-        {
-            link: '#',
-            label: 'Impressum',
-        },
-    ];
-    const items = links.map(link => (
-        <Anchor<'a'>
-            color="dimmed"
-            key={link.label}
-            sx={{ lineHeight: 1 }}
-            onClick={event => event.preventDefault()}
-            size="sm"
-        >
-            {link.label}
-        </Anchor>
-    ));
-
     return (
         <div className={classes.footer}>
             <div className={classes.inner}>
                 <Title order={6}>{company.companyName}</Title>
-                <Group className={classes.links}>{items}</Group>
             </div>
         </div>
     );

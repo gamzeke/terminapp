@@ -14,8 +14,6 @@ import FAQView from './admin/pages/faq/FAQView';
 import App from './App';
 import './index.css';
 import LandingPage from './landingpage/LandingPage';
-import Imprint from './landingpage/pages/Imprint';
-import Privacy from './landingpage/pages/Privacy';
 import CompanyContextProvider from './shared/context/CompanyContext';
 import PageNotFound from './shared/pages/PageNotFound';
 
@@ -54,16 +52,7 @@ root.render(
                                     path="scheduler"
                                     element={<AppointmentView />}
                                 />
-                                <Route path="/" element={<LandingPage />}>
-                                    <Route
-                                        path="imprint"
-                                        element={<Imprint />}
-                                    />
-                                    <Route
-                                        path="imprint"
-                                        element={<Privacy />}
-                                    />
-                                </Route>
+                                <Route path="/" element={<LandingPage />} />
                                 <Route path="*" element={<PageNotFound />} />
                             </Routes>
                         </BrowserRouter>
