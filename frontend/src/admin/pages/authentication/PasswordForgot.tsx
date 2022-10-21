@@ -1,15 +1,4 @@
-import {
-    Anchor,
-    Box,
-    Button,
-    Center,
-    createStyles,
-    Group,
-    Paper,
-    Text,
-    TextInput,
-    Title,
-} from '@mantine/core';
+import { Anchor, Box, Center, createStyles, Text, Title } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons';
 import { useState } from 'react';
 import { AuthStatusType } from './AuthView';
@@ -54,10 +43,23 @@ const PasswordForgot = ({ updateAuthStatus }: PasswordForgotProps) => {
                 Passwort vergessen
             </Title>
             <Text color="dimmed" size="sm" align="center">
-                Bitte geben Sie die E-Mail Adresse ein
+                Bitte wenden Sie sich Ihrem Administrator
             </Text>
-            <Paper withBorder shadow="md" p={30} radius="md" mt="xl">
-                <TextInput
+            <Anchor
+                color="dimmed"
+                size="sm"
+                className={classes.control}
+                onClick={() => {
+                    updateAuthStatus('LOGIN');
+                }}
+            >
+                <Center>
+                    <IconArrowLeft size={12} stroke={1.5} />
+                    <Box ml={5}>Zurück</Box>
+                </Center>
+            </Anchor>
+            {/*<Paper withBorder shadow="md" p={30} radius="md" mt="xl">
+                 <TextInput
                     value={mail}
                     onChange={event => {
                         setMail(event.currentTarget.value);
@@ -66,7 +68,7 @@ const PasswordForgot = ({ updateAuthStatus }: PasswordForgotProps) => {
                     placeholder="max.mustermann@muster.de"
                     required
                 />
-                <Group position="apart" mt="lg" className={classes.controls}>
+                <Group mt="lg" className={classes.controls}>
                     <Anchor
                         color="dimmed"
                         size="sm"
@@ -75,7 +77,7 @@ const PasswordForgot = ({ updateAuthStatus }: PasswordForgotProps) => {
                             updateAuthStatus('LOGIN');
                         }}
                     >
-                        <Center inline>
+                        <Center>
                             <IconArrowLeft size={12} stroke={1.5} />
                             <Box ml={5}>Zurück</Box>
                         </Center>
@@ -89,7 +91,7 @@ const PasswordForgot = ({ updateAuthStatus }: PasswordForgotProps) => {
                         Passwort zurücksetzen
                     </Button>
                 </Group>
-            </Paper>
+            </Paper>/*/}
         </>
     );
 };

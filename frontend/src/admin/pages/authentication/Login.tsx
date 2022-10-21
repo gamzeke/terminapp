@@ -8,10 +8,11 @@ import {
     Title,
 } from '@mantine/core';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthStatusType } from './AuthView';
 
 export interface User {
-    email: string;
+    username: string;
     password: string;
 }
 
@@ -20,13 +21,14 @@ interface LoginProps {
 }
 
 const Login = ({ updateAuthStatus }: LoginProps) => {
-    const [mail, setMail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const loginHandler = () => {
-        if (mail.length && password.length) {
+        if (username.length && password.length) {
             const user: User = {
-                email: mail,
+                username: username,
                 password: password,
             };
             //TODO-MMUEJDE: Sende es an das Backend
@@ -39,15 +41,19 @@ const Login = ({ updateAuthStatus }: LoginProps) => {
         updateAuthStatus('PASSWORD');
     };
 
+    const backToLandingPageButtonHandler = () => {
+        navigate('/');
+    };
+
     return (
         <>
             <Title align="center">Willkommen zum Termin App Backoffice</Title>
             <Paper withBorder shadow="md" p={30} mt={30} radius="md">
                 <TextInput
-                    label="E-Mail"
-                    placeholder="max.mustermann@muster.de"
-                    value={mail}
-                    onChange={event => setMail(event.currentTarget.value)}
+                    label="Benutzername"
+                    placeholder="Dein Benutzername"
+                    value={username}
+                    onChange={event => setUsername(event.currentTarget.value)}
                     required
                 />
                 <PasswordInput
@@ -68,11 +74,20 @@ const Login = ({ updateAuthStatus }: LoginProps) => {
                     </Anchor>
                 </Group>
                 <Button
-                    disabled={!mail.length || !password.length}
+                    disabled={!username.length || !password.length}
                     fullWidth
                     mt="xl"
+                    onClick={loginHandler}
                 >
                     Login
+                </Button>
+                <Button
+                    fullWidth
+                    color="green"
+                    mt="xl"
+                    onClick={backToLandingPageButtonHandler}
+                >
+                    Zurück zur Homepage
                 </Button>
             </Paper>
         </>
