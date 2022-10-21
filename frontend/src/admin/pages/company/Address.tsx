@@ -44,6 +44,20 @@ const Address = () => {
                     label="Bundesland"
                     variant="filled"
                     required />
+                <TextInput
+                    placeholder="info@musterag.de"
+                    label="E-Mail"
+                    variant="filled"
+                    value={company.email}
+                    onChange={(event) => updateCompany("email", event?.currentTarget.value)}
+                    required />
+                <TextInput
+                    placeholder="0123456789"
+                    label="Telefon"
+                    variant="filled"
+                    value={company.phone}
+                    onChange={(event) => updateCompany("phone", event?.currentTarget.value)}
+                    required />
             </Stack>
         </Paper>
     )

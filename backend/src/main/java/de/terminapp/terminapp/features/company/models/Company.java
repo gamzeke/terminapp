@@ -35,6 +35,9 @@ public class Company {
     private String city;
     private String state;
 
+    private String email;
+    private String phone;
+
     private String homepageLink;
     private String instagramLink;
     private String facebookLink;

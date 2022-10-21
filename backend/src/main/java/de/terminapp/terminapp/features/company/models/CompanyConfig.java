@@ -20,6 +20,8 @@ public class CompanyConfig {
                             .postCode("12345")
                             .city("Musterstadt")
                             .state("Musterland")
+                            .phone("0123456789")
+                            .email("info@musterag.de")
                             .homepageLink("https://www.muster-seite.de")
                             .facebookLink("https://www.facebook.de")
                             .instagramLink("https://www.instagram.de")

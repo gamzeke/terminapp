@@ -74,7 +74,7 @@ const ContactUs = () => {
                 <Center>
                     <Stack>
                         <Title order={3} className={classes.title}>Falls Sie noch Fragen haben, dann schreiben Sie uns einfach. Wir werden uns so schnell wie möglich bei Ihnen melden.</Title>
-                        <Title className={classes.title}>info@mustermann.de</Title>
+                        <Title className={classes.title}>{company.email}</Title>
                     </Stack>
                 </Center>
                 <Center>
@@ -82,8 +82,8 @@ const ContactUs = () => {
                 </Center>
                 <Center>
                     <Stack>
-                        <Title order={3} className={classes.title}> Rufen Sie uns einfach an.</Title>
-                        <Title className={classes.title}>+49123456789</Title>
+                        <Title order={3} className={classes.title}>Rufen Sie uns einfach an.</Title>
+                        <Title className={classes.title}>{company.phone}</Title>
                     </Stack>
                 </Center>
             </SimpleGrid>

@@ -8,6 +8,9 @@ export interface ICompany {
     city: string;
     state: string;
 
+    email: string;
+    phone: string;
+
     homepageLink: string;
     instagramLink: string;
     facebookLink: string;

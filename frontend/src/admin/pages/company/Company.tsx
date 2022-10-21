@@ -18,6 +18,7 @@ const Company = () => {
                     onChange={(event) => updateCompany("companyName", event?.currentTarget.value)}
                     required />
                 <Textarea
+                    autosize
                     placeholder="Wir sind ein Familienunternehmen seit ..."
                     value={company.welcomeText}
                     onChange={(event) => updateCompany("welcomeText", event?.currentTarget.value)}
