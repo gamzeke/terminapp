@@ -24,6 +24,6 @@ public class FAQ {
     )
     private long id;
 
-    private String title;
-    private String content;
+    private String question;
+    private String answer;
 }

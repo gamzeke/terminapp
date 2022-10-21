@@ -1,5 +1,5 @@
 export interface IFAQ {
-    readonly id: number;
-    title: string;
-    content: string;
+    readonly id?: string;
+    question: string;
+    answer: string;
 }

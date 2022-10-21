@@ -3,9 +3,9 @@ package de.terminapp.terminapp.features.faq;
 import de.terminapp.terminapp.features.faq.models.FAQ;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +17,23 @@ public class FAQController {
     private final FAQService fAQService;
 
     @GetMapping
-    public List<FAQ> getAllFAQs() {
-        log.info("Gets all FAQs");
-        return fAQService.getAllFAQs();
+    ResponseEntity<List<FAQ>> getAllFAQs() {
+        log.info("Request for all FAQS");
+        List<FAQ> result = fAQService.getAllFAQs();
+        return ResponseEntity.ok().body(result);
+    }
+
+    @PostMapping
+    ResponseEntity<FAQ> createFAQ(@Validated @RequestBody FAQ faq) {
+        log.info("Request to create a faq: {}", faq);
+        FAQ result = fAQService.createFAQ(faq);
+        return ResponseEntity.ok().body(result);
+    }
+
+    @DeleteMapping("{id}")
+    ResponseEntity<?> deleteFAQ(@PathVariable Long id) {
+        log.info("Request to delete faq: {}", id);
+        fAQService.deleteFAQ(id);
+        return ResponseEntity.ok().build();
     }
 }

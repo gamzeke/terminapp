@@ -1,32 +1,20 @@
 import {
-    Card,
+    Center,
     Group,
+    Loader,
     Paper,
     SimpleGrid,
     Space,
+    Stack,
     Text,
     Title,
 } from '@mantine/core';
+import { IconAlertCircle } from '@tabler/icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import ErrorMessage from '../../../shared/ErrorMessage';
-
-interface IFAQ {
-    readonly id: number;
-    title: string;
-    content: string;
-}
-
-const FAQCard = ({ title, content }: IFAQ) => {
-    return (
-        <Card shadow="sm" p="lg" radius="md" withBorder>
-            <Text weight={500}>{title}</Text>
-            <Text size="sm" color="dimmed">
-                {content}
-            </Text>
-        </Card>
-    );
-};
+import { IFAQ } from '.';
+import AddFAQDialog from '../../../shared/dialogs/AddFAQDialog';
+import FAQCard from './FAQCard';
 
 const FAQView = () => {
     const { isLoading, isFetching, error, data } = useQuery(['faqs'], () =>
@@ -35,29 +23,46 @@ const FAQView = () => {
 
     if (error) {
         return (
-            <ErrorMessage message="Die FAQs konnten nicht geladen werden." />
+            <Center sx={{ height: '100%' }}>
+                <Stack align="center">
+                    <IconAlertCircle size={32} color="red" />
+                    <Text>
+                        Leider ist ein Fehler aufgetreten. Versuchen Sie es
+                        später nochmal.
+                    </Text>
+                </Stack>
+            </Center>
         );
     }
+
+    if (isFetching || isLoading) {
+        return (
+            <Center sx={{ height: '100%' }}>
+                <Loader size="xl" variant="bars" />
+            </Center>
+        );
+    }
+
+    const createFAQButtonHandler = (question: string, answer: string) => {
+        //TODO-MMUEJDE
+    };
 
     return (
         <>
             <Paper p="xs">
                 <Group position="apart">
                     <Title order={2}>FAQs</Title>
+                    <AddFAQDialog
+                        createFAQButtonHandler={createFAQButtonHandler}
+                    />
                 </Group>
             </Paper>
             <Space h="md" />
-            <>
-                {isFetching || isLoading ? (
-                    'IsLoading'
-                ) : (
-                    <SimpleGrid cols={3}>
-                        {data.map((faq: IFAQ) => {
-                            return <FAQCard key={faq.id} {...faq} />;
-                        })}
-                    </SimpleGrid>
-                )}
-            </>
+            <SimpleGrid cols={3}>
+                {data.map((faq: IFAQ) => {
+                    return <FAQCard key={faq.id} {...faq} />;
+                })}
+            </SimpleGrid>
         </>
     );
 };

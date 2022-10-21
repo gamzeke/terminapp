@@ -14,4 +14,12 @@ public class FAQService {
     public List<FAQ> getAllFAQs() {
         return fAQRepository.findAll();
     }
+
+    public FAQ createFAQ(FAQ faq) {
+        return fAQRepository.save(faq);
+    }
+
+    public void deleteFAQ(Long id) {
+        fAQRepository.deleteById(id);
+    }
 }

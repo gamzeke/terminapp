@@ -14,56 +14,56 @@ public class FAQConfig {
         return args -> {
             fAQRepository.saveAll(List.of(
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build(),
                     FAQ.builder()
-                            .title("Test Title")
-                            .content("Test Content")
+                            .question("Test Title")
+                            .answer("Test Content")
                             .build()
             ));
         };
