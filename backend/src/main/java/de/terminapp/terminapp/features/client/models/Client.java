@@ -38,8 +38,6 @@ public class Client {
     private String streetNumber;
     private String postCode;
     private String city;
-    private String state;
-    private String country;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Appointment> appointment;

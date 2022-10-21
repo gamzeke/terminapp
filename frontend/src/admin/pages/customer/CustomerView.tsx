@@ -1,21 +1,21 @@
 import {
     Center,
     Group,
-    Input,
     Loader,
     Paper,
     Space,
     Stack,
     Table,
     Text,
+    TextInput,
     Title,
 } from '@mantine/core';
 import { IconAlertCircle } from '@tabler/icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { Search } from 'tabler-icons-react';
-import ICustomer from '.';
+import { ICustomer } from '.';
 
 const CustomerTableRow = (customer: ICustomer) => {
     return (
@@ -28,8 +28,6 @@ const CustomerTableRow = (customer: ICustomer) => {
             <td>{customer.streetNumber}</td>
             <td>{customer.postCode}</td>
             <td>{customer.city}</td>
-            <td>{customer.state}</td>
-            <td>{customer.country}</td>
         </tr>
     );
 };
@@ -55,8 +53,6 @@ const CustomerTable = ({ children }: CustomerTableProps) => {
                     <th>Straßennummer</th>
                     <th>Postleitzahl</th>
                     <th>Stadt</th>
-                    <th>Bundesland</th>
-                    <th>Land</th>
                 </tr>
             </thead>
             <tbody>{children}</tbody>
@@ -65,6 +61,28 @@ const CustomerTable = ({ children }: CustomerTableProps) => {
 };
 
 const CustomerView = () => {
+    const [filteredData, setFilteredData] = useState<ICustomer[]>([]);
+    const [isSearching, setIsSearching] = useState(false);
+
+    const filterData = (searchString: string) => {
+        searchString ? setIsSearching(true) : setIsSearching(false);
+        const result = data.filter((c: ICustomer) => {
+            if (
+                c.firstName.includes(searchString) ||
+                c.lastName.includes(searchString) ||
+                c.email.includes(searchString) ||
+                c.telephone.includes(searchString) ||
+                c.streetName.includes(searchString) ||
+                c.streetNumber.toString().includes(searchString) ||
+                c.postCode.toString().includes(searchString) ||
+                c.city.includes(searchString)
+            ) {
+                return c;
+            }
+        });
+        setFilteredData(result);
+    };
+
     const { isLoading, isFetching, error, data } = useQuery(['clients'], () =>
         axios.get('http://localhost:8080/api/v1/clients').then(res => res.data)
     );
@@ -101,19 +119,39 @@ const CustomerView = () => {
             </Paper>
             <Space h="md" />
             <Paper p="xl">
-                <Input
+                <TextInput
                     icon={<Search />}
                     variant="filled"
                     placeholder="Suchen"
+                    onChange={event => filterData(event.currentTarget.value)}
                 />
                 <Space h="lg" />
-                <CustomerTable>
-                    {data.map((customer: ICustomer) => {
-                        return (
-                            <CustomerTableRow key={customer.id} {...customer} />
-                        );
-                    })}
-                </CustomerTable>
+
+                {!filteredData.length && isSearching ? (
+                    <Center>
+                        <Text color="dimmed">Keine Treffer</Text>
+                    </Center>
+                ) : (
+                    <CustomerTable>
+                        {filteredData.length || isSearching
+                            ? filteredData.map((customer: ICustomer) => {
+                                  return (
+                                      <CustomerTableRow
+                                          key={customer.id}
+                                          {...customer}
+                                      />
+                                  );
+                              })
+                            : data.map((customer: ICustomer) => {
+                                  return (
+                                      <CustomerTableRow
+                                          key={customer.id}
+                                          {...customer}
+                                      />
+                                  );
+                              })}
+                    </CustomerTable>
+                )}
             </Paper>
         </>
     );
