@@ -15,7 +15,7 @@ const AddFAQDialog = ({ createFAQButtonHandler }: AddFAQDialogProps) => {
             <Modal
                 opened={opened}
                 onClose={() => setOpened(false)}
-                title="Neue Leistung erstellen"
+                title="Neue FAQ erstellen"
                 centered
             >
                 <Stack>

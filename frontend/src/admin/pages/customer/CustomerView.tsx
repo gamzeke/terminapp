@@ -1,10 +1,21 @@
-import { Group, Input, Paper, Space, Table, Title } from '@mantine/core';
+import {
+    Center,
+    Group,
+    Input,
+    Loader,
+    Paper,
+    Space,
+    Stack,
+    Table,
+    Text,
+    Title,
+} from '@mantine/core';
+import { IconAlertCircle } from '@tabler/icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
 import { Search } from 'tabler-icons-react';
 import ICustomer from '.';
-import ErrorMessage from '../../../shared/ErrorMessage';
 
 const CustomerTableRow = (customer: ICustomer) => {
     return (
@@ -60,7 +71,23 @@ const CustomerView = () => {
 
     if (error) {
         return (
-            <ErrorMessage message="Die Kundendaten konnten nicht geladen werden." />
+            <Center sx={{ height: '100%' }}>
+                <Stack align="center">
+                    <IconAlertCircle size={32} color="red" />
+                    <Text>
+                        Leider ist ein Fehler aufgetreten. Versuchen Sie es
+                        später nochmal.
+                    </Text>
+                </Stack>
+            </Center>
+        );
+    }
+
+    if (isFetching || isLoading) {
+        return (
+            <Center sx={{ height: '100%' }}>
+                <Loader size="xl" variant="bars" />
+            </Center>
         );
     }
 
@@ -73,28 +100,21 @@ const CustomerView = () => {
                 </Group>
             </Paper>
             <Space h="md" />
-            {isFetching || isLoading ? (
-                'IsLoading'
-            ) : (
-                <Paper p="xl">
-                    <Input
-                        icon={<Search />}
-                        variant="filled"
-                        placeholder="Suchen"
-                    />
-                    <Space h="lg" />
-                    <CustomerTable>
-                        {data.map((customer: ICustomer) => {
-                            return (
-                                <CustomerTableRow
-                                    key={customer.id}
-                                    {...customer}
-                                />
-                            );
-                        })}
-                    </CustomerTable>
-                </Paper>
-            )}
+            <Paper p="xl">
+                <Input
+                    icon={<Search />}
+                    variant="filled"
+                    placeholder="Suchen"
+                />
+                <Space h="lg" />
+                <CustomerTable>
+                    {data.map((customer: ICustomer) => {
+                        return (
+                            <CustomerTableRow key={customer.id} {...customer} />
+                        );
+                    })}
+                </CustomerTable>
+            </Paper>
         </>
     );
 };

@@ -1,10 +1,4 @@
-import { ActionIcon, Anchor, createStyles, Group, Title } from '@mantine/core';
-import {
-    BrandInstagram,
-    BrandTiktok,
-    BrandTwitter,
-    BrandYoutube,
-} from 'tabler-icons-react';
+import { Anchor, createStyles, Group, Title } from '@mantine/core';
 import { useCompanyContext } from '../../shared/context/CompanyContext';
 
 const useStyles = createStyles(theme => ({
@@ -39,6 +33,7 @@ const useStyles = createStyles(theme => ({
 const PageFooter = () => {
     const { classes } = useStyles();
     const { company, ...rest } = useCompanyContext();
+
     const links = [
         {
             link: '#',
@@ -53,7 +48,6 @@ const PageFooter = () => {
         <Anchor<'a'>
             color="dimmed"
             key={link.label}
-            href={link.link}
             sx={{ lineHeight: 1 }}
             onClick={event => event.preventDefault()}
             size="sm"
