@@ -10,7 +10,7 @@ import CalendarView from './admin/pages/calendar/CalendarView';
 import CustomerView from './admin/pages/customer/CustomerView';
 import DashboardView from './admin/pages/dashboard/DashboardView';
 import FAQView from './admin/pages/faq/FAQView';
-import SettingsView from './admin/pages/settings/SettingsView';
+import CompanyView from './admin/pages/company/CompanyView';
 import App from './App';
 import './index.css';
 import LandingPage from './landingpage/LandingPage';
@@ -35,7 +35,7 @@ root.render(
               <Route index element={<DashboardView />} />
               <Route path="calendar" element={<CalendarView />} />
               <Route path="customer" element={<CustomerView />} />
-              <Route path="settings" element={<SettingsView />} />
+              <Route path="company" element={<CompanyView />} />
               <Route path="faq" element={<FAQView />} />
             </Route>
             <Route path="auth" element={<AuthView />} />

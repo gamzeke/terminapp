@@ -6,7 +6,7 @@ import Company from "./Company"
 import Services from "./Services"
 import SocialMedia from "./SocialMedia"
 
-const SettingsView = () => {
+const CompanyView = () => {
     const { saveCompany, ...rest } = useBackOfficeContext()
 
     return (
@@ -26,4 +26,4 @@ const SettingsView = () => {
     )
 }
 
-export default SettingsView
+export default CompanyView

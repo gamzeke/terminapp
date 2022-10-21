@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
-import { ICompany } from '../../admin/pages/settings';
+import { ICompany } from '../../admin/pages/company';
 import ErrorNotification from '../notification/ErrorNotification';
 import SuccessNotification from '../notification/SuccessNotification';
 

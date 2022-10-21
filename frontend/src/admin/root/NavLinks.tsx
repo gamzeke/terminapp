@@ -1,7 +1,7 @@
+import { Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
 import React from 'react';
-import { Dashboard, Settings, Calendar, Database, Home, ExternalLink } from 'tabler-icons-react';
-import { ThemeIcon, UnstyledButton, Group, Text } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
+import { Calendar, Dashboard, Database, ExternalLink, Home, QuestionMark } from 'tabler-icons-react';
 
 interface NavLinkProps {
   icon: React.ReactNode;
@@ -14,8 +14,8 @@ const menuItems = [
   { icon: <Dashboard size={16} />, color: 'blue', label: 'Dashboard', url: '/admin' },
   { icon: <Calendar size={16} />, color: 'red', label: 'Kalendar', url: 'calendar' },
   { icon: <Database size={16} />, color: 'green', label: 'Kundendatenbank', url: 'customer' },
-  { icon: <Settings size={16} />, color: 'yellow', label: 'FAQs', url: 'faq' },
-  { icon: <Settings size={16} />, color: 'teal', label: 'Einstellungen', url: 'settings' },
+  { icon: <QuestionMark size={16} />, color: 'yellow', label: 'FAQs', url: 'faq' },
+  { icon: <Home size={16} />, color: 'teal', label: 'Geschäftsdaten', url: 'company' },
   { icon: <ExternalLink size={16} />, color: 'lime', label: 'Webseite', url: '/' },
 ];
 
