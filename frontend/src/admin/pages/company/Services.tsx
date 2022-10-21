@@ -12,10 +12,6 @@ interface IService {
 const Services = () => {
     const [services, setServices] = useState<IService[]>([]);
 
-    const saveChangesHandler = () => {
-        //TODO-MMUEJDE: Implement me 
-    }
-
     const deleteServiceHandler = (id: string) => {
         //TODO-MMUEJDE: Implement me 
     }
@@ -59,7 +55,6 @@ const Services = () => {
                 <Group position='apart'>
                     <Title order={3}>Leistungen</Title>
                     <Group position='right'>
-                        <Button onClick={saveChangesHandler} size='xs'>Speichern</Button>
                         <AddServiceDialog createServiceButtonHandler={createServiceButtonHandler} />
                     </Group>
                 </Group>

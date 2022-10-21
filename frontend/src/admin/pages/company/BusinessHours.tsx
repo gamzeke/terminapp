@@ -35,10 +35,6 @@ interface IBusinessHours {
 }
 
 const BusinessHours = () => {
-    const saveChangesHandler = () => {
-        //TODO-MMUEJDE: Implement me 
-    }
-
     const businessHourChangesHandler = (hour: IBusinessHours) => {
         //TODO-MMUEJDE: Implement me 
     }
@@ -48,7 +44,6 @@ const BusinessHours = () => {
             <Stack>
                 <Group position='apart'>
                     <Title order={3}>Öffnungszeiten</Title>
-                    <Button onClick={saveChangesHandler} size='xs'>Speichern</Button>
                 </Group>
                 <SimpleGrid cols={2}>
                     <BusinessHourDay day={"Montag"} businessHourChangesHandler={businessHourChangesHandler} />
