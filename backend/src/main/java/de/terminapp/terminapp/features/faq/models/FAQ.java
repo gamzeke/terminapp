@@ -1,4 +1,4 @@
-package de.terminapp.terminapp.features.faq;
+package de.terminapp.terminapp.features.faq.models;
 
 import lombok.*;
 

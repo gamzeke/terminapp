@@ -1,4 +1,4 @@
-package de.terminapp.terminapp.features.auth;
+package de.terminapp.terminapp.features.auth.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

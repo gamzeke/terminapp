@@ -1,5 +1,6 @@
 package de.terminapp.terminapp.features.appointments;
 
+import de.terminapp.terminapp.features.appointments.models.Appointment;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

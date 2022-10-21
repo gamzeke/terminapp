@@ -1,6 +1,6 @@
-package de.terminapp.terminapp.features.appointments;
+package de.terminapp.terminapp.features.appointments.models;
 
-import de.terminapp.terminapp.features.client.Client;
+import de.terminapp.terminapp.features.client.models.Client;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -9,7 +9,7 @@ interface IService {
     price: string;
 }
 
-const Services = () => {
+const Products = () => {
     const [services, setServices] = useState<IService[]>([]);
 
     const deleteServiceHandler = (id: string) => {
@@ -68,4 +68,4 @@ const Services = () => {
     )
 }
 
-export default Services
+export default Products

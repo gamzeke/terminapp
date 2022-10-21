@@ -1,5 +1,6 @@
 package de.terminapp.terminapp.features.client;
 
+import de.terminapp.terminapp.features.client.models.Client;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

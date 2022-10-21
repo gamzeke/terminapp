@@ -3,7 +3,7 @@ import { useBackOfficeContext } from "../../../shared/context/BackOfficeContext"
 import Address from "./Address"
 import BusinessHours from "./BusinessHours"
 import Company from "./Company"
-import Services from "./Services"
+import Products from "./Products"
 import SocialMedia from "./SocialMedia"
 
 const CompanyView = () => {
@@ -24,7 +24,7 @@ const CompanyView = () => {
                 <Company />
                 <Address />
                 <SocialMedia />
-                <Services />
+                <Products />
                 <BusinessHours />
             </SimpleGrid>
         </>

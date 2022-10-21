@@ -1,6 +1,6 @@
-package de.terminapp.terminapp.features.company;
+package de.terminapp.terminapp.features.company.models;
 
-import de.terminapp.terminapp.features.product.Product;
+import de.terminapp.terminapp.features.product.models.Product;
 import lombok.*;
 
 import javax.persistence.*;

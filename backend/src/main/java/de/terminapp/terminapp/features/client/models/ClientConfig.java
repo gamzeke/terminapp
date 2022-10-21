@@ -1,5 +1,6 @@
-package de.terminapp.terminapp.features.client;
+package de.terminapp.terminapp.features.client.models;
 
+import de.terminapp.terminapp.features.client.ClientRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

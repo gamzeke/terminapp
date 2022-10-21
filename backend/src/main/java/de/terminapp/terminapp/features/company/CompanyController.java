@@ -1,5 +1,6 @@
 package de.terminapp.terminapp.features.company;
 
+import de.terminapp.terminapp.features.company.models.Company;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

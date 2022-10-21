@@ -1,5 +1,6 @@
 package de.terminapp.terminapp.features.product;
 
+import de.terminapp.terminapp.features.product.models.Product;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

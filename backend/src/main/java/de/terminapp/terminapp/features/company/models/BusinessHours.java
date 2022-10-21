@@ -1,4 +1,4 @@
-package de.terminapp.terminapp.features.company;
+package de.terminapp.terminapp.features.company.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

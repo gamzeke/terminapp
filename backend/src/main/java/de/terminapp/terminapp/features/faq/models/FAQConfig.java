@@ -1,5 +1,6 @@
-package de.terminapp.terminapp.features.faq;
+package de.terminapp.terminapp.features.faq.models;
 
+import de.terminapp.terminapp.features.faq.FAQRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

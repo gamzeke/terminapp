@@ -1,6 +1,6 @@
-package de.terminapp.terminapp.features.client;
+package de.terminapp.terminapp.features.client.models;
 
-import de.terminapp.terminapp.features.appointments.Appointment;
+import de.terminapp.terminapp.features.appointments.models.Appointment;
 import lombok.*;
 
 import javax.persistence.*;

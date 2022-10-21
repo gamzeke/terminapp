@@ -1,6 +1,6 @@
-package de.terminapp.terminapp.features.appointments;
+package de.terminapp.terminapp.features.appointments.models;
 
-import de.terminapp.terminapp.features.product.Product;
+import de.terminapp.terminapp.features.product.models.Product;
 
 import javax.persistence.*;
 import java.time.LocalDate;

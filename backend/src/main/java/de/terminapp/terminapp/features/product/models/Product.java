@@ -1,7 +1,7 @@
-package de.terminapp.terminapp.features.product;
+package de.terminapp.terminapp.features.product.models;
 
-import de.terminapp.terminapp.features.appointments.AppointmentRequest;
-import de.terminapp.terminapp.features.company.Company;
+import de.terminapp.terminapp.features.appointments.models.AppointmentRequest;
+import de.terminapp.terminapp.features.company.models.Company;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
