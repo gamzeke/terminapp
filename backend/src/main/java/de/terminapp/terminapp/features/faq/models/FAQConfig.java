@@ -16,54 +16,6 @@ public class FAQConfig {
                     FAQ.builder()
                             .question("Test Title")
                             .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
-                            .build(),
-                    FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
                             .build()
             ));
         };

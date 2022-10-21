@@ -9,16 +9,54 @@ import {
     Text,
     Title,
 } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 import { IconAlertCircle } from '@tabler/icons';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { IFAQ } from '.';
 import AddFAQDialog from '../../../shared/dialogs/AddFAQDialog';
 import FAQCard from './FAQCard';
 
+export const FAQ_URL = 'http://localhost:8080/api/v1/faqs';
+
+const useCreateFAQ = () => {
+    const queryClient = useQueryClient();
+    return useMutation(
+        (newFaq: IFAQ) => {
+            const faqJson = JSON.stringify(newFaq);
+            return axios.post(FAQ_URL, faqJson, {
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            });
+        },
+        {
+            onError: (error, variables, context) => {
+                showNotification({
+                    title: '🫤',
+                    color: 'red',
+                    message: 'FAQ konnte nicht erstellt werden',
+                });
+            },
+            onSuccess: newFAQ => {
+                queryClient.invalidateQueries(['faqs']);
+                showNotification({
+                    title: '😊',
+                    color: 'green',
+                    message: 'FAQ konnte erfolgreich erstellt werden',
+                });
+            },
+        }
+    );
+};
+
 const FAQView = () => {
+    const { mutate: faqMutate } = useCreateFAQ();
+
     const { isLoading, isFetching, error, data } = useQuery(['faqs'], () =>
-        axios.get('http://localhost:8080/api/v1/faqs').then(res => res.data)
+        axios.get(FAQ_URL).then(res => res.data)
     );
 
     if (error) {
@@ -44,7 +82,8 @@ const FAQView = () => {
     }
 
     const createFAQButtonHandler = (question: string, answer: string) => {
-        //TODO-MMUEJDE
+        const newFAQ: IFAQ = { question: question, answer: answer };
+        faqMutate(newFAQ);
     };
 
     return (
@@ -58,11 +97,19 @@ const FAQView = () => {
                 </Group>
             </Paper>
             <Space h="md" />
-            <SimpleGrid cols={3}>
-                {data.map((faq: IFAQ) => {
-                    return <FAQCard key={faq.id} {...faq} />;
-                })}
-            </SimpleGrid>
+            {data.length ? (
+                <SimpleGrid cols={3}>
+                    {data.map((faq: IFAQ) => {
+                        return <FAQCard key={faq.id} {...faq} />;
+                    })}
+                </SimpleGrid>
+            ) : (
+                <Center sx={{ height: '80%' }}>
+                    <Text color="dimmed" size="lg">
+                        Sie haben noch keine FAQs erstellt
+                    </Text>
+                </Center>
+            )}
         </>
     );
 };

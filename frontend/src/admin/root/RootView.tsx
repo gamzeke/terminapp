@@ -49,7 +49,7 @@ const RootView = () => {
             }
             footer={
                 <Footer height={50} p="sm">
-                    Development
+                    <Text size="sm">Version 1.0.0 (Dev)</Text>
                 </Footer>
             }
             header={
@@ -73,8 +73,7 @@ const RootView = () => {
                                 mr="xl"
                             />
                         </MediaQuery>
-                        {/* TODO-MMUEJDE: Logo des Unternehmens einbi */}
-                        <Text weight={700}>TerminPlaner</Text>
+                        <Text weight={700}>TerminPlaner (Admin)</Text>
                     </div>
                 </Header>
             }

@@ -1,5 +1,17 @@
-import { Accordion, Container, createStyles, Text, Title } from '@mantine/core';
-import React from 'react';
+import {
+    Center,
+    createStyles,
+    SimpleGrid,
+    Skeleton,
+    Stack,
+    Text,
+} from '@mantine/core';
+import { IconAlertCircle } from '@tabler/icons';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { IFAQ } from '../../admin/pages/faq';
+import FAQCard from '../../admin/pages/faq/FAQCard';
+import { FAQ_URL } from '../../admin/pages/faq/FAQView';
 
 const useStyles = createStyles((theme, _params, getRef) => {
     const control = getRef('control');
@@ -46,14 +58,42 @@ const useStyles = createStyles((theme, _params, getRef) => {
 });
 
 export function FAQ() {
-    const { classes } = useStyles();
+    const { isLoading, isFetching, error, data } = useQuery(['faqs'], () =>
+        axios.get(FAQ_URL).then(res => res.data)
+    );
+
+    if (error) {
+        return (
+            <Center sx={{ height: '100%' }}>
+                <Stack align="center">
+                    <IconAlertCircle size={32} color="red" />
+                    <Text>
+                        Leider ist ein Fehler aufgetreten. Versuchen Sie es
+                        später nochmal.
+                    </Text>
+                </Stack>
+            </Center>
+        );
+    }
+
+    if (isFetching || isLoading) {
+        return (
+            <>
+                <Skeleton height={16} radius="xl" mt={16} />
+                <Skeleton height={16} radius="xl" mt={16} />
+                <Skeleton height={16} radius="xl" mt={16} />
+                <Skeleton height={16} radius="xl" mt={16} />
+                <Skeleton height={16} radius="xl" mt={16} />
+                <Skeleton height={16} radius="xl" mt={16} />
+            </>
+        );
+    }
+
     return (
-        <>
-            <Text>"How can I reset my password?"</Text>
-            <Text>"Can I create more that one account?"</Text>
-            <Text>"Do you store credit card information securely?"</Text>
-            <Text>"What payment systems to you work with?"</Text>
-            <Text>"How can I subscribe to monthly newsletter?"</Text>
-        </>
+        <SimpleGrid>
+            {data.map((faq: IFAQ) => {
+                return <FAQCard key={faq.id} {...faq} hideDeleteButton />;
+            })}
+        </SimpleGrid>
     );
 }

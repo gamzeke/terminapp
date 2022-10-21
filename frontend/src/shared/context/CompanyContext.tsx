@@ -88,21 +88,19 @@ const CompanyContextProvider = ({ children }: PropsWithChildren) => {
         }
     }, [data, status]);
 
-    const axiosConfig = {
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-        },
-    };
-
     const { mutate: companyMutation } = useMutation(
         (company: ICompany) => {
             const companyJson = JSON.stringify(company);
             return axios.post(
                 'http://localhost:8080/api/v1/company',
                 companyJson,
-                axiosConfig
+                {
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                }
             );
         },
         {
