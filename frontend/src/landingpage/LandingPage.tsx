@@ -54,14 +54,10 @@ const LandingPage = () => {
                 <FAQ />
             </Container>
 
-            <Container id="contact-section" pt="xl">
-                <Title order={2} mb="lg">
-                    Kontaktieren Sie uns einfach
-                </Title>
-                <ContactUs />
-            </Container>
-
             <Container id="socialmedia-section" pt="xl">
+                <Title order={2} mb="lg">
+                    Folgen Sie in den Social Media
+                </Title>
                 <Group spacing={0} position="apart" noWrap>
                     {company.facebookLink && (
                         <Group>
@@ -116,6 +112,13 @@ const LandingPage = () => {
                         </Group>
                     )}
                 </Group>
+            </Container>
+
+            <Container id="contact-section" pt="xl">
+                <Title order={2} mb="lg">
+                    Kontaktieren Sie uns einfach
+                </Title>
+                <ContactUs />
             </Container>
 
             <PageFooter />

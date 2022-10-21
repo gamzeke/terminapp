@@ -14,8 +14,8 @@ public class FAQConfig {
         return args -> {
             fAQRepository.saveAll(List.of(
                     FAQ.builder()
-                            .question("Test Title")
-                            .answer("Test Content")
+                            .question("Das ist eine Testfrage")
+                            .answer("Das ist eine Testantwort")
                             .build()
             ));
         };
