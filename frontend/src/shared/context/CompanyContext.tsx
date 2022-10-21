@@ -1,3 +1,4 @@
+import { showNotification } from '@mantine/notifications';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import {
@@ -8,8 +9,6 @@ import {
     useState,
 } from 'react';
 import { ICompany } from '../../admin/pages/company';
-import ErrorNotification from '../notification/ErrorNotification';
-import SuccessNotification from '../notification/SuccessNotification';
 
 interface CompanyContextProps {
     company: ICompany;
@@ -108,11 +107,18 @@ const CompanyContextProvider = ({ children }: PropsWithChildren) => {
         },
         {
             onError: (error, variables, context) => {
-                <ErrorNotification title="Geschäftsdaten konnten nicht aktualisiert werden" />;
+                showNotification({
+                    title: '🫤',
+                    color: 'red',
+                    message: 'Geschäftsdaten konnten nicht aktualisiert werden',
+                });
             },
             onSuccess: (data, variables, context) => {
-                console.log(data);
-                <SuccessNotification title="Geschäftsdaten erfolgreich aktualisiert" />;
+                showNotification({
+                    title: '😊',
+                    color: 'green',
+                    message: 'Geschäftsdaten erfolgreich aktualisiert',
+                });
             },
         }
     );

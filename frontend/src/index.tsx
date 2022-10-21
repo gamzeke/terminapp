@@ -1,3 +1,5 @@
+import { MantineProvider } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -25,27 +27,49 @@ const queryClient = new QueryClient();
 
 root.render(
     <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <CompanyContextProvider>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="admin" element={<App />}>
-                            <Route index element={<DashboardView />} />
-                            <Route path="calendar" element={<CalendarView />} />
-                            <Route path="customer" element={<CustomerView />} />
-                            <Route path="company" element={<CompanyView />} />
-                            <Route path="faq" element={<FAQView />} />
-                        </Route>
-                        <Route path="auth" element={<AuthView />} />
-                        <Route path="scheduler" element={<AppointmentView />} />
-                        <Route path="/" element={<LandingPage />}>
-                            <Route path="imprint" element={<Imprint />} />
-                            <Route path="imprint" element={<Privacy />} />
-                        </Route>
-                        <Route path="*" element={<PageNotFound />} />
-                    </Routes>
-                </BrowserRouter>
-            </CompanyContextProvider>
-        </QueryClientProvider>
+        <MantineProvider withNormalizeCSS withGlobalStyles>
+            <QueryClientProvider client={queryClient}>
+                <NotificationsProvider>
+                    <CompanyContextProvider>
+                        <BrowserRouter>
+                            <Routes>
+                                <Route path="admin" element={<App />}>
+                                    <Route index element={<DashboardView />} />
+                                    <Route
+                                        path="calendar"
+                                        element={<CalendarView />}
+                                    />
+                                    <Route
+                                        path="customer"
+                                        element={<CustomerView />}
+                                    />
+                                    <Route
+                                        path="company"
+                                        element={<CompanyView />}
+                                    />
+                                    <Route path="faq" element={<FAQView />} />
+                                </Route>
+                                <Route path="auth" element={<AuthView />} />
+                                <Route
+                                    path="scheduler"
+                                    element={<AppointmentView />}
+                                />
+                                <Route path="/" element={<LandingPage />}>
+                                    <Route
+                                        path="imprint"
+                                        element={<Imprint />}
+                                    />
+                                    <Route
+                                        path="imprint"
+                                        element={<Privacy />}
+                                    />
+                                </Route>
+                                <Route path="*" element={<PageNotFound />} />
+                            </Routes>
+                        </BrowserRouter>
+                    </CompanyContextProvider>
+                </NotificationsProvider>
+            </QueryClientProvider>
+        </MantineProvider>
     </React.StrictMode>
 );

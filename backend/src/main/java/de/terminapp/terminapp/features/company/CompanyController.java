@@ -28,8 +28,6 @@ public class CompanyController {
     ResponseEntity<Company> updateCompany(@RequestBody Company companyProfile) {
         log.info("Request to update company: {}", companyProfile);
         Company result = companyService.updateCompany(companyProfile);
-        return ResponseEntity
-                .ok()
-                .body(result);
+        return ResponseEntity.ok().body(result);
     }
 }
