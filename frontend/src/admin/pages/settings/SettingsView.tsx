@@ -1,4 +1,5 @@
-import { SimpleGrid } from "@mantine/core"
+import { Button, Group, SimpleGrid, Space } from "@mantine/core"
+import { useBackOfficeContext } from "../../../shared/context/BackOfficeContext"
 import Address from "./Address"
 import BusinessHours from "./BusinessHours"
 import Company from "./Company"
@@ -6,14 +7,22 @@ import Services from "./Services"
 import SocialMedia from "./SocialMedia"
 
 const SettingsView = () => {
+    const { saveCompany, ...rest } = useBackOfficeContext()
+
     return (
-        <SimpleGrid cols={2} spacing="sm">
-            <Company />
-            <Address />
-            <SocialMedia />
-            <Services />
-            <BusinessHours />
-        </SimpleGrid>
+        <>
+            <Group position="right">
+                <Button onClick={saveCompany}>Speichern</Button>
+            </Group>
+            <Space h="md" />
+            <SimpleGrid cols={2} spacing="sm">
+                <Company />
+                <Address />
+                <SocialMedia />
+                <Services />
+                <BusinessHours />
+            </SimpleGrid>
+        </>
     )
 }
 

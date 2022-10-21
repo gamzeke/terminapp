@@ -1,4 +1,4 @@
-package de.terminapp.terminapp.features.businessProfile;
+package de.terminapp.terminapp.features.company;
 
 public enum WeekDays {
     MONDAY,

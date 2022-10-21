@@ -1,4 +1,4 @@
-package de.terminapp.terminapp.features.businessProfile;
+package de.terminapp.terminapp.features.company;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +34,6 @@ public class BusinessHours {
     private LocalTime closesAt;
 
     @ManyToOne
-    @JoinColumn(name = "business_profile_id")
-    private BusinessProfile businessProfile;
+    @JoinColumn(name = "company_id")
+    private Company company;
 }
