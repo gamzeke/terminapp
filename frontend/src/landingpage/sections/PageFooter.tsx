@@ -1,5 +1,6 @@
-import { ActionIcon, Anchor, createStyles, Group } from '@mantine/core';
+import { ActionIcon, Anchor, createStyles, Group, Title } from '@mantine/core';
 import { BrandInstagram, BrandTiktok, BrandTwitter, BrandYoutube } from 'tabler-icons-react';
+import { useCompanyContext } from '../../shared/context/CompanyContext';
 
 const useStyles = createStyles((theme) => ({
     footer: {
@@ -29,6 +30,7 @@ const useStyles = createStyles((theme) => ({
 
 const PageFooter = () => {
     const { classes } = useStyles();
+    const { company, ...rest } = useCompanyContext();
     const links = [
         {
             "link": "#",
@@ -55,7 +57,7 @@ const PageFooter = () => {
     return (
         <div className={classes.footer}>
             <div className={classes.inner}>
-                Name des Unternehmens
+                <Title order={6}>{company.companyName}</Title>
                 <Group className={classes.links}>{items}</Group>
             </div>
         </div>

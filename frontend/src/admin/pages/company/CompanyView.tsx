@@ -1,5 +1,5 @@
 import { Button, Group, Paper, SimpleGrid, Space, Title } from "@mantine/core"
-import { useBackOfficeContext } from "../../../shared/context/CompanyContext"
+import { useCompanyContext } from "../../../shared/context/CompanyContext"
 import Address from "./Address"
 import BusinessHours from "./BusinessHours"
 import Company from "./Company"
@@ -7,7 +7,7 @@ import Products from "./Products"
 import SocialMedia from "./SocialMedia"
 
 const CompanyView = () => {
-    const { saveCompany, ...rest } = useBackOfficeContext()
+    const { saveCompany, ...rest } = useCompanyContext()
 
     return (
         <>

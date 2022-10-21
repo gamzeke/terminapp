@@ -1,8 +1,8 @@
 import { Group, Paper, Stack, Textarea, TextInput, Title } from '@mantine/core';
-import { useBackOfficeContext } from '../../../shared/context/CompanyContext';
+import { useCompanyContext } from '../../../shared/context/CompanyContext';
 
 const Company = () => {
-    const { company, updateCompany } = useBackOfficeContext()
+    const { company, updateCompany } = useCompanyContext()
 
     return (
         <Paper shadow="sm" p="lg">

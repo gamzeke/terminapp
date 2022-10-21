@@ -1,5 +1,7 @@
 import { ActionIcon, Container, Group, SimpleGrid, Skeleton, Text, Title } from '@mantine/core'
-import { BrandInstagram, BrandTwitter, BrandYoutube, BrandTiktok } from 'tabler-icons-react'
+import { Link } from 'react-router-dom'
+import { BrandInstagram, BrandTwitter, BrandYoutube, BrandTiktok, BrandFacebook } from 'tabler-icons-react'
+import { useCompanyContext } from '../shared/context/CompanyContext'
 import ContactUs from './sections/ContactUs'
 import { FAQ } from './sections/FAQ'
 import PageFooter from './sections/PageFooter'
@@ -7,6 +9,8 @@ import PageHeader from './sections/PageHeader'
 import { ServiceCard } from './sections/ServiceCard'
 
 const LandingPage = () => {
+    const { company, ...rest } = useCompanyContext();
+
     return (
         <>
             <PageHeader />
@@ -14,9 +18,7 @@ const LandingPage = () => {
             <Container id="welcome-section">
                 <Title order={1} align="center">Herzlich Willkommen</Title>
                 <Text mt="xl" align="justify">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut possimus vel deleniti eveniet! Veniam, tempora exercitationem! Et dolorem similique, esse optio sed placeat ea itaque asperiores soluta exercitationem dolorum architecto.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut possimus vel deleniti eveniet! Veniam, tempora exercitationem! Et dolorem similique, esse optio sed placeat ea itaque asperiores soluta exercitationem dolorum architecto.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut possimus vel deleniti eveniet! Veniam, tempora exercitationem! Et dolorem similique, esse optio sed placeat ea itaque asperiores soluta exercitationem dolorum architecto.
+                    {company.welcomeText}
                 </Text>
             </Container>
 
@@ -30,40 +32,60 @@ const LandingPage = () => {
                 </SimpleGrid>
             </Container>
 
-            <Container id="socialmedia-section" pt="xl">
-                <Title order={2} mb="lg">Wir sind auf den folgenden Sozialen Medien</Title>
-                <Group spacing={0} position="center" noWrap>
-                    <ActionIcon size="xl">
-                        <BrandInstagram size={32} />
-                    </ActionIcon>
-                    <ActionIcon size="xl">
-                        <BrandTwitter size={32} />
-                    </ActionIcon>
-                    <ActionIcon size="xl">
-                        <BrandYoutube size={32} />
-                    </ActionIcon>
-                    <ActionIcon size="xl">
-                        <BrandTiktok size={32} />
-                    </ActionIcon>
-                </Group>
-            </Container>
-
             <Container id="faq-section" pt="xl">
                 <Title order={2} mb="lg">Häufig gestellte Fragen</Title>
                 <FAQ />
             </Container>
 
-            <Container id="review-section" pt="xl">
-                <Title order={2} mb="lg">Das sagen unsere Kunden über uns</Title>
-                <Skeleton height={8} mt={6} radius="xl" />
-                <Skeleton height={8} mt={6} radius="xl" />
-                <Skeleton height={8} mt={6} radius="xl" />
-                <Skeleton height={8} mt={6} radius="xl" />
-            </Container>
-
             <Container id="contact-section" pt="xl">
                 <Title order={2} mb="lg">Kontaktieren Sie uns einfach</Title>
                 <ContactUs />
+            </Container>
+
+            <Container id="socialmedia-section" pt="xl">
+                <Group spacing={0} position="apart" noWrap>
+                    {
+                        company.facebookLink && <Group>
+                            <ActionIcon size="xl" component="a"
+                                href={company.facebookLink}
+                                target="_blank">
+                                <BrandFacebook size={32} color="blue" />
+                            </ActionIcon>
+                            <Text>Facebook</Text>
+                        </Group>
+                    }
+                    {
+                        company.instagramLink && <Group>
+                            <ActionIcon size="xl" component="a"
+                                href={company.instagramLink}
+                                target="_blank">
+                                <BrandInstagram size={32} color="brown" />
+                            </ActionIcon>
+                            <Text>Instagram</Text>
+                        </Group>
+                    }
+                    {
+
+                        company.youtubeLink && <Group>
+                            <ActionIcon size="xl" component="a"
+                                href={company.youtubeLink}
+                                target="_blank">
+                                <BrandYoutube size={32} color="red" />
+                            </ActionIcon>
+                            <Text>Youtube</Text>
+                        </Group>
+                    }
+                    {
+                        company.tikTokLink && <Group>
+                            <ActionIcon size="xl" component="a"
+                                href={company.tikTokLink}
+                                target="_blank">
+                                <BrandTiktok size={32} color="green" />
+                            </ActionIcon>
+                            <Text>TikTok</Text>
+                        </Group>
+                    }
+                </Group>
             </Container>
 
             <PageFooter />

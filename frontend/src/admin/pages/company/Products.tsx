@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Group, Paper, Stack, Table, Title } from '@mantine/core';
+import { ActionIcon, Group, Paper, Stack, Table, Title } from '@mantine/core';
 import { IconTrash } from '@tabler/icons';
 import { useState } from 'react';
 import AddServiceDialog from '../../../shared/dialogs/AddServiceDialog';

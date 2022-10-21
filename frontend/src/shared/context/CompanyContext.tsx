@@ -30,7 +30,7 @@ const CompanyContext = createContext<CompanyContextProps>({
     saveCompany: () => void 0
 });
 
-export const useBackOfficeContext = () => {
+export const useCompanyContext = () => {
     const context = useContext(CompanyContext);
     if (context === undefined) throw new Error("CompanyContext is not defined!");
     return context;

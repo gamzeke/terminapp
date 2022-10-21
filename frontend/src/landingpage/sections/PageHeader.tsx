@@ -1,7 +1,8 @@
 import {
-    Burger, Button, Container, createStyles, Group, Header, Text
+    Burger, Button, Container, createStyles, Group, Header, Text, Title
 } from '@mantine/core';
 import { useState } from 'react';
+import { useCompanyContext } from '../../shared/context/CompanyContext';
 
 const HEADER_HEIGHT = 60;
 
@@ -44,6 +45,7 @@ const useStyles = createStyles((theme) => ({
 const PageHeader = () => {
     const { classes } = useStyles();
     const [opened, toggleOpened] = useState(false);
+    const { company, ...rest } = useCompanyContext();
 
     const links = [
         {
@@ -82,7 +84,7 @@ const PageHeader = () => {
                         className={classes.burger}
                         size="sm"
                     />
-                    <Text variant="text">Name des Unternehmens</Text>
+                    <Title order={3}>{company.companyName}</Title>
                 </Group>
                 <Group spacing={5} className={classes.links}>
                     {items}

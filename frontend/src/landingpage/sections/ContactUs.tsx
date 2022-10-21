@@ -1,4 +1,5 @@
 import { Button, Center, createStyles, Group, SimpleGrid, Stack, Text, Textarea, TextInput, Title } from '@mantine/core';
+import { useCompanyContext } from '../../shared/context/CompanyContext';
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -65,6 +66,7 @@ const useStyles = createStyles((theme) => ({
 
 const ContactUs = () => {
     const { classes } = useStyles();
+    const { company, ...rest } = useCompanyContext();
 
     return (
         <div className={classes.wrapper}>
