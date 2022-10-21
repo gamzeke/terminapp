@@ -1,13 +1,23 @@
-import { SimpleGrid } from '@mantine/core'
+import { Group, Paper, SimpleGrid, Space, Title } from '@mantine/core'
 import NextAppointmentCard from './NextAppointmentCard'
 import { StatusCard } from './StatusCard'
 
 const DashboardView = () => {
     return (
-        <SimpleGrid cols={2} spacing="sm">
-            <NextAppointmentCard/>
-            <StatusCard />
-        </SimpleGrid >
+        <>
+            <Paper p="xs">
+                <Group position="apart">
+                    <Title order={2}>
+                        Dashboard
+                    </Title>
+                </Group>
+            </Paper>
+            <Space h="md" />
+            <SimpleGrid cols={2} spacing="sm">
+                <NextAppointmentCard />
+                <StatusCard />
+            </SimpleGrid >
+        </>
     )
 }
 

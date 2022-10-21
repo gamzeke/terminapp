@@ -1,7 +1,10 @@
 import {
+    Group,
     Input,
+    Paper,
     Space,
     Table,
+    Title,
 } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { Search } from 'tabler-icons-react';
@@ -34,23 +37,24 @@ interface CustomerTableProps {
 }
 
 const CustomerTable = ({ children }: CustomerTableProps) => {
-    return (<Table>
-        <thead>
-            <tr>
-                <th>Vorname</th>
-                <th>Nachname</th>
-                <th>E-Mail</th>
-                <th>Telefon</th>
-                <th>Straße</th>
-                <th>Straßennummer</th>
-                <th>Postleitzahl</th>
-                <th>Stadt</th>
-                <th>Bundesland</th>
-                <th>Land</th>
-            </tr>
-        </thead>
-        <tbody>{children}</tbody>
-    </Table>
+    return (
+        <Table highlightOnHover>
+            <thead>
+                <tr>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                    <th>E-Mail</th>
+                    <th>Telefon</th>
+                    <th>Straße</th>
+                    <th>Straßennummer</th>
+                    <th>Postleitzahl</th>
+                    <th>Stadt</th>
+                    <th>Bundesland</th>
+                    <th>Land</th>
+                </tr>
+            </thead>
+            <tbody>{children}</tbody>
+        </Table>
     )
 }
 
@@ -68,10 +72,18 @@ const CustomerView = () => {
     //TODO-MMUEJDE: Ich muss die Suche einbauen!
     return (
         <>
+            <Paper p="xs">
+                <Group position="apart">
+                    <Title order={2}>
+                        Kundendatenbank
+                    </Title>
+                </Group>
+            </Paper>
+            <Space h="md" />
             {
                 isFetching || isLoading ?
                     "IsLoading" :
-                    <>
+                    <Paper p="xl">
                         <Input
                             icon={<Search />}
                             variant="filled"
@@ -85,7 +97,7 @@ const CustomerView = () => {
                                 })
                             }
                         </CustomerTable>
-                    </>
+                    </Paper>
             }
         </>
     );

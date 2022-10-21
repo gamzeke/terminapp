@@ -1,7 +1,6 @@
-import { Badge, Card, Group, SimpleGrid, Skeleton, Text, Title } from '@mantine/core'
-import { useQuery } from '@tanstack/react-query'
+import { Card, Group, Paper, SimpleGrid, Text, Title, Space } from '@mantine/core';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useState } from 'react';
 import ErrorMessage from '../../../shared/ErrorMessage';
 
 
@@ -35,17 +34,27 @@ const FAQView = () => {
 
     return (
         <>
-            {
-                isFetching || isLoading ?
-                    "IsLoading" :
-                    <SimpleGrid cols={3}>
-                        {
-                            data.map((faq: IFAQ) => {
-                                return <FAQCard key={faq.id} {...faq} />
-                            })
-                        }
-                    </SimpleGrid>
-            }
+            <Paper p="xs">
+                <Group position="apart">
+                    <Title order={2}>
+                        FAQs
+                    </Title>
+                </Group>
+            </Paper>
+            <Space h="md" />
+            <>
+                {
+                    isFetching || isLoading ?
+                        "IsLoading" :
+                        <SimpleGrid cols={3}>
+                            {
+                                data.map((faq: IFAQ) => {
+                                    return <FAQCard key={faq.id} {...faq} />
+                                })
+                            }
+                        </SimpleGrid>
+                }
+            </>
         </>
     )
 }

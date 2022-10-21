@@ -1,4 +1,4 @@
-import { Button, Group, SimpleGrid, Space } from "@mantine/core"
+import { Button, Group, Paper, SimpleGrid, Space, Title } from "@mantine/core"
 import { useBackOfficeContext } from "../../../shared/context/BackOfficeContext"
 import Address from "./Address"
 import BusinessHours from "./BusinessHours"
@@ -11,11 +11,16 @@ const CompanyView = () => {
 
     return (
         <>
-            <Group position="right">
-                <Button onClick={saveCompany}>Speichern</Button>
-            </Group>
+            <Paper p="xs">
+                <Group position="apart">
+                    <Title order={2}>
+                        Geschäftsdaten
+                    </Title>
+                    <Button onClick={saveCompany}>Speichern</Button>
+                </Group>
+            </Paper>
             <Space h="md" />
-            <SimpleGrid cols={2} spacing="sm">
+            <SimpleGrid cols={3} spacing="sm">
                 <Company />
                 <Address />
                 <SocialMedia />
