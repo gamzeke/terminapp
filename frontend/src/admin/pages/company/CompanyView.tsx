@@ -1,5 +1,5 @@
 import { Button, Group, Paper, SimpleGrid, Space, Title } from "@mantine/core"
-import { useBackOfficeContext } from "../../../shared/context/BackOfficeContext"
+import { useBackOfficeContext } from "../../../shared/context/CompanyContext"
 import Address from "./Address"
 import BusinessHours from "./BusinessHours"
 import Company from "./Company"

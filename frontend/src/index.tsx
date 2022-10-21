@@ -16,7 +16,7 @@ import './index.css';
 import LandingPage from './landingpage/LandingPage';
 import Imprint from './landingpage/pages/Imprint';
 import Privacy from './landingpage/pages/Privacy';
-import BackOfficeContextProvider from './shared/context/BackOfficeContext';
+import CompanyContextProvider from './shared/context/CompanyContext';
 import PageNotFound from './shared/pages/PageNotFound';
 
 const root = ReactDOM.createRoot(
@@ -28,7 +28,7 @@ const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BackOfficeContextProvider>
+      <CompanyContextProvider>
         <BrowserRouter>
           <Routes>
             <Route path="admin" element={<App />}>
@@ -47,7 +47,7 @@ root.render(
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
-      </BackOfficeContextProvider>
+      </CompanyContextProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

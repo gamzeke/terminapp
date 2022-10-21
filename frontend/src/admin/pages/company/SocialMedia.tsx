@@ -1,6 +1,6 @@
 import { Group, Paper, Stack, TextInput, Title } from '@mantine/core';
 import { BrandFacebook, BrandInstagram, BrandTiktok, BrandYoutube, Home2 as Home } from 'tabler-icons-react';
-import { useBackOfficeContext } from '../../../shared/context/BackOfficeContext';
+import { useBackOfficeContext } from '../../../shared/context/CompanyContext';
 
 const SocialMedia = () => {
     const { company, updateCompany } = useBackOfficeContext()

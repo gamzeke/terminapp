@@ -5,13 +5,13 @@ import { ICompany } from '../../admin/pages/company';
 import ErrorNotification from '../notification/ErrorNotification';
 import SuccessNotification from '../notification/SuccessNotification';
 
-interface BackOfficeContextProps {
+interface CompanyContextProps {
     company: ICompany;
     updateCompany: (key: string, value: string) => void;
     saveCompany: () => void;
 }
 
-const BackOfficeContext = createContext<BackOfficeContextProps>({
+const CompanyContext = createContext<CompanyContextProps>({
     company: {
         companyName: "",
         welcomeText: "",
@@ -31,12 +31,12 @@ const BackOfficeContext = createContext<BackOfficeContextProps>({
 });
 
 export const useBackOfficeContext = () => {
-    const context = useContext(BackOfficeContext);
-    if (context === undefined) throw new Error("BackOfficeContext is not defined!");
+    const context = useContext(CompanyContext);
+    if (context === undefined) throw new Error("CompanyContext is not defined!");
     return context;
 };
 
-const BackOfficeContextProvider = ({ children }: PropsWithChildren) => {
+const CompanyContextProvider = ({ children }: PropsWithChildren) => {
     const [company, setCompany] = useState<ICompany>({
         companyName: "",
         welcomeText: "",
@@ -101,14 +101,14 @@ const BackOfficeContextProvider = ({ children }: PropsWithChildren) => {
     );
 
     return (
-        <BackOfficeContext.Provider value={{
+        <CompanyContext.Provider value={{
             company,
             updateCompany,
             saveCompany
         }}>
             {children}
-        </BackOfficeContext.Provider>
+        </CompanyContext.Provider>
     )
 }
 
-export default BackOfficeContextProvider
+export default CompanyContextProvider
