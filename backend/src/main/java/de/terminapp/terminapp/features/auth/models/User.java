@@ -1,9 +1,6 @@
 package de.terminapp.terminapp.features.auth.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "users")
 public class User {
     @Id
@@ -26,7 +24,7 @@ public class User {
     )
     private Long id;
 
-    private String email;
+    private String username;
+
     private String password;
-    private Boolean isConfirmedAccount;
 }

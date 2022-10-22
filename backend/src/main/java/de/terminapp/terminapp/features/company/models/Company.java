@@ -1,10 +1,8 @@
 package de.terminapp.terminapp.features.company.models;
 
-import de.terminapp.terminapp.features.product.models.Product;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
@@ -34,19 +32,11 @@ public class Company {
     private String postCode;
     private String city;
     private String state;
-
     private String email;
     private String phone;
-
     private String homepageLink;
     private String instagramLink;
     private String facebookLink;
     private String tikTokLink;
     private String youtubeLink;
-
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private List<BusinessHours> businessHours;
-
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private List<Product> products;
 }

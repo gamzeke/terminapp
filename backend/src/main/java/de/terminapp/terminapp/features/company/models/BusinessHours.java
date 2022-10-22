@@ -31,9 +31,6 @@ public class BusinessHours {
     private WeekDays weekDay;
 
     private LocalTime opensAt;
-    private LocalTime closesAt;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    private Company company;
+    private LocalTime closesAt;
 }
