@@ -18,7 +18,7 @@ public class CompanyController {
 
     @GetMapping("{id}")
     ResponseEntity<?> getCompany(@PathVariable Long id) {
-        log.info("Request for company with ID: {}", id);
+        log.info("Request for company: {}", id);
         Optional<Company> result = companyService.getCompany(id);
         return result.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
