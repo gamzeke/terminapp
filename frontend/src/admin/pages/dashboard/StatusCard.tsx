@@ -7,7 +7,7 @@ import {
     Text,
     Title,
 } from '@mantine/core';
-import { ArrowDownRight, ArrowUpRight } from 'tabler-icons-react';
+import { IconArrowDownRight, IconArrowUpRight } from '@tabler/icons';
 
 interface StatsRingProps {
     label: string;
@@ -18,8 +18,8 @@ interface StatsRingProps {
 }
 
 const icons = {
-    up: ArrowUpRight,
-    down: ArrowDownRight,
+    up: IconArrowUpRight,
+    down: IconArrowDownRight,
 };
 
 export function StatusCard() {

@@ -1,11 +1,11 @@
 import { Group, Paper, Stack, TextInput, Title } from '@mantine/core';
 import {
-    BrandFacebook,
-    BrandInstagram,
-    BrandTiktok,
-    BrandYoutube,
-    Home2 as Home,
-} from 'tabler-icons-react';
+    IconBrandFacebook,
+    IconBrandInstagram,
+    IconBrandTiktok,
+    IconBrandYoutube,
+    IconHome,
+} from '@tabler/icons';
 import { useCompanyContext } from '../../../shared/context/CompanyContext';
 
 const SocialMedia = () => {
@@ -18,7 +18,7 @@ const SocialMedia = () => {
                     <Title order={3}>Social Media</Title>
                 </Group>
                 <TextInput
-                    icon={<Home />}
+                    icon={<IconHome />}
                     value={company.homepageLink}
                     onChange={event => {
                         updateCompany(
@@ -31,7 +31,7 @@ const SocialMedia = () => {
                     variant="filled"
                 />
                 <TextInput
-                    icon={<BrandInstagram />}
+                    icon={<IconBrandInstagram />}
                     value={company.instagramLink}
                     onChange={event => {
                         updateCompany(
@@ -44,7 +44,7 @@ const SocialMedia = () => {
                     variant="filled"
                 />
                 <TextInput
-                    icon={<BrandFacebook />}
+                    icon={<IconBrandFacebook />}
                     label="Facebook"
                     value={company.facebookLink}
                     placeholder="https://www.muster.de"
@@ -57,7 +57,7 @@ const SocialMedia = () => {
                     variant="filled"
                 />
                 <TextInput
-                    icon={<BrandTiktok />}
+                    icon={<IconBrandTiktok />}
                     label="TikTok"
                     value={company.tikTokLink}
                     placeholder="https://www.muster.de"
@@ -71,7 +71,7 @@ const SocialMedia = () => {
                     onChange={event => {
                         updateCompany('youtubeLink', event.currentTarget.value);
                     }}
-                    icon={<BrandYoutube />}
+                    icon={<IconBrandYoutube />}
                     placeholder="https://www.muster.de"
                     label="Youtube"
                     variant="filled"

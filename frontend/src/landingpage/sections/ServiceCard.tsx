@@ -1,15 +1,5 @@
-import {
-    Badge,
-    Button,
-    Card,
-    Center,
-    createStyles,
-    Group,
-    Image,
-    Text,
-} from '@mantine/core';
-import React from 'react';
-import { GasStation, Gauge, ManualGearbox, Users } from 'tabler-icons-react';
+import { Button, Card, createStyles, Group, Stack, Text } from '@mantine/core';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = createStyles(theme => ({
     card: {
@@ -56,71 +46,53 @@ const useStyles = createStyles(theme => ({
     },
 }));
 
-const mockdata = [
-    { label: '4 passengers', icon: Users },
-    { label: '100 km/h in 4 seconds', icon: Gauge },
-    { label: 'Automatic gearbox', icon: ManualGearbox },
-    { label: 'Electric', icon: GasStation },
-];
+interface ServiceCardProps {
+    name: string;
+    price: string;
+    description: string;
+}
 
-export function ServiceCard() {
+const ServiceCard = ({ name, price, description }: ServiceCardProps) => {
     const { classes } = useStyles();
-    const features = mockdata.map(feature => (
-        <Center key={feature.label}>
-            <feature.icon size={18} className={classes.icon} />
-            <Text size="xs">{feature.label}</Text>
-        </Center>
-    ));
+    const navigate = useNavigate();
 
     return (
-        <Card withBorder radius="md" className={classes.card}>
-            <Card.Section className={classes.imageSection}>
-                <Image
-                    src="https://cdn.artdeco.de/_Resources/Persistent/1/b/9/5/1b954bea7d800f5544aeac3e4553099bcb0e9847/Header-Large-Schminktipp-Uebersichtsseite_v4-370x500.jpg"
-                    alt="Tesla Model S"
-                />
-            </Card.Section>
-
-            <Group position="apart" mt="md">
-                <div>
-                    <Text weight={500}>Makeup S</Text>
-                    <Text size="xs" color="dimmed">
-                        Lorem ipsum dolor sit
-                    </Text>
-                </div>
-                <Badge variant="outline">Bestseller</Badge>
+        <Card withBorder className={classes.card}>
+            <Group position="apart">
+                <Text weight={500}>{name}</Text>
             </Group>
-
             <Card.Section className={classes.section} mt="md">
                 <Text size="sm" color="dimmed" className={classes.label}>
-                    Service
+                    Beschreibung
                 </Text>
-
-                <Group spacing={8} mb={-8}>
-                    {features}
-                </Group>
+                <Text>{description}</Text>
             </Card.Section>
-
             <Card.Section className={classes.section}>
-                <Group spacing={30}>
-                    <div>
-                        <Text size="xl" weight={700} sx={{ lineHeight: 1 }}>
-                            10,00€
-                        </Text>
+                <Stack>
+                    <Group position="apart">
                         <Text
                             size="sm"
                             color="dimmed"
                             weight={500}
                             sx={{ lineHeight: 1 }}
                             mt={3}
-                        ></Text>
-                    </div>
-
-                    <Button radius="xl" style={{ flex: 1 }}>
-                        Buchen
+                        >
+                            Preis
+                        </Text>
+                        <Text size="xl" weight={700} sx={{ lineHeight: 1 }}>
+                            {price}€
+                        </Text>
+                    </Group>
+                    <Button
+                        style={{ flex: 1 }}
+                        onClick={() => navigate('scheduler')}
+                    >
+                        Jetzt buchen
                     </Button>
-                </Group>
+                </Stack>
             </Card.Section>
         </Card>
     );
-}
+};
+
+export default ServiceCard;

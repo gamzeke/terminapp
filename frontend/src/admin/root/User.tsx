@@ -6,8 +6,7 @@ import {
     UnstyledButton,
     useMantineTheme,
 } from '@mantine/core';
-import React from 'react';
-import { ChevronLeft, ChevronRight } from 'tabler-icons-react';
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons';
 
 export function User() {
     const theme = useMantineTheme();
@@ -56,9 +55,9 @@ export function User() {
                         </Text>
                     </Box>
                     {theme.dir === 'ltr' ? (
-                        <ChevronRight size={18} />
+                        <IconChevronRight size={18} />
                     ) : (
-                        <ChevronLeft size={18} />
+                        <IconChevronLeft size={18} />
                     )}
                 </Group>
             </UnstyledButton>

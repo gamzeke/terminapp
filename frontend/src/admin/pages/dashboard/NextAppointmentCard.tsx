@@ -5,9 +5,13 @@ import {
     Text,
     UnstyledButton,
 } from '@mantine/core';
+import {
+    IconCalendarEvent,
+    IconChevronDown,
+    IconChevronUp,
+} from '@tabler/icons';
 import dayjs from 'dayjs';
 import { useState } from 'react';
-import { CalendarEvent, ChevronDown, ChevronUp } from 'tabler-icons-react';
 
 const useStyles = createStyles(theme => ({
     root: {
@@ -126,11 +130,11 @@ const useStyles = createStyles(theme => ({
 }));
 
 const data = [
-    { icon: CalendarEvent, label: 'Makeup S' },
-    { icon: CalendarEvent, label: 'Makeup M' },
-    { icon: CalendarEvent, label: 'Makeup L' },
-    { icon: CalendarEvent, label: 'Makeup XL' },
-    { icon: CalendarEvent, label: 'Makeup XL' },
+    { icon: IconCalendarEvent, label: 'Makeup S' },
+    { icon: IconCalendarEvent, label: 'Makeup M' },
+    { icon: IconCalendarEvent, label: 'Makeup L' },
+    { icon: IconCalendarEvent, label: 'Makeup XL' },
+    { icon: IconCalendarEvent, label: 'Makeup XL' },
 ];
 
 export function NextAppointmentCard() {
@@ -169,7 +173,7 @@ export function NextAppointmentCard() {
                         )
                     }
                 >
-                    <ChevronUp className={classes.controlIcon} />
+                    <IconChevronUp className={classes.controlIcon} />
                 </UnstyledButton>
 
                 <div className={classes.date}>
@@ -189,7 +193,7 @@ export function NextAppointmentCard() {
                         )
                     }
                 >
-                    <ChevronDown className={classes.controlIcon} />
+                    <IconChevronDown className={classes.controlIcon} />
                 </UnstyledButton>
             </div>
             <Group sx={{ flex: 1 }}>{stats}</Group>

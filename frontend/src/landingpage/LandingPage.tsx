@@ -8,11 +8,11 @@ import {
     Title,
 } from '@mantine/core';
 import {
-    BrandFacebook,
-    BrandInstagram,
-    BrandTiktok,
-    BrandYoutube,
-} from 'tabler-icons-react';
+    IconBrandFacebook,
+    IconBrandInstagram,
+    IconBrandTiktok,
+    IconBrandYoutube,
+} from '@tabler/icons';
 import { useCompanyContext } from '../shared/context/CompanyContext';
 import ContactUs from './sections/ContactUs';
 import { FAQ } from './sections/FAQ';
@@ -63,7 +63,7 @@ const LandingPage = () => {
                                 href={company.facebookLink}
                                 target="_blank"
                             >
-                                <BrandFacebook size={32} color="blue" />
+                                <IconBrandFacebook size={32} color="blue" />
                             </ActionIcon>
                             <Text>Facebook</Text>
                         </Group>
@@ -76,7 +76,7 @@ const LandingPage = () => {
                                 href={company.instagramLink}
                                 target="_blank"
                             >
-                                <BrandInstagram size={32} color="brown" />
+                                <IconBrandInstagram size={32} color="brown" />
                             </ActionIcon>
                             <Text>Instagram</Text>
                         </Group>
@@ -89,7 +89,7 @@ const LandingPage = () => {
                                 href={company.youtubeLink}
                                 target="_blank"
                             >
-                                <BrandYoutube size={32} color="red" />
+                                <IconBrandYoutube size={32} color="red" />
                             </ActionIcon>
                             <Text>Youtube</Text>
                         </Group>
@@ -102,19 +102,12 @@ const LandingPage = () => {
                                 href={company.tikTokLink}
                                 target="_blank"
                             >
-                                <BrandTiktok size={32} color="green" />
+                                <IconBrandTiktok size={32} color="green" />
                             </ActionIcon>
                             <Text>TikTok</Text>
                         </Group>
                     )}
                 </Group>
-            </Container>
-
-            <Container id="contact-section" pt="xl">
-                <Title order={2} mb="lg">
-                    Kontaktieren Sie uns einfach
-                </Title>
-                <ContactUs />
             </Container>
 
             <Container id="contact-section" pt="xl">
@@ -266,6 +259,13 @@ const LandingPage = () => {
                         </Paper>
                     ) : null}
                 </Group>
+            </Container>
+
+            <Container id="contact-section" pt="xl">
+                <Title order={2} mb="lg">
+                    Kontaktieren Sie uns einfach
+                </Title>
+                <ContactUs />
             </Container>
 
             <PageFooter />

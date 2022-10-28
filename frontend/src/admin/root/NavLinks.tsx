@@ -1,14 +1,15 @@
 import { Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
+import {
+    IconCalendar,
+    IconDashboard,
+    IconDatabase,
+    IconExternalLink,
+    IconHome,
+    IconLogout,
+    IconQuestionMark,
+} from '@tabler/icons';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-    Calendar,
-    Dashboard,
-    Database,
-    ExternalLink,
-    Home,
-    QuestionMark,
-} from 'tabler-icons-react';
 
 interface NavLinkProps {
     icon: React.ReactNode;
@@ -19,39 +20,45 @@ interface NavLinkProps {
 
 const menuItems = [
     {
-        icon: <Dashboard size={16} />,
+        icon: <IconDashboard size={16} />,
         color: 'blue',
         label: 'Dashboard',
         url: '/admin',
     },
     {
-        icon: <Calendar size={16} />,
+        icon: <IconCalendar size={16} />,
         color: 'red',
         label: 'Kalendar',
         url: 'calendar',
     },
     {
-        icon: <Database size={16} />,
+        icon: <IconDatabase size={16} />,
         color: 'green',
         label: 'Kundendatenbank',
         url: 'customer',
     },
     {
-        icon: <QuestionMark size={16} />,
+        icon: <IconQuestionMark size={16} />,
         color: 'yellow',
         label: 'FAQs',
         url: 'faq',
     },
     {
-        icon: <Home size={16} />,
+        icon: <IconHome size={16} />,
         color: 'teal',
         label: 'Geschäftsdaten',
         url: 'company',
     },
     {
-        icon: <ExternalLink size={16} />,
+        icon: <IconExternalLink size={16} />,
         color: 'lime',
         label: 'Webseite',
+        url: '/',
+    },
+    {
+        icon: <IconLogout size={16} />,
+        color: 'red',
+        label: 'Ausloggen',
         url: '/',
     },
 ];

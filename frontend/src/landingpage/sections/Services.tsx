@@ -2,14 +2,15 @@ import { Center, Loader, SimpleGrid, Stack, Text } from '@mantine/core';
 import { IconAlertCircle } from '@tabler/icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { FAQ_URL } from '../../admin/pages/faq/FAQView';
 import { IService } from '../../shared/models/IService';
-import { ServiceCard } from './ServiceCard';
+import ServiceCard from './ServiceCard';
+
+const SERVICE_URL = '';
 
 const Products = () => {
     const { isLoading, isFetching, error, data } = useQuery(
         ['landingpage-products'],
-        () => axios.get(FAQ_URL).then(res => res.data)
+        () => axios.get(SERVICE_URL).then(res => res.data)
     );
 
     if (error) {
@@ -37,7 +38,7 @@ const Products = () => {
     return (
         <SimpleGrid cols={4} spacing="xs">
             {data.map((service: IService) => {
-                return <ServiceCard key={service.id} />;
+                return <ServiceCard {...service} key={service.id} />;
             })}
         </SimpleGrid>
     );

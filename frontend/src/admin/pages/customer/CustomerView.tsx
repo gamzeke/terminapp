@@ -10,11 +10,10 @@ import {
     TextInput,
     Title,
 } from '@mantine/core';
-import { IconAlertCircle } from '@tabler/icons';
+import { IconAlertCircle, IconSearch } from '@tabler/icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Search } from 'tabler-icons-react';
 import { ICustomer } from '../../../shared/models/ICustomer';
 
 const CustomerTableRow = (customer: ICustomer) => {
@@ -120,7 +119,7 @@ const CustomerView = () => {
             <Space h="md" />
             <Paper p="xl">
                 <TextInput
-                    icon={<Search />}
+                    icon={<IconSearch />}
                     variant="filled"
                     placeholder="Suchen"
                     onChange={event => filterData(event.currentTarget.value)}
