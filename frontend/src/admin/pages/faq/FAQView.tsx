@@ -13,8 +13,8 @@ import { showNotification } from '@mantine/notifications';
 import { IconAlertCircle } from '@tabler/icons';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { IFAQ } from '.';
 import AddFAQDialog from '../../../shared/dialogs/AddFAQDialog';
+import { IFAQ } from '../../../shared/models/IFAQ';
 import FAQCard from './FAQCard';
 
 export const FAQ_URL = 'http://localhost:8080/api/v1/faqs';

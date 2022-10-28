@@ -23,10 +23,8 @@ public class Company {
             generator = "company_sequence"
     )
     private Long id;
-
     private String companyName;
     private String welcomeText;
-
     private String street;
     private String additionalInformation;
     private String postCode;
@@ -39,4 +37,16 @@ public class Company {
     private String facebookLink;
     private String tikTokLink;
     private String youtubeLink;
+    private long mondayOpen;
+    private long mondayClose;
+    private long tuesdayOpen;
+    private long tuesdayClose;
+    private long wednesdayOpen;
+    private long wednesdayClose;
+    private long thursdayOpen;
+    private long thursdayClose;
+    private long fridayOpen;
+    private long fridayClose;
+    private long saturdayOpen;
+    private long saturdayClose;
 }

@@ -1,91 +1,75 @@
-import { Button, Group, Paper, SimpleGrid, Stack, Title } from '@mantine/core';
+import { Group, Paper, Stack, Title } from '@mantine/core';
 import { TimeRangeInput } from '@mantine/dates';
-import { useState } from 'react';
-
-interface BusinessDayProps {
-    day: string;
-    businessHourChangesHandler: (hour: IBusinessHours) => void;
-}
-
-const BusinessHourDay = ({
-    day,
-    businessHourChangesHandler,
-}: BusinessDayProps) => {
-    const [value, _setValue] = useState<[Date | null, Date | null]>([
-        null,
-        null,
-    ]);
-
-    const updateValue = (value: [Date, Date]) => {
-        const hourChange: IBusinessHours = {
-            day: day,
-            from: value[0],
-            till: value[1],
-        };
-        businessHourChangesHandler(hourChange);
-    };
-
-    return (
-        <>
-            <Title order={5}>{day}</Title>
-            <Group>
-                <TimeRangeInput
-                    label="Öffnungszeit"
-                    value={value}
-                    onChange={updateValue}
-                />
-            </Group>
-        </>
-    );
-};
-
-interface IBusinessHours {
-    day: string;
-    from: Date;
-    till: Date;
-}
+import { useCompanyContext } from '../../../shared/context/CompanyContext';
 
 const BusinessHours = () => {
-    const businessHourChangesHandler = (hour: IBusinessHours) => {
-        //TODO-MMUEJDE: Implement me
-    };
-
+    const { company, updateCompanyHours, ...rest } = useCompanyContext();
     return (
         <Paper shadow="sm" p="lg">
             <Stack>
                 <Group position="apart">
                     <Title order={3}>Öffnungszeiten</Title>
                 </Group>
-                <SimpleGrid cols={2}>
-                    <BusinessHourDay
-                        day={'Montag'}
-                        businessHourChangesHandler={businessHourChangesHandler}
-                    />
-                    <BusinessHourDay
-                        day={'Dienstag'}
-                        businessHourChangesHandler={businessHourChangesHandler}
-                    />
-                    <BusinessHourDay
-                        day={'Mittwoch'}
-                        businessHourChangesHandler={businessHourChangesHandler}
-                    />
-                    <BusinessHourDay
-                        day={'Donnerstag'}
-                        businessHourChangesHandler={businessHourChangesHandler}
-                    />
-                    <BusinessHourDay
-                        day={'Freitag'}
-                        businessHourChangesHandler={businessHourChangesHandler}
-                    />
-                    <BusinessHourDay
-                        day={'Samstag'}
-                        businessHourChangesHandler={businessHourChangesHandler}
-                    />
-                    <BusinessHourDay
-                        day={'Sonntag'}
-                        businessHourChangesHandler={businessHourChangesHandler}
-                    />
-                </SimpleGrid>
+                <TimeRangeInput
+                    label="Montag"
+                    value={[company.mondayOpen, company.mondayClose]}
+                    onChange={event => {
+                        updateCompanyHours(
+                            ['mondayOpen', 'mondayClose'],
+                            event
+                        );
+                    }}
+                />
+                <TimeRangeInput
+                    label="Dienstag"
+                    value={[company.tuesdayOpen, company.tuesdayClose]}
+                    onChange={event => {
+                        updateCompanyHours(
+                            ['tuesdayOpen', 'tuesdayClose'],
+                            event
+                        );
+                    }}
+                />
+                <TimeRangeInput
+                    label="Mittwoch"
+                    value={[company.wednesdayOpen, company.wednesdayClose]}
+                    onChange={event => {
+                        updateCompanyHours(
+                            ['wednesdayOpen', 'wednesdayClose'],
+                            event
+                        );
+                    }}
+                />
+                <TimeRangeInput
+                    label="Donnerstag"
+                    value={[company.thursdayOpen, company.thursdayClose]}
+                    onChange={event => {
+                        updateCompanyHours(
+                            ['thursdayOpen', 'thursdayClose'],
+                            event
+                        );
+                    }}
+                />
+                <TimeRangeInput
+                    label="Freitag"
+                    value={[company.fridayOpen, company.fridayClose]}
+                    onChange={event => {
+                        updateCompanyHours(
+                            ['fridayOpen', 'fridayClose'],
+                            event
+                        );
+                    }}
+                />
+                <TimeRangeInput
+                    label="Samstag"
+                    value={[company.saturdayOpen, company.saturdayClose]}
+                    onChange={event => {
+                        updateCompanyHours(
+                            ['saturdayOpen', 'saturdayClose'],
+                            event
+                        );
+                    }}
+                />
             </Stack>
         </Paper>
     );

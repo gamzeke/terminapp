@@ -15,7 +15,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Search } from 'tabler-icons-react';
-import { ICustomer } from '.';
+import { ICustomer } from '../../../shared/models/ICustomer';
 
 const CustomerTableRow = (customer: ICustomer) => {
     return (

@@ -2,14 +2,9 @@ import { ActionIcon, Group, Paper, Stack, Table, Title } from '@mantine/core';
 import { IconTrash } from '@tabler/icons';
 import { useState } from 'react';
 import AddServiceDialog from '../../../shared/dialogs/AddServiceDialog';
+import { IService } from '../../../shared/models/IService';
 
-interface IService {
-    name: string;
-    description: string;
-    price: string;
-}
-
-const Products = () => {
+const Services = () => {
     const [services, setServices] = useState<IService[]>([]);
 
     const deleteServiceHandler = (id: string) => {
@@ -78,4 +73,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default Services;

@@ -14,4 +14,16 @@ export interface ICompany {
     facebookLink: string;
     tikTokLink: string;
     youtubeLink: string;
+    mondayOpen: Date | null;
+    mondayClose: Date | null;
+    tuesdayOpen: Date | null;
+    tuesdayClose: Date | null;
+    wednesdayOpen: Date | null;
+    wednesdayClose: Date | null;
+    thursdayOpen: Date | null;
+    thursdayClose: Date | null;
+    fridayOpen: Date | null;
+    fridayClose: Date | null;
+    saturdayOpen: Date | null;
+    saturdayClose: Date | null;
 }

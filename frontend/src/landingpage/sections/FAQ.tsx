@@ -9,9 +9,9 @@ import {
 import { IconAlertCircle } from '@tabler/icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { IFAQ } from '../../admin/pages/faq';
 import FAQCard from '../../admin/pages/faq/FAQCard';
 import { FAQ_URL } from '../../admin/pages/faq/FAQView';
+import { IFAQ } from '../../shared/models/IFAQ';
 
 const useStyles = createStyles((theme, _params, getRef) => {
     const control = getRef('control');

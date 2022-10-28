@@ -3,7 +3,7 @@ import { showNotification } from '@mantine/notifications';
 import { IconTrashOff } from '@tabler/icons';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { IFAQ } from '.';
+import { IFAQ } from '../../../shared/models/IFAQ';
 import { FAQ_URL } from './FAQView';
 
 const useDeleteFAQ = () => {

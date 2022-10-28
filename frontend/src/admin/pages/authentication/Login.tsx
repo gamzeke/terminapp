@@ -9,12 +9,8 @@ import {
 } from '@mantine/core';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { IUser } from '../../../shared/models/IUser';
 import { AuthStatusType } from './AuthView';
-
-export interface User {
-    username: string;
-    password: string;
-}
 
 interface LoginProps {
     updateAuthStatus: (state: AuthStatusType) => void;
@@ -27,7 +23,7 @@ const Login = ({ updateAuthStatus }: LoginProps) => {
 
     const loginHandler = () => {
         if (username.length && password.length) {
-            const user: User = {
+            const user: IUser = {
                 username: username,
                 password: password,
             };
