@@ -1,14 +1,121 @@
-import { ActionIcon, Group, Paper, Stack, Table, Title } from '@mantine/core';
-import { IconTrash } from '@tabler/icons';
-import { useState } from 'react';
+import {
+    ActionIcon,
+    Center,
+    Group,
+    Loader,
+    Paper,
+    Stack,
+    Table,
+    Text,
+    Title,
+} from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
+import { IconAlertCircle, IconTrash } from '@tabler/icons';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
 import AddServiceDialog from '../../../shared/dialogs/AddServiceDialog';
 import { IService } from '../../../shared/models/IService';
 
+const SERVICE_URL = 'http://localhost:8080/api/v1/products';
+
+const useDeleteService = () => {
+    const queryClient = useQueryClient();
+    return useMutation(
+        (id: string) => {
+            return axios.delete(SERVICE_URL + `/${id}`, {
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            });
+        },
+        {
+            onError: (error, variables, context) => {
+                showNotification({
+                    title: '🫤',
+                    color: 'red',
+                    message: 'Service konnte nicht gelöscht werden',
+                });
+            },
+            onSuccess: newService => {
+                queryClient.invalidateQueries(['landingpage-products']);
+                showNotification({
+                    title: '😊',
+                    color: 'green',
+                    message: 'Service konnte erfolgreich gelöscht werden',
+                });
+            },
+        }
+    );
+};
+
+const useCreateService = () => {
+    const queryClient = useQueryClient();
+    return useMutation(
+        (newService: IService) => {
+            const serviceJson = JSON.stringify(newService);
+            return axios.post(SERVICE_URL, serviceJson, {
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            });
+        },
+        {
+            onError: (error, variables, context) => {
+                showNotification({
+                    title: '🫤',
+                    color: 'red',
+                    message: 'Service konnte nicht erstellt werden',
+                });
+            },
+            onSuccess: newService => {
+                queryClient.invalidateQueries(['landingpage-products']);
+                showNotification({
+                    title: '😊',
+                    color: 'green',
+                    message: 'Service konnte erfolgreich erstellt werden',
+                });
+            },
+        }
+    );
+};
+
 const Services = () => {
-    const [services, setServices] = useState<IService[]>([]);
+    const { mutate: serviceMutate } = useCreateService();
+    const { mutate: deleteService } = useDeleteService();
+
+    const { data, error, isLoading, isFetching } = useQuery(
+        ['landingpage-products'],
+        () => axios.get(SERVICE_URL).then(res => res.data)
+    );
+
+    if (error) {
+        return (
+            <Center sx={{ height: '100%' }}>
+                <Stack align="center">
+                    <IconAlertCircle size={32} color="red" />
+                    <Text>
+                        Leider ist ein Fehler aufgetreten. Versuchen Sie es
+                        später nochmal.
+                    </Text>
+                </Stack>
+            </Center>
+        );
+    }
+
+    if (isFetching || isLoading) {
+        return (
+            <Center sx={{ height: '100%' }}>
+                <Loader size="xl" variant="bars" />
+            </Center>
+        );
+    }
 
     const deleteServiceHandler = (id: string) => {
-        //TODO-MMUEJDE: Implement me
+        deleteService(id);
     };
 
     const createServiceButtonHandler = (
@@ -21,7 +128,7 @@ const Services = () => {
             description: description,
             price: price,
         };
-        setServices(prev => [...prev, newService]);
+        serviceMutate(newService);
     };
 
     const tableHeader = (
@@ -33,15 +140,21 @@ const Services = () => {
         </tr>
     );
 
-    const tableRows = services.map(element => (
-        <tr key={element.name}>
+    const tableRows = data.map((element: any) => (
+        <tr key={element.id}>
             <td>{element.name}</td>
             <td>{element.description}</td>
             <td>{element.price}</td>
             <td>
                 <Group>
-                    <ActionIcon variant="outline" color="red">
-                        <IconTrash size="lg" color="red" />
+                    <ActionIcon
+                        variant="outline"
+                        color="red"
+                        onClick={() => {
+                            deleteServiceHandler(element.id);
+                        }}
+                    >
+                        <IconTrash size={16} color="red" />
                     </ActionIcon>
                 </Group>
             </td>
@@ -62,7 +175,7 @@ const Services = () => {
                     </Group>
                 </Group>
                 <Table captionSide="bottom">
-                    {!services.length && (
+                    {!data.length && (
                         <caption>Es befinden sich keine Einträge</caption>
                     )}
                     <thead>{tableHeader}</thead>

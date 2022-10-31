@@ -5,7 +5,7 @@ import axios from 'axios';
 import { IService } from '../../shared/models/IService';
 import ServiceCard from './ServiceCard';
 
-const SERVICE_URL = '';
+const SERVICE_URL = 'http://localhost:8080/api/v1/products';
 
 const Products = () => {
     const { isLoading, isFetching, error, data } = useQuery(
