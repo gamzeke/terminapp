@@ -1,4 +1,5 @@
 import { Button, Card, createStyles, Group, Stack, Text } from '@mantine/core';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const useStyles = createStyles(theme => ({
@@ -47,14 +48,23 @@ const useStyles = createStyles(theme => ({
 }));
 
 interface ServiceCardProps {
+    readonly id?: string;
     name: string;
     price: string;
     description: string;
+    selectedIdHandler?: (id: string | undefined) => void;
 }
 
-const ServiceCard = ({ name, price, description }: ServiceCardProps) => {
+const ServiceCard = ({
+    id,
+    name,
+    price,
+    description,
+    selectedIdHandler,
+}: ServiceCardProps) => {
     const { classes } = useStyles();
     const navigate = useNavigate();
+    const [selected, setSelected] = useState<string>('');
 
     return (
         <Card withBorder className={classes.card}>
@@ -83,12 +93,21 @@ const ServiceCard = ({ name, price, description }: ServiceCardProps) => {
                             {price}€
                         </Text>
                     </Group>
-                    <Button
-                        style={{ flex: 1 }}
-                        onClick={() => navigate('scheduler')}
-                    >
-                        Jetzt buchen
-                    </Button>
+                    {selectedIdHandler ? (
+                        <Button
+                            style={{ flex: 1 }}
+                            onClick={() => selectedIdHandler(id)}
+                        >
+                            Buchen
+                        </Button>
+                    ) : (
+                        <Button
+                            style={{ flex: 1 }}
+                            onClick={() => navigate('scheduler')}
+                        >
+                            Jetzt buchen
+                        </Button>
+                    )}
                 </Stack>
             </Card.Section>
         </Card>
