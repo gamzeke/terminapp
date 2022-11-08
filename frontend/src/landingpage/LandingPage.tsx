@@ -13,15 +13,19 @@ import {
     IconBrandTiktok,
     IconBrandYoutube,
 } from '@tabler/icons';
+import { useState } from 'react';
 import { useCompanyContext } from '../shared/context/CompanyContext';
 import ContactUs from './sections/ContactUs';
 import { FAQ } from './sections/FAQ';
 import PageFooter from './sections/PageFooter';
 import PageHeader from './sections/PageHeader';
-import Products from './sections/Services';
+import Products from './sections/Products';
 
 const LandingPage = () => {
     const { company, ...rest } = useCompanyContext();
+
+    const [showFAQs, setShowFAQs] = useState(false);
+    const [showProducts, setShowProducts] = useState(false);
 
     return (
         <>
@@ -36,19 +40,23 @@ const LandingPage = () => {
                 </Text>
             </Container>
 
-            <Container id="service-section" pt="xl">
-                <Title order={2} mb="lg">
-                    Unsere Leistungen
-                </Title>
-                <Products />
-            </Container>
+            {showProducts && (
+                <Container id="service-section" pt="xl">
+                    <Title order={2} mb="lg">
+                        Unsere Leistungen
+                    </Title>
+                    <Products setShowProducts={setShowProducts} />
+                </Container>
+            )}
 
-            <Container id="faq-section" pt="xl">
-                <Title order={2} mb="lg">
-                    Häufig gestellte Fragen
-                </Title>
-                <FAQ />
-            </Container>
+            {showFAQs && (
+                <Container id="faq-section" pt="xl">
+                    <Title order={2} mb="lg">
+                        Häufig gestellte Fragen
+                    </Title>
+                    <FAQ setShowFAQs={setShowFAQs} />
+                </Container>
+            )}
 
             <Container id="socialmedia-section" pt="xl">
                 <Title order={2} mb="lg">

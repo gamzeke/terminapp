@@ -9,6 +9,7 @@ import {
 import { IconAlertCircle } from '@tabler/icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Dispatch, SetStateAction } from 'react';
 import FAQCard from '../../admin/pages/faq/FAQCard';
 import { FAQ_URL } from '../../admin/pages/faq/FAQView';
 import { IFAQ } from '../../shared/models/IFAQ';
@@ -57,7 +58,11 @@ const useStyles = createStyles((theme, _params, getRef) => {
     };
 });
 
-export function FAQ() {
+export function FAQ({
+    setShowFAQs,
+}: {
+    setShowFAQs: Dispatch<SetStateAction<boolean>>;
+}) {
     const { isLoading, isFetching, error, data } = useQuery(['faqs'], () =>
         axios.get(FAQ_URL).then(res => res.data)
     );
@@ -87,6 +92,12 @@ export function FAQ() {
                 <Skeleton height={16} radius="xl" mt={16} />
             </>
         );
+    }
+
+    if (data) {
+        setShowFAQs(true);
+    } else {
+        setShowFAQs(false);
     }
 
     return (

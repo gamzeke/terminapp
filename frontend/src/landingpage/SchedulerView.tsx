@@ -109,7 +109,7 @@ function SchedulerView() {
                     </Group>
                     <Card shadow="sm" p="xl" mb="lg">
                         <Text weight={500} size="lg" mt="md">
-                            Wir erwarten Sie am {date?.toLocaleDateString()} um{' '}
+                            Wir erwarten Sie am {date?.toLocaleDateString()} von{' '}
                             {
                                 freeTimes.filter(f => {
                                     if (time && f.value === time) {

@@ -2,12 +2,17 @@ import { Center, Loader, SimpleGrid, Stack, Text } from '@mantine/core';
 import { IconAlertCircle } from '@tabler/icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Dispatch, SetStateAction } from 'react';
 import { IService } from '../../shared/models/IService';
 import ServiceCard from './ServiceCard';
 
 const SERVICE_URL = 'http://localhost:8080/api/v1/products';
 
-const Products = () => {
+const Products = ({
+    setShowProducts,
+}: {
+    setShowProducts: Dispatch<SetStateAction<boolean>>;
+}) => {
     const { isLoading, isFetching, error, data } = useQuery(
         ['landingpage-products'],
         () => axios.get(SERVICE_URL).then(res => res.data)
@@ -33,6 +38,12 @@ const Products = () => {
                 <Loader size="xl" variant="bars" />
             </Center>
         );
+    }
+
+    if (data) {
+        setShowProducts(true);
+    } else {
+        setShowProducts(false);
     }
 
     return (
