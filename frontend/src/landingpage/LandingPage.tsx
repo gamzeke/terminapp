@@ -145,7 +145,10 @@ const LandingPage = () => {
                                 ? 'Unsere Leistungen'
                                 : 'Our Services'}
                         </Title>
-                        <Products setShowProducts={setShowProducts} />
+                        <Products
+                            setShowProducts={setShowProducts}
+                            currentLanguage={currentLanguage}
+                        />
                     </Container>
                 )}
                 <Space mb={100} />

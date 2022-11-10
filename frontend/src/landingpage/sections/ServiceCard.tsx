@@ -1,5 +1,4 @@
 import { Button, Card, createStyles, Group, Stack, Text } from '@mantine/core';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const useStyles = createStyles(theme => ({
@@ -53,6 +52,7 @@ interface ServiceCardProps {
     price: string;
     description: string;
     selectedIdHandler?: (id: string | undefined) => void;
+    currentLanguage?: string;
 }
 
 const ServiceCard = ({
@@ -61,10 +61,10 @@ const ServiceCard = ({
     price,
     description,
     selectedIdHandler,
+    currentLanguage,
 }: ServiceCardProps) => {
     const { classes } = useStyles();
     const navigate = useNavigate();
-    const [selected, setSelected] = useState<string>('');
 
     return (
         <Card withBorder className={classes.card}>
@@ -73,7 +73,9 @@ const ServiceCard = ({
             </Group>
             <Card.Section className={classes.section} mt="md">
                 <Text size="sm" color="dimmed" className={classes.label}>
-                    Beschreibung
+                    {currentLanguage === 'german'
+                        ? 'Beschreibung'
+                        : 'Description'}
                 </Text>
                 <Text>{description}</Text>
             </Card.Section>
@@ -87,7 +89,7 @@ const ServiceCard = ({
                             sx={{ lineHeight: 1 }}
                             mt={3}
                         >
-                            Preis
+                            {currentLanguage === 'german' ? 'Preis' : 'Price'}
                         </Text>
                         <Text size="xl" weight={700} sx={{ lineHeight: 1 }}>
                             {price}€
@@ -98,14 +100,16 @@ const ServiceCard = ({
                             style={{ flex: 1 }}
                             onClick={() => selectedIdHandler(id)}
                         >
-                            Buchen
+                            {currentLanguage === 'german' ? 'Buchen' : 'Book'}
                         </Button>
                     ) : (
                         <Button
                             style={{ flex: 1 }}
                             onClick={() => navigate('scheduler')}
                         >
-                            Jetzt buchen
+                            {currentLanguage === 'german'
+                                ? 'Jetzt buchen'
+                                : 'Book now'}
                         </Button>
                     )}
                 </Stack>
