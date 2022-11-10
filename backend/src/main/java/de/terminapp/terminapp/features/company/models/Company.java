@@ -24,6 +24,7 @@ public class Company {
     )
     private Long id;
     private String companyName;
+    @Column(length = 5000)
     private String welcomeText;
     private String street;
     private String additionalInformation;
