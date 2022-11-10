@@ -94,7 +94,7 @@ export function FAQ({
         );
     }
 
-    if (data) {
+    if (data.length) {
         setShowFAQs(true);
     } else {
         setShowFAQs(false);

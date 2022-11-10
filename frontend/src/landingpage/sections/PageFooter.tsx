@@ -13,6 +13,7 @@ const PageFooter = () => {
                 paddingLeft: '2rem',
                 color: theme.colors.main[4],
             })}
+            fixed
         >
             <Group position="left">
                 <Title order={6}>{company.companyName}</Title>
