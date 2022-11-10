@@ -1,6 +1,5 @@
 import { Group, Paper, SimpleGrid, Space, Title } from '@mantine/core';
 import NextAppointmentCard from './NextAppointmentCard';
-import { StatusCard } from './StatusCard';
 
 function DashboardView() {
     return (
@@ -13,7 +12,6 @@ function DashboardView() {
             <Space h="md" />
             <SimpleGrid cols={2} spacing="sm">
                 <NextAppointmentCard />
-                <StatusCard />
             </SimpleGrid>
         </>
     );
