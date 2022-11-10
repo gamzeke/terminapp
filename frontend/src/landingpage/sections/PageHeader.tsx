@@ -1,63 +1,26 @@
 import {
-    Burger,
+    ActionIcon,
     Button,
     Container,
-    createStyles,
+    Divider,
     Group,
     Header,
+    Switch,
     Title,
 } from '@mantine/core';
-import { useState } from 'react';
+import { IconLanguage, IconMoonStars, IconPlus, IconSun } from '@tabler/icons';
 import { useNavigate } from 'react-router-dom';
 import { useCompanyContext } from '../../shared/context/CompanyContext';
 
-const HEADER_HEIGHT = 60;
-
-const useStyles = createStyles(theme => ({
-    inner: {
-        height: HEADER_HEIGHT,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    links: {
-        [theme.fn.smallerThan('sm')]: {
-            display: 'none',
-        },
-    },
-    burger: {
-        [theme.fn.largerThan('sm')]: {
-            display: 'none',
-        },
-    },
-    link: {
-        display: 'block',
-        lineHeight: 1,
-        padding: '8px 12px',
-        borderRadius: theme.radius.sm,
-        textDecoration: 'none',
-        color:
-            theme.colorScheme === 'dark'
-                ? theme.colors.dark[0]
-                : theme.colors.gray[7],
-        fontSize: theme.fontSizes.sm,
-        fontWeight: 500,
-
-        '&:hover': {
-            backgroundColor:
-                theme.colorScheme === 'dark'
-                    ? theme.colors.dark[6]
-                    : theme.colors.gray[0],
-        },
-    },
-    linkLabel: {
-        marginRight: 5,
-    },
-}));
-
-const PageHeader = () => {
-    const { classes } = useStyles();
-    const [opened, toggleOpened] = useState(false);
+const PageHeader = ({
+    toggleCurrentTheme,
+    toggleLanguage,
+    currentLanguage,
+}: {
+    toggleCurrentTheme: () => void;
+    toggleLanguage: () => void;
+    currentLanguage: string;
+}) => {
     const { company, ...rest } = useCompanyContext();
     const navigate = useNavigate();
 
@@ -69,27 +32,103 @@ const PageHeader = () => {
         navigate('scheduler');
     };
 
+    const increaseFontSize = () => {};
+
     return (
-        <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }} mb={120}>
-            <Container className={classes.inner} fluid>
+        <Header height={60} sx={{ borderBottom: 0 }} mb={120}>
+            <Container
+                sx={{
+                    height: 60,
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}
+                fluid
+            >
                 <Group>
-                    <Burger
-                        opened={opened}
-                        onClick={oldState => toggleOpened(!oldState)}
-                        className={classes.burger}
-                        size="sm"
-                    />
                     <Title order={3}>{company.companyName}</Title>
                 </Group>
                 <Group>
+                    <Divider orientation="vertical" />
+                    <Switch
+                        size="md"
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                        onLabel={
+                            <IconLanguage
+                                size={16}
+                                stroke={2.5}
+                                color="black"
+                            />
+                        }
+                        offLabel={
+                            <IconLanguage
+                                size={16}
+                                stroke={2.5}
+                                color="black"
+                            />
+                        }
+                        onClick={() => {
+                            toggleLanguage();
+                        }}
+                    />
+                    <Switch
+                        size="md"
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                        onLabel={
+                            <IconSun size={16} stroke={2.5} color="yellow" />
+                        }
+                        offLabel={
+                            <IconMoonStars
+                                size={16}
+                                stroke={2.5}
+                                color="blue"
+                            />
+                        }
+                        onClick={() => {
+                            toggleCurrentTheme();
+                        }}
+                    />
+                    <ActionIcon
+                        title="Schrift vergrößern"
+                        onClick={() => {
+                            increaseFontSize();
+                        }}
+                    >
+                        <IconPlus size={18} />
+                    </ActionIcon>
+                    <Divider orientation="vertical" />
                     <Button
-                        color="green"
-                        sx={{ height: 30 }}
+                        sx={theme => ({
+                            height: 30,
+                            backgroundColor:
+                                theme.colorScheme === 'dark'
+                                    ? theme.colors.dark[0]
+                                    : theme.colors.light[0],
+                        })}
                         onClick={appointmentButtonHandler}
                     >
-                        Jetzt einen Termin vereinbaren
+                        {currentLanguage === 'german'
+                            ? 'Jetzt einen Termin vereinbaren'
+                            : 'Set an appointment'}
                     </Button>
-                    <Button sx={{ height: 30 }} onClick={loginButtonHandler}>
+                    <Button
+                        sx={theme => ({
+                            height: 30,
+                            backgroundColor:
+                                theme.colorScheme === 'dark'
+                                    ? theme.colors.dark[0]
+                                    : theme.colors.light[0],
+                        })}
+                        onClick={loginButtonHandler}
+                    >
                         Login
                     </Button>
                 </Group>

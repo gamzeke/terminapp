@@ -40,7 +40,7 @@ const Products = ({
         );
     }
 
-    if (data) {
+    if (data.length) {
         setShowProducts(true);
     } else {
         setShowProducts(false);

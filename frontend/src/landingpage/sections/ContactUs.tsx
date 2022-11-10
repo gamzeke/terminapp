@@ -63,7 +63,7 @@ const useStyles = createStyles(theme => ({
     },
 }));
 
-const ContactUs = () => {
+const ContactUs = ({ currentLanguage }: { currentLanguage: string }) => {
     const { classes } = useStyles();
     const { company, ...rest } = useCompanyContext();
 
@@ -73,18 +73,24 @@ const ContactUs = () => {
                 <Center>
                     <Stack>
                         <Title order={3} className={classes.title}>
-                            Schreiben Sie uns
+                            {currentLanguage === 'german'
+                                ? 'Schreiben Sie uns'
+                                : 'Write us'}
                         </Title>
                         <Title className={classes.title}>{company.email}</Title>
                     </Stack>
                 </Center>
                 <Center>
-                    <Title className={classes.title}>oder</Title>
+                    <Title className={classes.title}>
+                        {currentLanguage === 'german' ? 'oder' : 'or'}
+                    </Title>
                 </Center>
                 <Center>
                     <Stack>
                         <Title order={3} className={classes.title}>
-                            rufen Sie uns einfach an.
+                            {currentLanguage === 'german'
+                                ? ' rufen Sie uns einfach an.'
+                                : 'call us.'}
                         </Title>
                         <Title className={classes.title}>{company.phone}</Title>
                     </Stack>

@@ -2,19 +2,25 @@ import {
     ActionIcon,
     Container,
     Group,
+    MantineProvider,
     Paper,
     Stack,
     Text,
     Title,
 } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import {
     IconBrandFacebook,
     IconBrandInstagram,
     IconBrandTiktok,
     IconBrandYoutube,
 } from '@tabler/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCompanyContext } from '../shared/context/CompanyContext';
+import {
+    landingPageDarkTheme,
+    landingPageLightTheme,
+} from '../shared/theme/theme';
 import ContactUs from './sections/ContactUs';
 import { FAQ } from './sections/FAQ';
 import PageFooter from './sections/PageFooter';
@@ -24,16 +30,66 @@ import Products from './sections/Products';
 const LandingPage = () => {
     const { company, ...rest } = useCompanyContext();
 
-    const [showFAQs, setShowFAQs] = useState(false);
-    const [showProducts, setShowProducts] = useState(false);
+    const [showFAQs, setShowFAQs] = useState(true);
+    const [showProducts, setShowProducts] = useState(true);
+
+    const [currentTheme, setCurrentTheme] = useState(landingPageLightTheme);
+    const [colorScheme, setColorScheme] = useLocalStorage({
+        key: 'color-scheme',
+        defaultValue: 'light',
+    });
+
+    const toggleCurrentTheme = () => {
+        if (colorScheme === 'light') {
+            setColorScheme('dark');
+        } else {
+            setColorScheme('light');
+        }
+    };
+
+    useEffect(() => {
+        if (colorScheme === 'light') {
+            setCurrentTheme(landingPageLightTheme);
+        } else {
+            setCurrentTheme(landingPageDarkTheme);
+        }
+    }, [colorScheme]);
+
+    const [currentLanguage, setCurrentLanguage] = useState('german');
+    const [languageValue, setLanguageValue] = useLocalStorage({
+        key: 'language',
+        defaultValue: 'german',
+    });
+
+    const toggleLanguage = () => {
+        if (languageValue === 'german') {
+            setLanguageValue('english');
+        } else {
+            setLanguageValue('german');
+        }
+    };
+
+    useEffect(() => {
+        if (languageValue === 'german') {
+            setCurrentLanguage('german');
+        } else {
+            setCurrentLanguage('english');
+        }
+    }, [languageValue]);
 
     return (
-        <>
-            <PageHeader />
+        <MantineProvider theme={currentTheme}>
+            <PageHeader
+                toggleCurrentTheme={toggleCurrentTheme}
+                toggleLanguage={toggleLanguage}
+                currentLanguage={currentLanguage}
+            />
 
             <Container id="welcome-section">
                 <Title order={1} align="center">
-                    Herzlich Willkommen
+                    {currentLanguage === 'german'
+                        ? 'Herzlich Willkommen'
+                        : 'Welcome'}
                 </Title>
                 <Text mt="xl" align="justify">
                     {company.welcomeText}
@@ -43,7 +99,9 @@ const LandingPage = () => {
             {showProducts && (
                 <Container id="service-section" pt="xl">
                     <Title order={2} mb="lg">
-                        Unsere Leistungen
+                        {currentLanguage === 'german'
+                            ? 'Unsere Leistungen'
+                            : 'Our Services'}
                     </Title>
                     <Products setShowProducts={setShowProducts} />
                 </Container>
@@ -52,7 +110,9 @@ const LandingPage = () => {
             {showFAQs && (
                 <Container id="faq-section" pt="xl">
                     <Title order={2} mb="lg">
-                        Häufig gestellte Fragen
+                        {currentLanguage === 'german'
+                            ? 'Häufig gestellte Fragen'
+                            : 'Frequently asked questions'}
                     </Title>
                     <FAQ setShowFAQs={setShowFAQs} />
                 </Container>
@@ -60,7 +120,9 @@ const LandingPage = () => {
 
             <Container id="socialmedia-section" pt="xl">
                 <Title order={2} mb="lg">
-                    Folgen Sie in den Social Media
+                    {currentLanguage === 'german'
+                        ? 'Folgen Sie in den Social Media'
+                        : 'Follow us on social media'}
                 </Title>
                 <Group spacing={0} position="apart" noWrap>
                     {company.facebookLink && (
@@ -120,13 +182,19 @@ const LandingPage = () => {
 
             <Container id="contact-section" pt="xl">
                 <Title order={2} mb="lg">
-                    Unsere Öffnungszeiten
+                    {currentLanguage === 'german'
+                        ? 'Unsere Öffnungszeiten'
+                        : 'Our business hours'}
                 </Title>
                 <Group position="apart">
                     <Paper shadow="xs" p="md">
                         {company.mondayOpen && company.mondayClose ? (
                             <Stack>
-                                <Title order={4}>Montag</Title>
+                                <Title order={4}>
+                                    {currentLanguage === 'german'
+                                        ? 'Montag'
+                                        : 'Monday'}
+                                </Title>
                                 <Title order={6}>
                                     {company.mondayOpen
                                         ?.toLocaleTimeString()
@@ -150,7 +218,11 @@ const LandingPage = () => {
                     {company.tuesdayOpen && company.tuesdayClose ? (
                         <Paper shadow="xs" p="md">
                             <Stack>
-                                <Title order={4}>Dienstag</Title>
+                                <Title order={4}>
+                                    {currentLanguage === 'german'
+                                        ? 'Dienstag'
+                                        : 'Tuesday'}
+                                </Title>
                                 <Title order={6}>
                                     {company.tuesdayOpen
                                         ?.toLocaleTimeString()
@@ -174,7 +246,11 @@ const LandingPage = () => {
                     {company.wednesdayOpen && company.wednesdayClose ? (
                         <Paper shadow="xs" p="md">
                             <Stack>
-                                <Title order={4}>Mittwoch</Title>
+                                <Title order={4}>
+                                    {currentLanguage === 'german'
+                                        ? 'Mittwoch'
+                                        : 'Wednesday'}
+                                </Title>
                                 <Title order={6}>
                                     {company.wednesdayOpen
                                         ?.toLocaleTimeString()
@@ -198,7 +274,11 @@ const LandingPage = () => {
                     {company.thursdayOpen && company.thursdayClose ? (
                         <Paper shadow="xs" p="md">
                             <Stack>
-                                <Title order={4}>Donnerstag</Title>
+                                <Title order={4}>
+                                    {currentLanguage === 'german'
+                                        ? 'Donnerstag'
+                                        : 'Thursday'}
+                                </Title>
                                 <Title order={6}>
                                     {company.thursdayOpen
                                         ?.toLocaleTimeString()
@@ -222,7 +302,11 @@ const LandingPage = () => {
                     {company.fridayOpen && company.fridayClose ? (
                         <Paper shadow="xs" p="md">
                             <Stack>
-                                <Title order={4}>Freitag</Title>
+                                <Title order={4}>
+                                    {currentLanguage === 'german'
+                                        ? 'Freitag'
+                                        : 'Friday'}
+                                </Title>
                                 <Title order={6}>
                                     {company.fridayOpen
                                         ?.toLocaleTimeString()
@@ -246,7 +330,11 @@ const LandingPage = () => {
                     {company.saturdayClose && company.saturdayOpen ? (
                         <Paper shadow="xs" p="md">
                             <Stack>
-                                <Title order={4}>Samstag</Title>
+                                <Title order={4}>
+                                    {currentLanguage === 'german'
+                                        ? 'Samstag'
+                                        : 'Saturday'}
+                                </Title>
                                 <Title order={6}>
                                     {company.saturdayOpen
                                         ?.toLocaleTimeString()
@@ -271,13 +359,15 @@ const LandingPage = () => {
 
             <Container id="contact-section" pt="xl">
                 <Title order={2} mb="lg">
-                    Kontaktieren Sie uns einfach
+                    {currentLanguage === 'german'
+                        ? 'Kontaktieren Sie uns einfach'
+                        : 'Please feel free to contact us'}
                 </Title>
-                <ContactUs />
+                <ContactUs currentLanguage={currentLanguage} />
             </Container>
 
             <PageFooter />
-        </>
+        </MantineProvider>
     );
 };
 
