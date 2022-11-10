@@ -1,5 +1,6 @@
 import {
     Alert,
+    Box,
     Button,
     Card,
     Center,
@@ -7,6 +8,7 @@ import {
     Divider,
     Group,
     Loader,
+    MantineProvider,
     Modal,
     Select,
     SimpleGrid,
@@ -15,13 +17,17 @@ import {
     Title,
 } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useLocalStorage } from '@mantine/hooks';
 import { IconAlertCircle, IconCircleCheck } from '@tabler/icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IService } from '../shared/models/IService';
+import {
+    landingPageDarkTheme,
+    landingPageLightTheme,
+} from '../shared/theme/theme';
 import ServiceCard from './sections/ServiceCard';
 
 const SERVICE_URL = 'http://localhost:8080/api/v1/products';
@@ -30,9 +36,7 @@ function SchedulerView() {
     const navigate = useNavigate();
 
     const [isOpen, handlers] = useDisclosure(false);
-
     const [date, setDate] = useState<Date | null>(null);
-
     const [time, setTime] = useState<string | null>('0');
     const [freeTimes, setFreeTimes] = useState<
         { value: string; label: string }[]
@@ -49,13 +53,30 @@ function SchedulerView() {
         { value: '9', label: '16:00 bis 17:00' },
         { value: '10', label: '17:00 bis 18:00' },
     ]);
-
     const [service, setService] = useState<string | undefined>(undefined);
-
     const { isLoading, isFetching, error, data } = useQuery(
         ['landingpage-products'],
         () => axios.get(SERVICE_URL).then(res => res.data)
     );
+
+    const [currentTheme, setCurrentTheme] = useState(landingPageLightTheme);
+    const [colorScheme, setColorScheme] = useLocalStorage({
+        key: 'color-scheme',
+        defaultValue: 'light',
+    });
+
+    const [languageValue, setLanguageValue] = useLocalStorage({
+        key: 'language',
+        defaultValue: 'german',
+    });
+
+    useEffect(() => {
+        if (colorScheme === 'light') {
+            setCurrentTheme(landingPageLightTheme);
+        } else {
+            setCurrentTheme(landingPageDarkTheme);
+        }
+    }, [colorScheme]);
 
     if (error) {
         return (
@@ -63,8 +84,9 @@ function SchedulerView() {
                 <Stack align="center">
                     <IconAlertCircle size={32} color="red" />
                     <Text>
-                        Leider ist ein Fehler aufgetreten. Versuchen Sie es
-                        später nochmal.
+                        {languageValue === 'german'
+                            ? 'Leider ist ein Fehler aufgetreten. Versuchen Sie es später nochmal.'
+                            : 'Something goes wrong'}
                     </Text>
                 </Stack>
             </Center>
@@ -91,7 +113,7 @@ function SchedulerView() {
     };
 
     return (
-        <>
+        <MantineProvider theme={currentTheme}>
             <Modal
                 opened={isOpen}
                 onClose={() => null}
@@ -100,16 +122,38 @@ function SchedulerView() {
                 withCloseButton={false}
                 centered
             >
-                <Container>
+                <Container
+                    sx={theme => ({
+                        backgroundColor: theme.colors.main[3],
+                    })}
+                >
                     <Group position="center" mb="lg">
                         <IconCircleCheck color="green" size={48} />
-                        <Title order={1}>
-                            Ihr Termin wurde erfolgreich gebucht
+                        <Title
+                            order={1}
+                            sx={theme => ({
+                                backgroundColor: theme.colors.main[4],
+                            })}
+                        >
+                            {languageValue === 'german'
+                                ? 'Ihr Termin wurde erfolgreich gebucht'
+                                : 'Your appointmenr is confirmed'}
                         </Title>
                     </Group>
                     <Card shadow="sm" p="xl" mb="lg">
-                        <Text weight={500} size="lg" mt="md">
-                            Wir erwarten Sie am {date?.toLocaleDateString()} von{' '}
+                        <Text
+                            weight={500}
+                            size="lg"
+                            mt="md"
+                            sx={theme => ({
+                                backgroundColor: theme.colors.main[4],
+                            })}
+                        >
+                            {languageValue === 'german'
+                                ? 'Wir erwarten Sie am '
+                                : 'We waiting for you '}
+                            {date?.toLocaleDateString()}{' '}
+                            {languageValue === 'german' ? 'von ' : 'from '}
                             {
                                 freeTimes.filter(f => {
                                     if (time && f.value === time) {
@@ -127,86 +171,147 @@ function SchedulerView() {
                                 navigate('/');
                             }}
                         >
-                            Zurück zur Hauptseite
+                            {languageValue === 'german'
+                                ? 'Zurück zur Hauptseite'
+                                : 'Back to the Landingpage'}
                         </Button>
                     </Center>
                 </Container>
             </Modal>
-
-            <Container p="lg" sx={{ position: 'relative' }}>
-                <Title order={1}>Willkommen zur Terminauswahl</Title>
-                <Alert
-                    icon={<IconAlertCircle size={16} />}
-                    title="Bitte beachten Sie:"
-                    color="indigo"
-                    radius="xs"
-                    mt="lg"
+            <Box
+                sx={theme => ({
+                    backgroundColor: theme.colors.main[3],
+                })}
+            >
+                <Container
+                    p="lg"
+                    sx={theme => ({
+                        backgroundColor: theme.colors.main[3],
+                        position: 'relative',
+                    })}
                 >
-                    Es werden nur verfügbare Termine angezeigt
-                </Alert>
-
-                <Divider mb="lg" mt="lg" />
-
-                <Stack>
-                    <Title mb="lg" order={3}>
-                        Wählen Sie bitte ein Datum aus
-                    </Title>
-                    <Calendar
-                        value={date}
-                        onChange={setDate}
-                        fullWidth
-                        size="xl"
-                        excludeDate={date => date.getDay() === 0}
-                    />
-                </Stack>
-
-                <Divider mb="lg" mt="lg" />
-
-                <Stack>
-                    <Title mb="lg" order={3}>
-                        Wählen Sie bitte ein eine Uhrzeit aus
-                    </Title>
-                    <Select
-                        value={time}
-                        onChange={setTime}
-                        label="Verfügbare Uhrzeiten"
-                        placeholder="Pick one"
-                        data={freeTimes}
-                    />
-                </Stack>
-
-                <Divider mb="lg" mt="lg" />
-
-                <Stack>
-                    <Title mb="lg" order={3}>
-                        Wählen Sie bitte eine Leistung aus
-                    </Title>
-                    <SimpleGrid cols={4} spacing="xs">
-                        {data.map((service: IService) => {
-                            return (
-                                <ServiceCard
-                                    {...service}
-                                    key={service.id}
-                                    selectedIdHandler={serviceSelectHandler}
-                                />
-                            );
+                    <Title
+                        order={1}
+                        sx={theme => ({
+                            color: theme.colors.main[4],
                         })}
-                    </SimpleGrid>
-                </Stack>
-
-                <Divider mb="lg" mt="lg" />
-
-                <Group position="center" mt="xl">
-                    <Button
-                        size="lg"
-                        disabled={!time || !date || !service}
-                        onClick={() => confirmAppointment()}
                     >
-                        Jetzt Termin buchen
-                    </Button>
-                </Group>
-            </Container>
-        </>
+                        {languageValue === 'german'
+                            ? 'Willkommen zur Terminauswahl'
+                            : 'Welcome to the scheduler'}
+                    </Title>
+                    <Alert
+                        icon={<IconAlertCircle size={16} />}
+                        title={
+                            languageValue === 'german'
+                                ? 'Bitte beachten Sie'
+                                : 'Please'
+                        }
+                        color="indigo"
+                        radius="xs"
+                        mt="lg"
+                        sx={theme => ({
+                            color: theme.colors.main[4],
+                        })}
+                    >
+                        {languageValue === 'german'
+                            ? 'Es werden nur verfügbare Termine angezeigt'
+                            : 'You can view only free appointments'}
+                    </Alert>
+
+                    <Divider mb="lg" mt="lg" />
+
+                    <Stack>
+                        <Title
+                            mb="lg"
+                            order={3}
+                            sx={theme => ({
+                                color: theme.colors.main[4],
+                            })}
+                        >
+                            {languageValue === 'german'
+                                ? 'Wählen Sie bitte ein Datum aus'
+                                : 'Please select a date'}
+                        </Title>
+                        <Calendar
+                            value={date}
+                            onChange={setDate}
+                            fullWidth
+                            size="xl"
+                            excludeDate={date => date.getDay() === 0}
+                        />
+                    </Stack>
+
+                    <Divider mb="lg" mt="lg" />
+
+                    <Stack>
+                        <Title
+                            mb="lg"
+                            order={3}
+                            sx={theme => ({
+                                color: theme.colors.main[4],
+                            })}
+                        >
+                            {languageValue === 'german'
+                                ? 'Wählen Sie bitte ein eine Uhrzeit aus'
+                                : 'Please select a time'}
+                        </Title>
+                        <Select
+                            value={time}
+                            onChange={setTime}
+                            label={
+                                languageValue === 'german'
+                                    ? 'Verfügbare Uhrzeiten'
+                                    : 'Available times'
+                            }
+                            placeholder="Pick one"
+                            data={freeTimes}
+                        />
+                    </Stack>
+
+                    <Divider mb="lg" mt="lg" />
+
+                    <Stack>
+                        <Title
+                            mb="lg"
+                            order={3}
+                            sx={theme => ({
+                                color: theme.colors.main[4],
+                            })}
+                        >
+                            {languageValue === 'german'
+                                ? 'Wählen Sie bitte eine Leistung aus'
+                                : 'Please select a service'}
+                        </Title>
+                        <SimpleGrid cols={4} spacing="xs">
+                            {data.map((service: IService) => {
+                                return (
+                                    <ServiceCard
+                                        {...service}
+                                        key={service.id}
+                                        selectedIdHandler={serviceSelectHandler}
+                                    />
+                                );
+                            })}
+                        </SimpleGrid>
+                    </Stack>
+
+                    <Divider mb="lg" mt="lg" />
+
+                    <Group position="center" mt="xl">
+                        <Button
+                            size="lg"
+                            disabled={!time || !date || !service}
+                            onClick={() => confirmAppointment()}
+                        >
+                            {languageValue === 'german'
+                                ? 'Jetzt Termin buchen'
+                                : 'Confirm'}
+                        </Button>
+                    </Group>
+                </Container>
+            </Box>
+        </MantineProvider>
     );
 }
 

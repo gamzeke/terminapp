@@ -1,4 +1,4 @@
-import { MantineProvider, Text } from '@mantine/core';
+import { Text } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
@@ -27,40 +27,38 @@ const queryClient = new QueryClient();
 
 root.render(
     <React.StrictMode>
-        <MantineProvider withNormalizeCSS withGlobalStyles>
-            <QueryClientProvider client={queryClient}>
-                <NotificationsProvider>
-                    <CompanyContextProvider>
-                        <BrowserRouter>
-                            <Routes>
-                                <Route path="admin" element={<App />}>
-                                    <Route index element={<DashboardView />} />
-                                    <Route
-                                        path="calendar"
-                                        element={<CalendarView />}
-                                    />
-                                    <Route
-                                        path="customer"
-                                        element={<CustomerView />}
-                                    />
-                                    <Route
-                                        path="company"
-                                        element={<CompanyView />}
-                                    />
-                                    <Route path="faq" element={<FAQView />} />
-                                </Route>
-                                <Route path="auth" element={<AuthView />} />
+        <QueryClientProvider client={queryClient}>
+            <NotificationsProvider>
+                <CompanyContextProvider>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="admin" element={<App />}>
+                                <Route index element={<DashboardView />} />
                                 <Route
-                                    path="scheduler"
-                                    element={<AppointmentView />}
+                                    path="calendar"
+                                    element={<CalendarView />}
                                 />
-                                <Route path="/" element={<LandingPage />} />
-                                <Route path="*" element={<PageNotFound />} />
-                            </Routes>
-                        </BrowserRouter>
-                    </CompanyContextProvider>
-                </NotificationsProvider>
-            </QueryClientProvider>
-        </MantineProvider>
+                                <Route
+                                    path="customer"
+                                    element={<CustomerView />}
+                                />
+                                <Route
+                                    path="company"
+                                    element={<CompanyView />}
+                                />
+                                <Route path="faq" element={<FAQView />} />
+                            </Route>
+                            <Route path="auth" element={<AuthView />} />
+                            <Route
+                                path="scheduler"
+                                element={<AppointmentView />}
+                            />
+                            <Route path="/" element={<LandingPage />} />
+                            <Route path="*" element={<PageNotFound />} />
+                        </Routes>
+                    </BrowserRouter>
+                </CompanyContextProvider>
+            </NotificationsProvider>
+        </QueryClientProvider>
     </React.StrictMode>
 );

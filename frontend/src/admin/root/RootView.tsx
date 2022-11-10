@@ -1,26 +1,16 @@
 import {
     AppShell,
-    Burger,
     Footer,
     Header,
-    MediaQuery,
     Navbar,
     Text,
     useMantineTheme,
 } from '@mantine/core';
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavLinks } from './NavLinks';
 
-interface CounterCardModel {
-    title: string;
-    additionalInformation: string;
-    date: number;
-}
-
 const RootView = () => {
     const theme = useMantineTheme();
-    const [opened, setOpened] = useState(false);
 
     return (
         <AppShell
@@ -39,7 +29,6 @@ const RootView = () => {
                 <Navbar
                     p="md"
                     hiddenBreakpoint="sm"
-                    hidden={!opened}
                     width={{ sm: 200, lg: 220 }}
                 >
                     <Navbar.Section>
@@ -54,27 +43,7 @@ const RootView = () => {
             }
             header={
                 <Header height={70} p="md">
-                    <div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            height: '100%',
-                        }}
-                    >
-                        <MediaQuery
-                            largerThan="sm"
-                            styles={{ display: 'none' }}
-                        >
-                            <Burger
-                                opened={opened}
-                                onClick={() => setOpened(o => !o)}
-                                size="sm"
-                                color={theme.colors.gray[6]}
-                                mr="xl"
-                            />
-                        </MediaQuery>
-                        <Text weight={700}>TerminPlaner (Admin)</Text>
-                    </div>
+                    <Text weight={700}>TerminPlaner (Admin)</Text>
                 </Header>
             }
         >

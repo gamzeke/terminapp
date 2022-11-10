@@ -1,9 +1,11 @@
 import {
     ActionIcon,
+    Box,
     Container,
     Group,
     MantineProvider,
     Paper,
+    Space,
     Stack,
     Text,
     Title,
@@ -79,294 +81,428 @@ const LandingPage = () => {
 
     return (
         <MantineProvider theme={currentTheme}>
-            <PageHeader
-                toggleCurrentTheme={toggleCurrentTheme}
-                toggleLanguage={toggleLanguage}
-                currentLanguage={currentLanguage}
-            />
-
-            <Container id="welcome-section">
-                <Title order={1} align="center">
-                    {currentLanguage === 'german'
-                        ? 'Herzlich Willkommen'
-                        : 'Welcome'}
-                </Title>
-                <Text mt="xl" align="justify">
-                    {company.welcomeText}
-                </Text>
-            </Container>
-
-            {showProducts && (
-                <Container id="service-section" pt="xl">
-                    <Title order={2} mb="lg">
+            <Box
+                sx={theme => ({
+                    backgroundColor: theme.colors.main[3],
+                })}
+            >
+                <PageHeader
+                    toggleCurrentTheme={toggleCurrentTheme}
+                    toggleLanguage={toggleLanguage}
+                    currentLanguage={currentLanguage}
+                />
+                <Container
+                    id="welcome-section"
+                    sx={theme => ({
+                        backgroundColor: theme.colors.main[3],
+                    })}
+                >
+                    <Title
+                        order={1}
+                        align="center"
+                        sx={theme => ({
+                            color: theme.colors.main[4],
+                        })}
+                    >
                         {currentLanguage === 'german'
-                            ? 'Unsere Leistungen'
-                            : 'Our Services'}
+                            ? 'Herzlich Willkommen'
+                            : 'Welcome'}
                     </Title>
-                    <Products setShowProducts={setShowProducts} />
+                    <Text
+                        mt="xl"
+                        align="justify"
+                        sx={theme => ({
+                            color: theme.colors.main[4],
+                        })}
+                    >
+                        {company.welcomeText}
+                    </Text>
                 </Container>
-            )}
-
-            {showFAQs && (
-                <Container id="faq-section" pt="xl">
-                    <Title order={2} mb="lg">
+                {showProducts && (
+                    <Container
+                        id="service-section"
+                        pt="xl"
+                        sx={theme => ({
+                            backgroundColor: theme.colors.main[3],
+                        })}
+                    >
+                        <Title
+                            order={2}
+                            mb="lg"
+                            sx={theme => ({
+                                color: theme.colors.main[4],
+                            })}
+                        >
+                            {currentLanguage === 'german'
+                                ? 'Unsere Leistungen'
+                                : 'Our Services'}
+                        </Title>
+                        <Products setShowProducts={setShowProducts} />
+                    </Container>
+                )}
+                <Space mb={100} />
+                {showFAQs && (
+                    <Container
+                        id="faq-section"
+                        pt="xl"
+                        sx={theme => ({
+                            backgroundColor: theme.colors.main[3],
+                        })}
+                    >
+                        <Title
+                            order={2}
+                            mb="lg"
+                            sx={theme => ({
+                                color: theme.colors.main[4],
+                            })}
+                        >
+                            {currentLanguage === 'german'
+                                ? 'Häufig gestellte Fragen'
+                                : 'Frequently asked questions'}
+                        </Title>
+                        <FAQ setShowFAQs={setShowFAQs} />
+                    </Container>
+                )}
+                <Space mb={100} />
+                <Container
+                    id="socialmedia-section"
+                    pt="xl"
+                    sx={theme => ({
+                        backgroundColor: theme.colors.main[3],
+                    })}
+                >
+                    <Title
+                        order={2}
+                        mb="lg"
+                        sx={theme => ({
+                            color: theme.colors.main[4],
+                        })}
+                    >
                         {currentLanguage === 'german'
-                            ? 'Häufig gestellte Fragen'
-                            : 'Frequently asked questions'}
+                            ? 'Folgen Sie in den Social Media'
+                            : 'Follow us on social media'}
                     </Title>
-                    <FAQ setShowFAQs={setShowFAQs} />
+                    <Group spacing={0} position="apart" noWrap>
+                        {company.facebookLink && (
+                            <Group>
+                                <ActionIcon
+                                    size="xl"
+                                    component="a"
+                                    href={company.facebookLink}
+                                    target="_blank"
+                                >
+                                    <IconBrandFacebook size={32} color="blue" />
+                                </ActionIcon>
+                                <Text
+                                    sx={theme => ({
+                                        color: theme.colors.main[4],
+                                    })}
+                                >
+                                    Facebook
+                                </Text>
+                            </Group>
+                        )}
+                        {company.instagramLink && (
+                            <Group>
+                                <ActionIcon
+                                    size="xl"
+                                    component="a"
+                                    href={company.instagramLink}
+                                    target="_blank"
+                                >
+                                    <IconBrandInstagram
+                                        size={32}
+                                        color="brown"
+                                    />
+                                </ActionIcon>
+                                <Text
+                                    sx={theme => ({
+                                        color: theme.colors.main[4],
+                                    })}
+                                >
+                                    Instagram
+                                </Text>
+                            </Group>
+                        )}
+                        {company.youtubeLink && (
+                            <Group>
+                                <ActionIcon
+                                    size="xl"
+                                    component="a"
+                                    href={company.youtubeLink}
+                                    target="_blank"
+                                >
+                                    <IconBrandYoutube size={32} color="red" />
+                                </ActionIcon>
+                                <Text
+                                    sx={theme => ({
+                                        color: theme.colors.main[4],
+                                    })}
+                                >
+                                    Youtube
+                                </Text>
+                            </Group>
+                        )}
+                        {company.tikTokLink && (
+                            <Group>
+                                <ActionIcon
+                                    size="xl"
+                                    component="a"
+                                    href={company.tikTokLink}
+                                    target="_blank"
+                                >
+                                    <IconBrandTiktok size={32} color="green" />
+                                </ActionIcon>
+                                <Text
+                                    sx={theme => ({
+                                        color: theme.colors.main[4],
+                                    })}
+                                >
+                                    TikTok
+                                </Text>
+                            </Group>
+                        )}
+                    </Group>
                 </Container>
-            )}
+                <Space mb={100} />
+                <Container
+                    id="contact-section"
+                    pt="xl"
+                    sx={theme => ({
+                        backgroundColor: theme.colors.main[3],
+                    })}
+                >
+                    <Title
+                        order={2}
+                        mb="lg"
+                        sx={theme => ({
+                            color: theme.colors.main[4],
+                        })}
+                    >
+                        {currentLanguage === 'german'
+                            ? 'Unsere Öffnungszeiten'
+                            : 'Our business hours'}
+                    </Title>
+                    <Group position="apart">
+                        <Paper shadow="xs" p="md">
+                            {company.mondayOpen && company.mondayClose ? (
+                                <Stack>
+                                    <Title order={4}>
+                                        {currentLanguage === 'german'
+                                            ? 'Montag'
+                                            : 'Monday'}
+                                    </Title>
+                                    <Title order={6}>
+                                        {company.mondayOpen
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.mondayOpen?.toLocaleTimeString()
+                                                    .length - 3
+                                            ) + ' bis '}
+                                        {company.mondayClose
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.mondayClose?.toLocaleTimeString()
+                                                    .length - 3
+                                            )}
+                                    </Title>
+                                </Stack>
+                            ) : null}
+                        </Paper>
 
-            <Container id="socialmedia-section" pt="xl">
-                <Title order={2} mb="lg">
-                    {currentLanguage === 'german'
-                        ? 'Folgen Sie in den Social Media'
-                        : 'Follow us on social media'}
-                </Title>
-                <Group spacing={0} position="apart" noWrap>
-                    {company.facebookLink && (
-                        <Group>
-                            <ActionIcon
-                                size="xl"
-                                component="a"
-                                href={company.facebookLink}
-                                target="_blank"
-                            >
-                                <IconBrandFacebook size={32} color="blue" />
-                            </ActionIcon>
-                            <Text>Facebook</Text>
-                        </Group>
-                    )}
-                    {company.instagramLink && (
-                        <Group>
-                            <ActionIcon
-                                size="xl"
-                                component="a"
-                                href={company.instagramLink}
-                                target="_blank"
-                            >
-                                <IconBrandInstagram size={32} color="brown" />
-                            </ActionIcon>
-                            <Text>Instagram</Text>
-                        </Group>
-                    )}
-                    {company.youtubeLink && (
-                        <Group>
-                            <ActionIcon
-                                size="xl"
-                                component="a"
-                                href={company.youtubeLink}
-                                target="_blank"
-                            >
-                                <IconBrandYoutube size={32} color="red" />
-                            </ActionIcon>
-                            <Text>Youtube</Text>
-                        </Group>
-                    )}
-                    {company.tikTokLink && (
-                        <Group>
-                            <ActionIcon
-                                size="xl"
-                                component="a"
-                                href={company.tikTokLink}
-                                target="_blank"
-                            >
-                                <IconBrandTiktok size={32} color="green" />
-                            </ActionIcon>
-                            <Text>TikTok</Text>
-                        </Group>
-                    )}
-                </Group>
-            </Container>
-
-            <Container id="contact-section" pt="xl">
-                <Title order={2} mb="lg">
-                    {currentLanguage === 'german'
-                        ? 'Unsere Öffnungszeiten'
-                        : 'Our business hours'}
-                </Title>
-                <Group position="apart">
-                    <Paper shadow="xs" p="md">
-                        {company.mondayOpen && company.mondayClose ? (
-                            <Stack>
-                                <Title order={4}>
-                                    {currentLanguage === 'german'
-                                        ? 'Montag'
-                                        : 'Monday'}
-                                </Title>
-                                <Title order={6}>
-                                    {company.mondayOpen
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.mondayOpen?.toLocaleTimeString()
-                                                .length - 3
-                                        ) + ' bis '}
-                                    {company.mondayClose
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.mondayClose?.toLocaleTimeString()
-                                                .length - 3
-                                        )}
-                                </Title>
-                            </Stack>
+                        {company.tuesdayOpen && company.tuesdayClose ? (
+                            <Paper shadow="xs" p="md">
+                                <Stack>
+                                    <Title
+                                        order={4}
+                                        sx={theme => ({
+                                            color: theme.colors.main[4],
+                                        })}
+                                    >
+                                        {currentLanguage === 'german'
+                                            ? 'Dienstag'
+                                            : 'Tuesday'}
+                                    </Title>
+                                    <Title order={6}>
+                                        {company.tuesdayOpen
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.tuesdayOpen?.toLocaleTimeString()
+                                                    .length - 3
+                                            ) + ' bis '}
+                                        {company.tuesdayClose
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.tuesdayClose?.toLocaleTimeString()
+                                                    .length - 3
+                                            )}
+                                    </Title>
+                                </Stack>
+                            </Paper>
                         ) : null}
-                    </Paper>
 
-                    {company.tuesdayOpen && company.tuesdayClose ? (
-                        <Paper shadow="xs" p="md">
-                            <Stack>
-                                <Title order={4}>
-                                    {currentLanguage === 'german'
-                                        ? 'Dienstag'
-                                        : 'Tuesday'}
-                                </Title>
-                                <Title order={6}>
-                                    {company.tuesdayOpen
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.tuesdayOpen?.toLocaleTimeString()
-                                                .length - 3
-                                        ) + ' bis '}
-                                    {company.tuesdayClose
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.tuesdayClose?.toLocaleTimeString()
-                                                .length - 3
-                                        )}
-                                </Title>
-                            </Stack>
-                        </Paper>
-                    ) : null}
+                        {company.wednesdayOpen && company.wednesdayClose ? (
+                            <Paper shadow="xs" p="md">
+                                <Stack>
+                                    <Title
+                                        order={4}
+                                        sx={theme => ({
+                                            color: theme.colors.main[4],
+                                        })}
+                                    >
+                                        {currentLanguage === 'german'
+                                            ? 'Mittwoch'
+                                            : 'Wednesday'}
+                                    </Title>
+                                    <Title order={6}>
+                                        {company.wednesdayOpen
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.wednesdayOpen?.toLocaleTimeString()
+                                                    .length - 3
+                                            ) + ' bis '}
+                                        {company.wednesdayClose
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.wednesdayClose?.toLocaleTimeString()
+                                                    .length - 3
+                                            )}
+                                    </Title>
+                                </Stack>
+                            </Paper>
+                        ) : null}
 
-                    {company.wednesdayOpen && company.wednesdayClose ? (
-                        <Paper shadow="xs" p="md">
-                            <Stack>
-                                <Title order={4}>
-                                    {currentLanguage === 'german'
-                                        ? 'Mittwoch'
-                                        : 'Wednesday'}
-                                </Title>
-                                <Title order={6}>
-                                    {company.wednesdayOpen
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.wednesdayOpen?.toLocaleTimeString()
-                                                .length - 3
-                                        ) + ' bis '}
-                                    {company.wednesdayClose
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.wednesdayClose?.toLocaleTimeString()
-                                                .length - 3
-                                        )}
-                                </Title>
-                            </Stack>
-                        </Paper>
-                    ) : null}
+                        {company.thursdayOpen && company.thursdayClose ? (
+                            <Paper shadow="xs" p="md">
+                                <Stack>
+                                    <Title
+                                        order={4}
+                                        sx={theme => ({
+                                            color: theme.colors.main[4],
+                                        })}
+                                    >
+                                        {currentLanguage === 'german'
+                                            ? 'Donnerstag'
+                                            : 'Thursday'}
+                                    </Title>
+                                    <Title order={6}>
+                                        {company.thursdayOpen
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.thursdayOpen?.toLocaleTimeString()
+                                                    .length - 3
+                                            ) + ' bis '}
+                                        {company.thursdayOpen
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.thursdayOpen?.toLocaleTimeString()
+                                                    .length - 3
+                                            )}
+                                    </Title>
+                                </Stack>
+                            </Paper>
+                        ) : null}
 
-                    {company.thursdayOpen && company.thursdayClose ? (
-                        <Paper shadow="xs" p="md">
-                            <Stack>
-                                <Title order={4}>
-                                    {currentLanguage === 'german'
-                                        ? 'Donnerstag'
-                                        : 'Thursday'}
-                                </Title>
-                                <Title order={6}>
-                                    {company.thursdayOpen
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.thursdayOpen?.toLocaleTimeString()
-                                                .length - 3
-                                        ) + ' bis '}
-                                    {company.thursdayOpen
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.thursdayOpen?.toLocaleTimeString()
-                                                .length - 3
-                                        )}
-                                </Title>
-                            </Stack>
-                        </Paper>
-                    ) : null}
+                        {company.fridayOpen && company.fridayClose ? (
+                            <Paper shadow="xs" p="md">
+                                <Stack>
+                                    <Title
+                                        order={4}
+                                        sx={theme => ({
+                                            color: theme.colors.main[4],
+                                        })}
+                                    >
+                                        {currentLanguage === 'german'
+                                            ? 'Freitag'
+                                            : 'Friday'}
+                                    </Title>
+                                    <Title order={6}>
+                                        {company.fridayOpen
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.fridayOpen?.toLocaleTimeString()
+                                                    .length - 3
+                                            ) + ' bis '}
+                                        {company.fridayClose
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.fridayClose?.toLocaleTimeString()
+                                                    .length - 3
+                                            )}
+                                    </Title>
+                                </Stack>
+                            </Paper>
+                        ) : null}
 
-                    {company.fridayOpen && company.fridayClose ? (
-                        <Paper shadow="xs" p="md">
-                            <Stack>
-                                <Title order={4}>
-                                    {currentLanguage === 'german'
-                                        ? 'Freitag'
-                                        : 'Friday'}
-                                </Title>
-                                <Title order={6}>
-                                    {company.fridayOpen
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.fridayOpen?.toLocaleTimeString()
-                                                .length - 3
-                                        ) + ' bis '}
-                                    {company.fridayClose
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.fridayClose?.toLocaleTimeString()
-                                                .length - 3
-                                        )}
-                                </Title>
-                            </Stack>
-                        </Paper>
-                    ) : null}
-
-                    {company.saturdayClose && company.saturdayOpen ? (
-                        <Paper shadow="xs" p="md">
-                            <Stack>
-                                <Title order={4}>
-                                    {currentLanguage === 'german'
-                                        ? 'Samstag'
-                                        : 'Saturday'}
-                                </Title>
-                                <Title order={6}>
-                                    {company.saturdayOpen
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.saturdayOpen?.toLocaleTimeString()
-                                                .length - 3
-                                        ) + ' bis '}
-                                    {company.saturdayClose
-                                        ?.toLocaleTimeString()
-                                        .slice(
-                                            0,
-                                            company.saturdayClose?.toLocaleTimeString()
-                                                .length - 3
-                                        )}
-                                </Title>
-                            </Stack>
-                        </Paper>
-                    ) : null}
-                </Group>
-            </Container>
-
-            <Container id="contact-section" pt="xl">
-                <Title order={2} mb="lg">
-                    {currentLanguage === 'german'
-                        ? 'Kontaktieren Sie uns einfach'
-                        : 'Please feel free to contact us'}
-                </Title>
-                <ContactUs currentLanguage={currentLanguage} />
-            </Container>
-
-            <PageFooter />
+                        {company.saturdayClose && company.saturdayOpen ? (
+                            <Paper shadow="xs" p="md">
+                                <Stack>
+                                    <Title
+                                        order={4}
+                                        sx={theme => ({
+                                            color: theme.colors.main[4],
+                                        })}
+                                    >
+                                        {currentLanguage === 'german'
+                                            ? 'Samstag'
+                                            : 'Saturday'}
+                                    </Title>
+                                    <Title order={6}>
+                                        {company.saturdayOpen
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.saturdayOpen?.toLocaleTimeString()
+                                                    .length - 3
+                                            ) + ' bis '}
+                                        {company.saturdayClose
+                                            ?.toLocaleTimeString()
+                                            .slice(
+                                                0,
+                                                company.saturdayClose?.toLocaleTimeString()
+                                                    .length - 3
+                                            )}
+                                    </Title>
+                                </Stack>
+                            </Paper>
+                        ) : null}
+                    </Group>
+                </Container>
+                <Space mb={100} />
+                <Container
+                    id="contact-section"
+                    pt="xl"
+                    sx={theme => ({
+                        backgroundColor: theme.colors.main[3],
+                    })}
+                >
+                    <Title
+                        order={2}
+                        mb="lg"
+                        sx={theme => ({
+                            color: theme.colors.main[4],
+                        })}
+                    >
+                        {currentLanguage === 'german'
+                            ? 'Kontaktieren Sie uns einfach'
+                            : 'Please feel free to contact us'}
+                    </Title>
+                    <Space mb={30} />
+                    <ContactUs currentLanguage={currentLanguage} />
+                    <Space mb={100} />
+                </Container>
+                <PageFooter />
+            </Box>
         </MantineProvider>
     );
 };

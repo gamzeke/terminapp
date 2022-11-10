@@ -46,7 +46,14 @@ const PageHeader = ({
                 fluid
             >
                 <Group>
-                    <Title order={3}>{company.companyName}</Title>
+                    <Title
+                        order={3}
+                        sx={theme => ({
+                            color: theme.colors.main[4],
+                        })}
+                    >
+                        {company.companyName}
+                    </Title>
                 </Group>
                 <Group>
                     <Divider orientation="vertical" />
@@ -108,10 +115,6 @@ const PageHeader = ({
                     <Button
                         sx={theme => ({
                             height: 30,
-                            backgroundColor:
-                                theme.colorScheme === 'dark'
-                                    ? theme.colors.dark[0]
-                                    : theme.colors.light[0],
                         })}
                         onClick={appointmentButtonHandler}
                     >
@@ -122,10 +125,6 @@ const PageHeader = ({
                     <Button
                         sx={theme => ({
                             height: 30,
-                            backgroundColor:
-                                theme.colorScheme === 'dark'
-                                    ? theme.colors.dark[0]
-                                    : theme.colors.light[0],
                         })}
                         onClick={loginButtonHandler}
                     >
