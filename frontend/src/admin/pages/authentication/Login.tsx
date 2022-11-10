@@ -7,10 +7,15 @@ import {
     TextInput,
     Title,
 } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
+import { showNotification } from '@mantine/notifications';
+import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IUser } from '../../../shared/models/IUser';
 import { AuthStatusType } from './AuthView';
+
+const AUTH_URL = 'http://localhost:8080/api/v1/users';
 
 interface LoginProps {
     updateAuthStatus: (state: AuthStatusType) => void;
@@ -21,15 +26,48 @@ const Login = ({ updateAuthStatus }: LoginProps) => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    const [currentUser, setCurrentUser] = useLocalStorage({
+        key: 'current-user',
+        defaultValue: false,
+    });
+
     const loginHandler = () => {
         if (username.length && password.length) {
             const user: IUser = {
                 username: username,
                 password: password,
             };
-            //TODO-MMUEJDE: Sende es an das Backend
+            return axios
+                .post(AUTH_URL, user, {
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                })
+                .then(() => {
+                    showNotification({
+                        title: 'Erfolgreich',
+                        color: 'green',
+                        message: 'Der Login war erfolgreich.',
+                    });
+                    setCurrentUser(true);
+                    navigate('/admin');
+                })
+                .catch(error => {
+                    showNotification({
+                        title: 'Fehler',
+                        color: 'red',
+                        message:
+                            'Der Login war nicht erfolgreich. Bitte versuchen Sie es nochmal.',
+                    });
+                });
         } else {
-            //TODO-MMUEJDE: Was soll passieren?
+            showNotification({
+                title: 'Fehler',
+                color: 'red',
+                message: 'Bitte überprüfen Sie nochmal Ihre Logindaten.',
+            });
         }
     };
 

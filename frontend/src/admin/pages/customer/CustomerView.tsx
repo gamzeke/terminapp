@@ -108,7 +108,6 @@ const CustomerView = () => {
         );
     }
 
-    //TODO-MMUEJDE: Ich muss die Suche einbauen!
     return (
         <>
             <Paper p="xs">

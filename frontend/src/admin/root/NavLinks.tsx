@@ -1,4 +1,5 @@
 import { Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import {
     IconCalendar,
     IconDashboard,
@@ -66,6 +67,11 @@ const menuItems = [
 const NavLink = ({ icon, color, label, url }: NavLinkProps) => {
     const navigate = useNavigate();
 
+    const [currentUser, setCurrentUser] = useLocalStorage({
+        key: 'current-user',
+        defaultValue: false,
+    });
+
     return (
         <UnstyledButton
             sx={theme => ({
@@ -85,7 +91,12 @@ const NavLink = ({ icon, color, label, url }: NavLinkProps) => {
                 },
             })}
             onClick={() => {
-                navigate(url);
+                if (label === 'Ausloggen') {
+                    setCurrentUser(false);
+                    navigate(url);
+                } else {
+                    navigate(url);
+                }
             }}
         >
             <Group>

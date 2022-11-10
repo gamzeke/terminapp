@@ -1,4 +1,3 @@
-import { Text } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
@@ -20,8 +19,6 @@ import PageNotFound from './shared/pages/PageNotFound';
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
-
-Text;
 
 const queryClient = new QueryClient();
 

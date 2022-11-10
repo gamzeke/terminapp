@@ -208,14 +208,14 @@ const CompanyContextProvider = ({ children }: PropsWithChildren) => {
         {
             onError: (error, variables, context) => {
                 showNotification({
-                    title: '🫤',
+                    title: 'Fehler',
                     color: 'red',
                     message: 'Geschäftsdaten konnten nicht aktualisiert werden',
                 });
             },
             onSuccess: (data, variables, context) => {
                 showNotification({
-                    title: '😊',
+                    title: 'Erfolgreich',
                     color: 'green',
                     message: 'Geschäftsdaten erfolgreich aktualisiert',
                 });

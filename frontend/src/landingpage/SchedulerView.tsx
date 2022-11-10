@@ -107,7 +107,7 @@ function SchedulerView() {
 
     const confirmAppointment = () => {
         if (date || time || service) {
-            //TODO-MUEJDE: Sende es an das Backend
+            //TODO-MMUEJDE: Sende es an das Backend
             handlers.open();
         }
     };

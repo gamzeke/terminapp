@@ -33,7 +33,7 @@ const useDeleteService = () => {
         {
             onError: (error, variables, context) => {
                 showNotification({
-                    title: '🫤',
+                    title: 'Fehler',
                     color: 'red',
                     message: 'Service konnte nicht gelöscht werden',
                 });
@@ -41,7 +41,7 @@ const useDeleteService = () => {
             onSuccess: newService => {
                 queryClient.invalidateQueries(['landingpage-products']);
                 showNotification({
-                    title: '😊',
+                    title: 'Erfolgreich',
                     color: 'green',
                     message: 'Service konnte erfolgreich gelöscht werden',
                 });
@@ -66,7 +66,7 @@ const useCreateService = () => {
         {
             onError: (error, variables, context) => {
                 showNotification({
-                    title: '🫤',
+                    title: 'Fehler',
                     color: 'red',
                     message: 'Service konnte nicht erstellt werden',
                 });
@@ -74,7 +74,7 @@ const useCreateService = () => {
             onSuccess: newService => {
                 queryClient.invalidateQueries(['landingpage-products']);
                 showNotification({
-                    title: '😊',
+                    title: 'Erfolgreich',
                     color: 'green',
                     message: 'Service konnte erfolgreich erstellt werden',
                 });

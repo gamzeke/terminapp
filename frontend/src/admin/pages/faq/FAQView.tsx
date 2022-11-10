@@ -35,7 +35,7 @@ const useCreateFAQ = () => {
         {
             onError: (error, variables, context) => {
                 showNotification({
-                    title: '🫤',
+                    title: 'Fehler',
                     color: 'red',
                     message: 'FAQ konnte nicht erstellt werden',
                 });
@@ -43,7 +43,7 @@ const useCreateFAQ = () => {
             onSuccess: newFAQ => {
                 queryClient.invalidateQueries(['faqs']);
                 showNotification({
-                    title: '😊',
+                    title: 'Erfolgreich',
                     color: 'green',
                     message: 'FAQ konnte erfolgreich erstellt werden',
                 });
