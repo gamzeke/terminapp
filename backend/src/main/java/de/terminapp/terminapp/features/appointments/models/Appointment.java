@@ -1,12 +1,14 @@
 package de.terminapp.terminapp.features.appointments.models;
 
 import de.terminapp.terminapp.features.client.models.Client;
+import de.terminapp.terminapp.features.product.models.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -27,11 +29,13 @@ public class Appointment {
     )
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "appointment_request_id")
-    private AppointmentRequest appointmentRequest;
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

@@ -1,6 +1,5 @@
 package de.terminapp.terminapp.features.product.models;
 
-import de.terminapp.terminapp.features.appointments.models.AppointmentRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,8 +28,4 @@ public class Product {
     private String description;
     private String name;
     private String price;
-
-    @ManyToOne
-    @JoinColumn(name = "appointment_request_id")
-    private AppointmentRequest appointmentRequest;
 }
