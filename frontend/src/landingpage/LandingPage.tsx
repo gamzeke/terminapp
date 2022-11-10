@@ -21,7 +21,9 @@ import { useEffect, useState } from 'react';
 import { useCompanyContext } from '../shared/context/CompanyContext';
 import {
     landingPageDarkTheme,
+    landingPageDarkWithLargeFontsizeTheme,
     landingPageLightTheme,
+    landingPageLightWithLargeFontsizeTheme,
 } from '../shared/theme/theme';
 import ContactUs from './sections/ContactUs';
 import { FAQ } from './sections/FAQ';
@@ -41,6 +43,16 @@ const LandingPage = () => {
         defaultValue: 'light',
     });
 
+    const [isLargeFontSize, setIsLargeFontSize] = useLocalStorage({
+        key: 'is-large-font-size',
+        defaultValue: false,
+    });
+
+    const [currentLanguage, setCurrentLanguage] = useLocalStorage({
+        key: 'language',
+        defaultValue: 'german',
+    });
+
     const toggleCurrentTheme = () => {
         if (colorScheme === 'light') {
             setColorScheme('dark');
@@ -50,34 +62,26 @@ const LandingPage = () => {
     };
 
     useEffect(() => {
-        if (colorScheme === 'light') {
+        if (colorScheme === 'light' && isLargeFontSize) {
+            setCurrentTheme(landingPageLightWithLargeFontsizeTheme);
+        } else if (colorScheme === 'light' && !isLargeFontSize) {
             setCurrentTheme(landingPageLightTheme);
+        } else if (colorScheme === 'dark' && isLargeFontSize) {
+            setCurrentTheme(landingPageDarkWithLargeFontsizeTheme);
         } else {
             setCurrentTheme(landingPageDarkTheme);
         }
-    }, [colorScheme]);
-
-    const [currentLanguage, setCurrentLanguage] = useState('german');
-    const [languageValue, setLanguageValue] = useLocalStorage({
-        key: 'language',
-        defaultValue: 'german',
-    });
+    }, [colorScheme, isLargeFontSize]);
 
     const toggleLanguage = () => {
-        if (languageValue === 'german') {
-            setLanguageValue('english');
-        } else {
-            setLanguageValue('german');
-        }
+        currentLanguage === 'german'
+            ? setCurrentLanguage('english')
+            : setCurrentLanguage('german');
     };
 
-    useEffect(() => {
-        if (languageValue === 'german') {
-            setCurrentLanguage('german');
-        } else {
-            setCurrentLanguage('english');
-        }
-    }, [languageValue]);
+    const toggleFontSize = () => {
+        setIsLargeFontSize(!isLargeFontSize);
+    };
 
     return (
         <MantineProvider theme={currentTheme}>
@@ -87,9 +91,12 @@ const LandingPage = () => {
                 })}
             >
                 <PageHeader
-                    toggleCurrentTheme={toggleCurrentTheme}
                     toggleLanguage={toggleLanguage}
                     currentLanguage={currentLanguage}
+                    toggleCurrentTheme={toggleCurrentTheme}
+                    colorScheme={colorScheme}
+                    isLargeFontSize={isLargeFontSize}
+                    toggleFontSize={toggleFontSize}
                 />
                 <Container
                     id="welcome-section"
@@ -113,6 +120,7 @@ const LandingPage = () => {
                         align="justify"
                         sx={theme => ({
                             color: theme.colors.main[4],
+                            fontSize: theme.fontSizes.md,
                         })}
                     >
                         {company.welcomeText}
