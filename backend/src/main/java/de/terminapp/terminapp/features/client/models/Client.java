@@ -1,11 +1,8 @@
 package de.terminapp.terminapp.features.client.models;
 
-import de.terminapp.terminapp.features.appointments.models.Appointment;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -29,16 +26,6 @@ public class Client {
 
     private String firstName;
     private String lastName;
-    private LocalDate birthday;
     private String email;
     private String telephone;
-    private LocalDate firstContactDate;
-
-    private String streetName;
-    private String streetNumber;
-    private String postCode;
-    private String city;
-
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Appointment> appointment;
 }

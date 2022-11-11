@@ -4,7 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthView from './admin/pages/authentication/AuthView';
-import CalendarView from './admin/pages/calendar/CalendarView';
 import CompanyView from './admin/pages/company/CompanyView';
 import CustomerView from './admin/pages/customer/CustomerView';
 import DashboardView from './admin/pages/dashboard/DashboardView';
@@ -31,10 +30,6 @@ root.render(
                         <Routes>
                             <Route path="admin" element={<App />}>
                                 <Route index element={<DashboardView />} />
-                                <Route
-                                    path="calendar"
-                                    element={<CalendarView />}
-                                />
                                 <Route
                                     path="customer"
                                     element={<CustomerView />}

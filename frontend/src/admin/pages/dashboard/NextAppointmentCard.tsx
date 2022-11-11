@@ -1,17 +1,22 @@
 import {
+    Center,
     createStyles,
     Group,
+    Loader,
     Paper,
+    SimpleGrid,
+    Stack,
     Text,
+    Title,
     UnstyledButton,
 } from '@mantine/core';
-import {
-    IconCalendarEvent,
-    IconChevronDown,
-    IconChevronUp,
-} from '@tabler/icons';
+import { IconAlertCircle, IconChevronDown, IconChevronUp } from '@tabler/icons';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import dayjs from 'dayjs';
 import { useState } from 'react';
+import { timeMap } from '../../../landingpage/SchedulerView';
+import { IAppointments } from '../../../shared/models/IAppointments';
 
 const useStyles = createStyles(theme => ({
     root: {
@@ -129,38 +134,75 @@ const useStyles = createStyles(theme => ({
     },
 }));
 
-const data = [
-    { icon: IconCalendarEvent, label: 'Makeup S' },
-    { icon: IconCalendarEvent, label: 'Makeup M' },
-    { icon: IconCalendarEvent, label: 'Makeup L' },
-    { icon: IconCalendarEvent, label: 'Makeup XL' },
-    { icon: IconCalendarEvent, label: 'Makeup XL' },
-];
-
 export function NextAppointmentCard() {
     const { classes } = useStyles();
-    const [date, setDate] = useState(new Date(2021, 9, 24));
+    const [date, setDate] = useState(new Date());
 
-    const stats = data.map(stat => (
-        <Paper
-            className={classes.stat}
-            radius="md"
-            shadow="md"
-            p="xs"
-            key={stat.label}
-        >
-            <stat.icon size={32} className={classes.icon} />
-            <div>
-                <Text className={classes.label}>{stat.label}</Text>
-                <Text size="xs" className={classes.count}>
-                    <span className={classes.value}>
-                        {Math.floor(Math.random() * 6 + 4)}
-                        :00 Uhr
-                    </span>
-                </Text>
-            </div>
-        </Paper>
-    ));
+    const { isLoading, isFetching, error, data } = useQuery(['clients'], () =>
+        axios
+            .get('http://localhost:8080/api/v1/appointments')
+            .then(res => res.data)
+    );
+
+    if (error) {
+        return (
+            <Center sx={{ height: '100%' }}>
+                <Stack align="center">
+                    <IconAlertCircle size={32} color="red" />
+                    <Text>
+                        Leider ist ein Fehler aufgetreten. Versuchen Sie es
+                        später nochmal.
+                    </Text>
+                </Stack>
+            </Center>
+        );
+    }
+
+    if (isFetching || isLoading) {
+        return (
+            <Center sx={{ height: '100%' }}>
+                <Loader size="xl" variant="bars" />
+            </Center>
+        );
+    }
+
+    const stats = data
+        .filter((d: IAppointments) => {
+            return (
+                new Date(d.date).getDay() === date.getDay() &&
+                new Date(d.date).getMonth() === date.getMonth() &&
+                new Date(d.date).getFullYear() === date.getFullYear()
+            );
+        })
+        .map((d: IAppointments) => (
+            <Group key={d.name}>
+                <Paper
+                    sx={{
+                        height: '300px',
+                        padding: '1rem',
+                    }}
+                >
+                    <SimpleGrid cols={2}>
+                        <Title order={6}>Uhrzeit: </Title>
+                        <Title order={5}>{timeMap[d.time].label}</Title>
+                        <Title order={6}>Name: </Title>
+                        <Title order={5}>
+                            {d.firstName} {d.lastName}
+                        </Title>
+                        <Title order={6}>E-Mail: </Title>
+                        <Title order={5}>{d.email}</Title>
+                        <Title order={6}>Telefon: </Title>
+                        <Title order={5}>{d.telephone}</Title>
+                        <Title order={6}>Service: </Title>
+                        <Title order={5}>{d.name}</Title>
+                        <Title order={6}>Beschreibung: </Title>
+                        <Title order={5}>{d.description}</Title>
+                        <Title order={6}>Preis: </Title>
+                        <Title order={5}>{d.price}</Title>
+                    </SimpleGrid>
+                </Paper>
+            </Group>
+        ));
 
     return (
         <div className={classes.root}>
@@ -175,7 +217,6 @@ export function NextAppointmentCard() {
                 >
                     <IconChevronUp className={classes.controlIcon} />
                 </UnstyledButton>
-
                 <div className={classes.date}>
                     <Text className={classes.day}>
                         {dayjs(date).format('DD')}
@@ -184,7 +225,6 @@ export function NextAppointmentCard() {
                         {dayjs(date).format('MMMM')}
                     </Text>
                 </div>
-
                 <UnstyledButton
                     className={classes.control}
                     onClick={() =>
@@ -196,7 +236,7 @@ export function NextAppointmentCard() {
                     <IconChevronDown className={classes.controlIcon} />
                 </UnstyledButton>
             </div>
-            <Group sx={{ flex: 1 }}>{stats}</Group>
+            <Group sx={{ flex: 1, height: '300px' }}>{stats}</Group>
         </div>
     );
 }

@@ -23,17 +23,9 @@ const CustomerTableRow = (customer: ICustomer) => {
             <td>{customer.lastName}</td>
             <td>{customer.email}</td>
             <td>{customer.telephone}</td>
-            <td>{customer.streetName}</td>
-            <td>{customer.streetNumber}</td>
-            <td>{customer.postCode}</td>
-            <td>{customer.city}</td>
         </tr>
     );
 };
-
-{
-    /* <td>{customer.firstContactDate}</td> TODO-MMUEJDE: Wie kann ich das darstellen? */
-}
 
 interface CustomerTableProps {
     children?: React.ReactNode;
@@ -48,10 +40,6 @@ const CustomerTable = ({ children }: CustomerTableProps) => {
                     <th>Nachname</th>
                     <th>E-Mail</th>
                     <th>Telefon</th>
-                    <th>Straße</th>
-                    <th>Straßennummer</th>
-                    <th>Postleitzahl</th>
-                    <th>Stadt</th>
                 </tr>
             </thead>
             <tbody>{children}</tbody>
@@ -70,11 +58,7 @@ const CustomerView = () => {
                 c.firstName.includes(searchString) ||
                 c.lastName.includes(searchString) ||
                 c.email.includes(searchString) ||
-                c.telephone.includes(searchString) ||
-                c.streetName.includes(searchString) ||
-                c.streetNumber.toString().includes(searchString) ||
-                c.postCode.toString().includes(searchString) ||
-                c.city.includes(searchString)
+                c.telephone.includes(searchString)
             ) {
                 return c;
             }

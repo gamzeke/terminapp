@@ -1,7 +1,6 @@
 import { Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
 import {
-    IconCalendar,
     IconDashboard,
     IconDatabase,
     IconExternalLink,
@@ -25,12 +24,6 @@ const menuItems = [
         color: 'blue',
         label: 'Dashboard',
         url: '/admin',
-    },
-    {
-        icon: <IconCalendar size={16} />,
-        color: 'red',
-        label: 'Kalendar',
-        url: 'calendar',
     },
     {
         icon: <IconDatabase size={16} />,

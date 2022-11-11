@@ -14,10 +14,12 @@ import {
     SimpleGrid,
     Stack,
     Text,
+    TextInput,
     Title,
 } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
 import { useDisclosure, useLocalStorage } from '@mantine/hooks';
+import { showNotification } from '@mantine/notifications';
 import { IconAlertCircle, IconCircleCheck } from '@tabler/icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -32,28 +34,34 @@ import ServiceCard from './sections/ServiceCard';
 
 const SERVICE_URL = 'http://localhost:8080/api/v1/products';
 
+export const timeMap = [
+    { value: '0', label: '07:00 bis 08:00' },
+    { value: '1', label: '08:00 bis 09:00' },
+    { value: '2', label: '09:00 bis 10:00' },
+    { value: '3', label: '10:00 bis 11:00' },
+    { value: '4', label: '11:00 bis 12:00' },
+    { value: '5', label: '12:00 bis 13:00' },
+    { value: '6', label: '13:00 bis 14:00' },
+    { value: '7', label: '14:00 bis 15:00' },
+    { value: '8', label: '15:00 bis 16:00' },
+    { value: '9', label: '16:00 bis 17:00' },
+    { value: '10', label: '17:00 bis 18:00' },
+];
+
 function SchedulerView() {
     const navigate = useNavigate();
 
     const [isOpen, handlers] = useDisclosure(false);
     const [date, setDate] = useState<Date | null>(null);
     const [time, setTime] = useState<string | null>('0');
-    const [freeTimes, setFreeTimes] = useState<
-        { value: string; label: string }[]
-    >([
-        { value: '0', label: '07:00 bis 08:00' },
-        { value: '1', label: '08:00 bis 09:00' },
-        { value: '2', label: '09:00 bis 10:00' },
-        { value: '3', label: '10:00 bis 11:00' },
-        { value: '4', label: '11:00 bis 12:00' },
-        { value: '5', label: '12:00 bis 13:00' },
-        { value: '6', label: '13:00 bis 14:00' },
-        { value: '7', label: '14:00 bis 15:00' },
-        { value: '8', label: '15:00 bis 16:00' },
-        { value: '9', label: '16:00 bis 17:00' },
-        { value: '10', label: '17:00 bis 18:00' },
-    ]);
-    const [service, setService] = useState<string | undefined>(undefined);
+    const [freeTimes, setFreeTimes] =
+        useState<{ value: string; label: string }[]>(timeMap);
+    const [service, setService] = useState<{
+        name: string;
+        id: string | undefined;
+        description: string;
+        price: string;
+    } | null>(null);
     const { isLoading, isFetching, error, data } = useQuery(
         ['landingpage-products'],
         () => axios.get(SERVICE_URL).then(res => res.data)
@@ -69,6 +77,11 @@ function SchedulerView() {
         key: 'language',
         defaultValue: 'german',
     });
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
 
     useEffect(() => {
         if (colorScheme === 'light') {
@@ -101,14 +114,65 @@ function SchedulerView() {
         );
     }
 
-    const serviceSelectHandler = (id: string | undefined) => {
-        setService(id);
+    const serviceSelectHandler = (
+        id: string | undefined,
+        name: string,
+        description: string,
+        price: string
+    ) => {
+        setService({
+            id: id,
+            name: name,
+            description: description,
+            price: price,
+        });
     };
 
     const confirmAppointment = () => {
-        if (date || time || service) {
-            //TODO-MMUEJDE: Sende es an das Backend
-            handlers.open();
+        if (
+            date &&
+            time &&
+            service &&
+            email &&
+            firstName &&
+            phone &&
+            lastName
+        ) {
+            const newAppointment = {
+                date: date,
+                time: time,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                telephone: phone,
+                description: service.description,
+                name: service.name,
+                price: service.price,
+            };
+
+            axios
+                .post(
+                    'http://localhost:8080/api/v1/appointments',
+                    JSON.stringify(newAppointment),
+                    {
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*',
+                        },
+                    }
+                )
+                .then(() => {
+                    handlers.open();
+                })
+                .catch(err => {
+                    showNotification({
+                        title: 'Fehler',
+                        color: 'red',
+                        message:
+                            'Es gab eine Fehler. Bitte versuchen Sie es nochmal',
+                    });
+                });
         }
     };
 
@@ -132,7 +196,7 @@ function SchedulerView() {
                         <Title
                             order={1}
                             sx={theme => ({
-                                backgroundColor: theme.colors.main[4],
+                                backgroundColor: theme.colors.main[3],
                             })}
                         >
                             {languageValue === 'german'
@@ -146,7 +210,7 @@ function SchedulerView() {
                             size="lg"
                             mt="md"
                             sx={theme => ({
-                                backgroundColor: theme.colors.main[4],
+                                backgroundColor: theme.colors.main[3],
                             })}
                         >
                             {languageValue === 'german'
@@ -218,9 +282,56 @@ function SchedulerView() {
                             ? 'Es werden nur verfügbare Termine angezeigt'
                             : 'You can view only free appointments'}
                     </Alert>
-
                     <Divider mb="lg" mt="lg" />
-
+                    <Title
+                        order={1}
+                        sx={theme => ({
+                            color: theme.colors.main[4],
+                        })}
+                    >
+                        {languageValue === 'german'
+                            ? 'Geben Sie Ihre persönliche Daten ein'
+                            : 'Enter your personal data'}
+                    </Title>
+                    <Group>
+                        <TextInput
+                            placeholder="Max"
+                            label="Vorname"
+                            value={firstName}
+                            onChange={event => {
+                                setFirstName(event.currentTarget.value);
+                            }}
+                            withAsterisk
+                        />
+                        <TextInput
+                            placeholder="Max"
+                            value={lastName}
+                            label="Nachname"
+                            onChange={event => {
+                                setLastName(event.currentTarget.value);
+                            }}
+                            withAsterisk
+                        />
+                        <TextInput
+                            placeholder="max.mustermann@muster.de"
+                            value={email}
+                            label="Email"
+                            onChange={event => {
+                                setEmail(event.currentTarget.value);
+                            }}
+                            withAsterisk
+                        />
+                        <TextInput
+                            placeholder="0123456789"
+                            value={phone}
+                            onChange={event => {
+                                setPhone(event.currentTarget.value);
+                            }}
+                            label="Telefon"
+                            withAsterisk
+                        />
+                    </Group>
+                    <Divider mb="lg" mt="lg" />
                     <Stack>
                         <Title
                             mb="lg"
@@ -241,9 +352,7 @@ function SchedulerView() {
                             excludeDate={date => date.getDay() === 0}
                         />
                     </Stack>
-
                     <Divider mb="lg" mt="lg" />
-
                     <Stack>
                         <Title
                             mb="lg"
@@ -268,9 +377,7 @@ function SchedulerView() {
                             data={freeTimes}
                         />
                     </Stack>
-
                     <Divider mb="lg" mt="lg" />
-
                     <Stack>
                         <Title
                             mb="lg"
@@ -295,9 +402,7 @@ function SchedulerView() {
                             })}
                         </SimpleGrid>
                     </Stack>
-
                     <Divider mb="lg" mt="lg" />
-
                     <Group position="center" mt="xl">
                         <Button
                             size="lg"

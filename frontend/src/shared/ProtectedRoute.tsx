@@ -15,8 +15,6 @@ const ProtectedRoute = ({
         key: 'current-user',
     });
 
-    console.log(currentUser);
-
     if (!currentUser) {
         showNotification({
             title: 'Fehler',

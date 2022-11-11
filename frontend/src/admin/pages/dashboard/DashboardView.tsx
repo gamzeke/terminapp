@@ -1,4 +1,4 @@
-import { Group, Paper, SimpleGrid, Space, Title } from '@mantine/core';
+import { Group, Paper, Space, Title } from '@mantine/core';
 import NextAppointmentCard from './NextAppointmentCard';
 
 function DashboardView() {
@@ -10,9 +10,7 @@ function DashboardView() {
                 </Group>
             </Paper>
             <Space h="md" />
-            <SimpleGrid cols={2} spacing="sm">
-                <NextAppointmentCard />
-            </SimpleGrid>
+            <NextAppointmentCard />
         </>
     );
 }

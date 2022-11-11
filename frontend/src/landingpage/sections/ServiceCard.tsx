@@ -51,7 +51,12 @@ interface ServiceCardProps {
     name: string;
     price: string;
     description: string;
-    selectedIdHandler?: (id: string | undefined) => void;
+    selectedIdHandler?: (
+        id: string | undefined,
+        name: string,
+        description: string,
+        price: string
+    ) => void;
     currentLanguage?: string;
 }
 
@@ -98,7 +103,9 @@ const ServiceCard = ({
                     {selectedIdHandler ? (
                         <Button
                             style={{ flex: 1 }}
-                            onClick={() => selectedIdHandler(id)}
+                            onClick={() =>
+                                selectedIdHandler(id, name, description, price)
+                            }
                         >
                             {currentLanguage === 'german' ? 'Buchen' : 'Book'}
                         </Button>
